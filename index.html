@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Digital House</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#3AB4F2;--blue-dark:#1A7EC0;--blue-deep:#0D5A91;
+  --silver:#B8C5D6;--silver-light:#DDE6F0;--silver-dark:#7A8FA6;
+  --navy:#060A14;--navy-mid:#0D1525;--navy-light:#152035;--navy-card:#111D30;
+  --white:#EEF3FA;--border:rgba(58,180,242,0.15);--border-s:rgba(184,197,214,0.15);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+
+.page{display:none;min-height:100vh;flex-direction:column}
+.page.active{display:flex}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.8rem 2rem;
+  background:rgba(6,10,20,0.97);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.nav-logo img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(58,180,242,0.4))}
+.nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-0.01em;line-height:1.1}
+.nav-logo-text span{display:block;font-size:0.6rem;font-weight:500;color:var(--silver);letter-spacing:0.08em;text-transform:uppercase}
+.nav-tabs{display:flex;gap:0.25rem}
+.nav-tab{padding:0.45rem 1rem;border-radius:6px;font-size:0.82rem;font-weight:500;color:var(--silver-dark);cursor:pointer;transition:all 0.2s;border:none;background:transparent}
+.nav-tab:hover{color:var(--blue)}
+.nav-tab.active{background:rgba(58,180,242,0.1);color:var(--blue);border:1px solid var(--border)}
+.nav-cta{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff;padding:0.45rem 1.1rem;border-radius:6px;font-weight:600;font-size:0.82rem;cursor:pointer;border:none;box-shadow:0 0 16px rgba(58,180,242,0.25);transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.85}
+
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff;padding:0.8rem 1.75rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(58,180,242,0.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(58,180,242,0.4)}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border-s);color:var(--silver);padding:0.8rem 1.75rem;border-radius:8px;font-size:0.9rem;text-decoration:none;transition:all 0.2s;background:transparent;cursor:pointer}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.btn-green{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a7a3a,#25a550);color:#fff;padding:0.8rem 1.75rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,165,80,0.25)}
+.btn-green:hover{transform:translateY(-2px)}
+.btn-tg{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1565a0,#2196F3);color:#fff;padding:0.8rem 1.75rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer}
+.btn-tg:hover{transform:translateY(-2px)}
+
+.page-content{flex:1;overflow-y:auto}
+section{padding:4.5rem 2rem}
+.section-label{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;color:var(--blue);text-transform:uppercase;margin-bottom:0.5rem}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:0.8rem}
+.section-sub{color:var(--silver-dark);font-size:0.95rem;max-width:500px;line-height:1.75}
+
+.hero{min-height:82vh;display:flex;align-items:center;padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 65% 40%,rgba(58,180,242,0.08) 0%,transparent 65%),radial-gradient(ellipse 30% 30% at 5% 85%,rgba(26,126,192,0.05) 0%,transparent 55%)}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(58,180,242,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(58,180,242,0.04) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse 75% 70% at 65% 40%,black 0%,transparent 70%)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;width:100%;max-width:1100px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(58,180,242,0.08);border:1px solid var(--border);border-radius:100px;padding:0.3rem 0.9rem;font-size:0.75rem;color:var(--blue);font-weight:500;margin-bottom:1.5rem}
+.badge-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.3rem,4.5vw,4rem);font-weight:800;line-height:1.07;letter-spacing:-0.03em;margin-bottom:1.1rem}
+h1 em{font-style:normal;color:var(--blue)}
+.hero-sub{font-size:0.97rem;color:var(--silver-dark);line-height:1.75;max-width:440px;margin-bottom:1.75rem}
+.hero-actions{display:flex;gap:0.8rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid var(--border-s)}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;color:var(--blue)}
+.stat-label{font-size:0.75rem;color:var(--silver-dark);margin-top:2px}
+.hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
+.logo-glow{position:absolute;width:280px;height:280px;background:radial-gradient(circle,rgba(58,180,242,0.15) 0%,transparent 70%);border-radius:50%;animation:glow-pulse 3s ease-in-out infinite}
+@keyframes glow-pulse{0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(1.1);opacity:1}}
+.hero-logo-img{width:260px;height:260px;object-fit:contain;position:relative;filter:drop-shadow(0 0 30px rgba(58,180,242,0.35)) drop-shadow(0 0 60px rgba(58,180,242,0.15));animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.address-strip{background:var(--navy-mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.1rem 2rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap}
+.addr-item{display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;color:var(--silver-dark)}
+.addr-icon{font-size:1rem;flex-shrink:0}
+.addr-item strong{color:var(--white);font-weight:500}
+.addr-divider{width:1px;height:28px;background:var(--border-s);flex-shrink:0}
+
+.quick-services{background:var(--navy-mid)}
+.qs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.85rem;margin-top:2rem}
+.qs-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:12px;padding:1.25rem 1rem;text-align:center;cursor:pointer;transition:all 0.2s}
+.qs-card:hover{border-color:rgba(58,180,242,0.4);transform:translateY(-3px);box-shadow:0 6px 20px rgba(58,180,242,0.1)}
+.qs-icon{font-size:1.6rem;margin-bottom:0.5rem}
+.qs-label{font-size:0.78rem;font-weight:500;color:var(--silver)}
+
+.contact-quick{background:var(--navy)}
+.cq-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.1rem}
+.cq-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;align-items:flex-start;gap:0.75rem;transition:all 0.2s}
+.cq-card:hover{border-color:rgba(58,180,242,0.35);transform:translateY(-2px)}
+.cq-top{display:flex;align-items:center;gap:10px}
+.cq-icon-wrap{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.cq-title{font-family:'Syne',sans-serif;font-weight:600;font-size:0.95rem}
+.cq-sub{font-size:0.8rem;color:var(--silver-dark);line-height:1.5}
+.cq-btn{margin-top:auto;font-size:0.78rem;font-weight:600;text-decoration:none;padding:0.45rem 1rem;border-radius:6px;transition:all 0.2s}
+
+.services-hero{padding:3.5rem 2rem 2.5rem;background:var(--navy-mid);text-align:center}
+.services-hero h2{margin:0 auto 0.75rem;max-width:600px}
+.services-hero .section-sub{margin:0 auto}
+
+.services-full{background:var(--navy)}
+.cat-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.6rem}
+.cat-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:3rem}
+.svc-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;padding:1.5rem;transition:all 0.25s;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:0;transition:opacity 0.3s}
+.svc-card:hover{transform:translateY(-4px);border-color:rgba(58,180,242,0.35);box-shadow:0 8px 30px rgba(58,180,242,0.1)}
+.svc-card:hover::before{opacity:1}
+.svc-icon{width:44px;height:44px;border-radius:10px;background:rgba(58,180,242,0.1);border:1px solid rgba(58,180,242,0.2);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:1rem}
+.svc-title{font-family:'Syne',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:0.4rem}
+.svc-desc{color:var(--silver-dark);font-size:0.83rem;line-height:1.65}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:0.85rem}
+.tag{background:rgba(58,180,242,0.08);border:1px solid rgba(58,180,242,0.2);color:var(--blue);font-size:0.68rem;font-weight:500;padding:2px 8px;border-radius:100px}
+
+.payments-section{background:var(--navy-mid)}
+.pay-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.85rem;margin-top:2rem}
+.pay-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:12px;padding:1.1rem 0.75rem;text-align:center;transition:all 0.2s}
+.pay-card:hover{border-color:rgba(58,180,242,0.4);transform:translateY(-3px);box-shadow:0 6px 20px rgba(58,180,242,0.1)}
+.pay-logo{font-size:1.8rem;margin-bottom:0.45rem}
+.pay-name{font-size:0.78rem;font-weight:500;color:var(--silver-dark)}
+.pay-note{font-size:0.68rem;color:var(--blue);margin-top:2px}
+
+.contact-hero{padding:3.5rem 2rem 2.5rem;background:var(--navy-mid);text-align:center}
+.contact-hero h2{margin:0 auto 0.75rem;max-width:600px}
+.contact-hero .section-sub{margin:0 auto}
+
+.contact-main{background:var(--navy)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact-methods{display:flex;flex-direction:column;gap:1rem}
+.method-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:12px;padding:1.25rem;display:flex;align-items:center;gap:1rem;transition:all 0.2s;text-decoration:none}
+.method-card:hover{border-color:rgba(58,180,242,0.4);transform:translateX(4px)}
+.method-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.method-title{font-weight:600;font-size:0.92rem;margin-bottom:2px;color:var(--white)}
+.method-sub{font-size:0.78rem;color:var(--silver-dark)}
+.method-arrow{margin-left:auto;color:var(--blue);font-size:0.9rem}
+
+.store-map-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;overflow:hidden}
+.store-map-top{background:linear-gradient(135deg,var(--navy-light),var(--navy-card));padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem}
+.store-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--blue)}
+.store-addr-rows{display:flex;flex-direction:column;gap:0.55rem}
+.store-row{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.83rem;color:var(--silver-dark)}
+.store-row strong{color:var(--white);font-weight:500}
+.map-placeholder{background:var(--navy-mid);height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;border-top:1px solid var(--border-s);font-size:0.83rem;color:var(--silver-dark)}
+.map-dot{font-size:2rem}
+
+.form-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;padding:1.75rem}
+.form-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:1.25rem}
+.contact-form{display:flex;flex-direction:column;gap:0.85rem}
+.form-group{display:flex;flex-direction:column;gap:0.3rem}
+label{font-size:0.78rem;font-weight:500;color:var(--silver-dark)}
+input,textarea,select{background:var(--navy-mid);border:1px solid var(--border-s);border-radius:8px;padding:0.7rem 0.9rem;color:var(--white);font-family:inherit;font-size:0.86rem;transition:border-color 0.2s;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,180,242,0.1)}
+textarea{resize:vertical;min-height:90px}
+select option{background:var(--navy-card)}
+
+footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;flex-shrink:0}
+.footer-left{display:flex;align-items:center;gap:10px}
+.footer-left img{width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(58,180,242,0.3))}
+.footer-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--blue)}
+.footer-sub{font-size:0.7rem;color:var(--silver-dark)}
+.footer-copy{color:var(--silver-dark);font-size:0.75rem}
+.footer-socials{display:flex;gap:0.6rem}
+.f-social{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;border:1px solid var(--border-s);color:var(--silver-dark);text-decoration:none;transition:all 0.2s}
+.f-social:hover{border-color:var(--blue);color:var(--blue)}
+
+@media(max-width:700px){
+  nav{padding:0.7rem 1rem}
+  .nav-cta{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .cq-inner{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .address-strip{gap:1rem}
+  .addr-divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <img src="logo.png" alt="Logo" />
+    <div class="nav-logo-text">APEX <span>Digital House</span></div>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('home')" id="tab-home">Home</button>
+    <button class="nav-tab" onclick="showPage('services')" id="tab-services">Services</button>
+    <button class="nav-tab" onclick="showPage('contact')" id="tab-contact">Contact</button>
+  </div>
+  <button class="nav-cta" onclick="showPage('contact')">Get Started</button>
+</nav>
+
+<!-- PAGE 1: HOME -->
+<div class="page active" id="page-home">
+  <div class="page-content">
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge"><span class="badge-dot"></span>Afghanistan's Premier Digital Hub</div>
+          <h1>Your Gateway to <em>Digital</em> Services</h1>
+          <p class="hero-sub">Social media growth, Google & Facebook Ads, gaming credits, gift cards, crypto exchange — all in one place. Online & in-store.</p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="showPage('services')">Explore Services</button>
+            <button class="btn-outline" onclick="showPage('contact')">Contact Us</button>
+          </div>
+          <div class="hero-stats">
+            <div><div class="stat-num">100+</div><div class="stat-label">Services</div></div>
+            <div><div class="stat-num">8+</div><div class="stat-label">Payment Methods</div></div>
+            <div><div class="stat-num">24/7</div><div class="stat-label">Online Support</div></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="logo-glow"></div>
+          <img class="hero-logo-img" src="logo.png" alt="Apex Digital House" />
+        </div>
+      </div>
+    </section>
+
+    <div class="address-strip">
+      <div class="addr-item"><span class="addr-icon">📍</span><strong>کابل، خیرخواه مارکت</strong></div>
+      <div class="addr-divider"></div>
+      <div class="addr-item"><span class="addr-icon">🏪</span>نزدیک صدیق عمر &nbsp;|&nbsp; <strong>F3-076 منزل ۳ دوکان نمبر</strong></div>
+      <div class="addr-divider"></div>
+      <div class="addr-item"><span class="addr-icon">📞</span><strong>+93 789 077 537</strong></div>
+      <div class="addr-divider"></div>
+      <div class="addr-item"><span class="addr-icon">🕐</span>Open Daily &nbsp;|&nbsp; <strong>8am – 9pm</strong></div>
+    </div>
+
+    <section class="quick-services">
+      <div class="section-label">Our Services</div>
+      <h2>Everything Digital, In One Place</h2>
+      <div class="qs-grid">
+        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">📣</div><div class="qs-label">Social Media Boost</div></div>
+        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">🎯</div><div class="qs-label">Google & FB Ads</div></div>
+        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">🎮</div><div class="qs-label">Gaming UC</div></div>
+        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">🎁</div><div class="qs-label">Gift Cards</div></div>
+        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">💱</div><div class="qs-label">Crypto / USDT</div></div>
+        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">💳</div><div class="qs-label">PayPal Services</div></div>
+      </div>
+    </section>
+
+    <section class="contact-quick">
+      <div class="section-label">Reach Us Instantly</div>
+      <h2>Connect With Us</h2>
+      <div class="cq-inner" style="margin-top:1.75rem">
+        <div class="cq-card">
+          <div class="cq-top"><div class="cq-icon-wrap" style="background:rgba(37,165,80,0.15)">💬</div><div class="cq-title">WhatsApp</div></div>
+          <div class="cq-sub">Message us directly for fast support and orders.</div>
+          <a href="https://wa.me/93789077537" target="_blank" class="cq-btn btn-green">+93 789 077 537 →</a>
+        </div>
+        <div class="cq-card">
+          <div class="cq-top"><div class="cq-icon-wrap" style="background:rgba(33,150,243,0.15)">✈️</div><div class="cq-title">Telegram Channel</div></div>
+          <div class="cq-sub">Follow for updates, deals, and announcements.</div>
+          <a href="https://t.me/Wajid_gaming_store" target="_blank" class="cq-btn btn-tg">@Wajid_gaming_store →</a>
+        </div>
+        <div class="cq-card">
+          <div class="cq-top"><div class="cq-icon-wrap" style="background:rgba(58,180,242,0.15)">🤖</div><div class="cq-title">UC Order Bot</div></div>
+          <div class="cq-sub">Order PUBG UC instantly through our Telegram bot.</div>
+          <a href="https://t.me/apex_2030_bot" target="_blank" class="cq-btn btn-tg">@apex_2030_bot →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <img src="logo.png" alt="Logo" />
+      <div><div class="footer-name">Apex Digital House</div><div class="footer-sub">Kabul, Afghanistan</div></div>
+    </div>
+    <div class="footer-copy">© 2025 Apex Digital House. All rights reserved.</div>
+    <div class="footer-socials">
+      <a class="f-social" href="https://wa.me/93789077537" target="_blank">💬</a>
+      <a class="f-social" href="https://t.me/Wajid_gaming_store" target="_blank">✈️</a>
+      <a class="f-social" href="https://t.me/apex_2030_bot" target="_blank">🤖</a>
+    </div>
+  </footer>
+</div>
+
+<!-- PAGE 2: SERVICES -->
+<div class="page" id="page-services">
+  <div class="page-content">
+    <section class="services-hero">
+      <div class="section-label">What We Offer</div>
+      <h2>Our Full Range of Services</h2>
+      <p class="section-sub">From digital marketing to gaming, crypto, and gift cards — we handle it all.</p>
+    </section>
+
+    <section class="services-full">
+      <div class="cat-title">📣 Social Media & Advertising</div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-icon">📣</div><div class="svc-title">Facebook Page Boosting</div><div class="svc-desc">Grow your Facebook page reach, likes, and followers with effective promotion strategies.</div><div class="tag-row"><span class="tag">Facebook</span><span class="tag">Reach</span><span class="tag">Likes</span></div></div>
+        <div class="svc-card"><div class="svc-icon">📸</div><div class="svc-title">Instagram Growth</div><div class="svc-desc">Increase Instagram followers, story views, and engagement organically and fast.</div><div class="tag-row"><span class="tag">Instagram</span><span class="tag">Followers</span><span class="tag">Views</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🎯</div><div class="svc-title">Facebook Ads Management</div><div class="svc-desc">We create, launch, and optimize Facebook ad campaigns to get you real results.</div><div class="tag-row"><span class="tag">FB Ads</span><span class="tag">Campaigns</span><span class="tag">ROI</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🔍</div><div class="svc-title">Google Ads</div><div class="svc-desc">Search and display ads on Google that drive targeted traffic to your business.</div><div class="tag-row"><span class="tag">Google Ads</span><span class="tag">Search</span><span class="tag">Display</span></div></div>
+      </div>
+
+      <div class="cat-title">🎮 Gaming Credits</div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-icon">🎮</div><div class="svc-title">PUBG UC (Unknown Cash)</div><div class="svc-desc">Instant UC top-ups for PUBG Mobile at the best prices. Order via our Telegram bot 24/7.</div><div class="tag-row"><span class="tag">PUBG UC</span><span class="tag">Instant</span><span class="tag">Bot Orders</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🔥</div><div class="svc-title">Free Fire Diamonds</div><div class="svc-desc">Top up Free Fire diamonds quickly and securely at competitive rates.</div><div class="tag-row"><span class="tag">Free Fire</span><span class="tag">Diamonds</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🎲</div><div class="svc-title">Other Game Credits</div><div class="svc-desc">Mobile Legends, Valorant, and more — ask us about any game top-up you need.</div><div class="tag-row"><span class="tag">ML Diamonds</span><span class="tag">Valorant</span><span class="tag">More</span></div></div>
+      </div>
+
+      <div class="cat-title">🎁 Gift Cards</div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-icon">🍎</div><div class="svc-title">iTunes / Apple Gift Cards</div><div class="svc-desc">App Store, Apple Music, and iTunes gift cards delivered digitally.</div><div class="tag-row"><span class="tag">Apple</span><span class="tag">App Store</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🤖</div><div class="svc-title">Google Play Gift Cards</div><div class="svc-desc">Google Play credits for apps, games, and subscriptions.</div><div class="tag-row"><span class="tag">Google Play</span><span class="tag">Android</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🎮</div><div class="svc-title">Steam & Gaming Cards</div><div class="svc-desc">Steam Wallet, Xbox, PlayStation store cards and more.</div><div class="tag-row"><span class="tag">Steam</span><span class="tag">Xbox</span><span class="tag">PSN</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🛍️</div><div class="svc-title">Amazon & Other Cards</div><div class="svc-desc">Amazon gift cards and other international e-commerce gift cards.</div><div class="tag-row"><span class="tag">Amazon</span><span class="tag">International</span></div></div>
+      </div>
+
+      <div class="cat-title">💱 Crypto & Online Payments</div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-icon">₮</div><div class="svc-title">USDT Exchange</div><div class="svc-desc">Fast and secure USDT TRC20/ERC20 transfers for cross-border payments.</div><div class="tag-row"><span class="tag">USDT</span><span class="tag">TRC20</span><span class="tag">ERC20</span></div></div>
+        <div class="svc-card"><div class="svc-icon">🟡</div><div class="svc-title">Binance Services</div><div class="svc-desc">Binance P2P transfers and crypto exchange assistance.</div><div class="tag-row"><span class="tag">Binance</span><span class="tag">P2P</span><span class="tag">Crypto</span></div></div>
+        <div class="svc-card"><div class="svc-icon">💳</div><div class="svc-title">PayPal Services</div><div class="svc-desc">PayPal top-ups, transfers, and account services handled professionally.</div><div class="tag-row"><span class="tag">PayPal</span><span class="tag">Transfers</span></div></div>
+      </div>
+    </section>
+
+    <section class="payments-section">
+      <div class="section-label">Accepted Payments</div>
+      <h2>Pay With What You Have</h2>
+      <p class="section-sub">We accept all major local and international payment methods.</p>
+      <div class="pay-grid">
+        <div class="pay-card"><div class="pay-logo">💳</div><div class="pay-name">PayPal</div><div class="pay-note">International</div></div>
+        <div class="pay-card"><div class="pay-logo">₮</div><div class="pay-name">USDT</div><div class="pay-note">TRC20 / ERC20</div></div>
+        <div class="pay-card"><div class="pay-logo">🟡</div><div class="pay-name">Binance</div><div class="pay-note">P2P</div></div>
+        <div class="pay-card"><div class="pay-logo">📲</div><div class="pay-name">HesabPay</div><div class="pay-note">Local</div></div>
+        <div class="pay-card"><div class="pay-logo">⚡</div><div class="pay-name">AtomPay</div><div class="pay-note">Local</div></div>
+        <div class="pay-card"><div class="pay-logo">🏦</div><div class="pay-name">Azizi Bank</div><div class="pay-note">Transfer</div></div>
+        <div class="pay-card"><div class="pay-logo">🏪</div><div class="pay-name">Cash</div><div class="pay-note">In-Store</div></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <img src="logo.png" alt="Logo" />
+      <div><div class="footer-name">Apex Digital House</div><div class="footer-sub">Kabul, Afghanistan</div></div>
+    </div>
+    <div class="footer-copy">© 2025 Apex Digital House. All rights reserved.</div>
+    <div class="footer-socials">
+      <a class="f-social" href="https://wa.me/93789077537" target="_blank">💬</a>
+      <a class="f-social" href="https://t.me/Wajid_gaming_store" target="_blank">✈️</a>
+      <a class="f-social" href="https://t.me/apex_2030_bot" target="_blank">🤖</a>
+    </div>
+  </footer>
+</div>
+
+<!-- PAGE 3: CONTACT -->
+<div class="page" id="page-contact">
+  <div class="page-content">
+    <section class="contact-hero">
+      <div class="section-label">Get in Touch</div>
+      <h2>We're Here to Help</h2>
+      <p class="section-sub">Reach us online anytime, or visit our store in Kabul. Fast responses guaranteed.</p>
+    </section>
+
+    <section class="contact-main">
+      <div class="contact-grid">
+        <div>
+          <p style="font-size:0.8rem;font-weight:600;color:var(--silver-dark);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Contact Channels</p>
+          <div class="contact-methods">
+            <a class="method-card" href="https://wa.me/93789077537" target="_blank">
+              <div class="method-icon" style="background:rgba(37,165,80,0.15)">💬</div>
+              <div><div class="method-title">WhatsApp</div><div class="method-sub">+93 789 077 537</div></div>
+              <div class="method-arrow">→</div>
+            </a>
+            <a class="method-card" href="https://t.me/Wajid_gaming_store" target="_blank">
+              <div class="method-icon" style="background:rgba(33,150,243,0.15)">✈️</div>
+              <div><div class="method-title">Telegram Channel</div><div class="method-sub">@Wajid_gaming_store</div></div>
+              <div class="method-arrow">→</div>
+            </a>
+            <a class="method-card" href="https://t.me/apex_2030_bot" target="_blank">
+              <div class="method-icon" style="background:rgba(58,180,242,0.15)">🤖</div>
+              <div><div class="method-title">UC Order Bot</div><div class="method-sub">@apex_2030_bot — Order PUBG UC 24/7</div></div>
+              <div class="method-arrow">→</div>
+            </a>
+          </div>
+
+          <div class="store-map-card" style="margin-top:1.25rem">
+            <div class="store-map-top">
+              <div class="store-title">📍 Physical Store — Kabul</div>
+              <div class="store-addr-rows">
+                <div class="store-row">🏙️ <span><strong>کابل، خیرخواه مارکت</strong></span></div>
+                <div class="store-row">🧭 <span>نزدیک <strong>صدیق عمر</strong></span></div>
+                <div class="store-row">🚪 <span>منزل ۳ — <strong>دوکان نمبر F3-076</strong></span></div>
+                <div class="store-row">📞 <span><strong>+93 789 077 537</strong></span></div>
+                <div class="store-row">🕐 <span>Open Daily &nbsp;<strong>8:00am – 9:00pm</strong></span></div>
+              </div>
+            </div>
+            <div class="map-placeholder">
+              <div class="map-dot">📍</div>
+              <div>Khairkhwa Market, Kabul, Afghanistan</div>
+              <a href="https://maps.google.com/?q=Khairkhwa+Market+Kabul+Afghanistan" target="_blank" style="color:var(--blue);font-size:0.78rem;text-decoration:none;margin-top:4px">Open in Google Maps →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Send Us a Message</h3>
+          <div class="contact-form">
+            <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Ahmad Karimi" /></div>
+            <div class="form-group"><label>WhatsApp / Contact</label><input type="text" placeholder="Your number or email" /></div>
+            <div class="form-group">
+              <label>Service Needed</label>
+              <select>
+                <option value="">Choose a service...</option>
+                <option>Social Media Boosting</option>
+                <option>Facebook / Google Ads</option>
+                <option>PUBG UC (Gaming Credits)</option>
+                <option>Free Fire Diamonds</option>
+                <option>Gift Cards</option>
+                <option>USDT / Binance Exchange</option>
+                <option>PayPal Services</option>
+                <option>HesabPay / AtomPay</option>
+                <option>Azizi Bank Transfer</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Payment Method</label>
+              <select>
+                <option value="">How will you pay?</option>
+                <option>PayPal</option><option>USDT</option><option>Binance</option>
+                <option>HesabPay</option><option>AtomPay</option>
+                <option>Azizi Bank</option><option>In-Store Cash</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Message</label><textarea placeholder="Tell us what you need..."></textarea></div>
+            <button class="btn-primary" style="width:100%">Send Message</button>
+            <div style="display:flex;gap:0.6rem;margin-top:0.25rem">
+              <a href="https://wa.me/93789077537" target="_blank" class="btn-green" style="flex:1;font-size:0.82rem;padding:0.65rem">💬 WhatsApp</a>
+              <a href="https://t.me/Wajid_gaming_store" target="_blank" class="btn-tg" style="flex:1;font-size:0.82rem;padding:0.65rem">✈️ Telegram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <img src="logo.png" alt="Logo" />
+      <div><div class="footer-name">Apex Digital House</div><div class="footer-sub">Kabul, Afghanistan</div></div>
+    </div>
+    <div class="footer-copy">© 2025 Apex Digital House. All rights reserved.</div>
+    <div class="footer-socials">
+      <a class="f-social" href="https://wa.me/93789077537" target="_blank">💬</a>
+      <a class="f-social" href="https://t.me/Wajid_gaming_store" target="_blank">✈️</a>
+      <a class="f-social" href="https://t.me/apex_2030_bot" target="_blank">🤖</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
