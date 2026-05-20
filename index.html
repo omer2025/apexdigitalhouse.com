@@ -4,459 +4,920 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apex Digital House</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --blue:#3AB4F2;--blue-dark:#1A7EC0;--blue-deep:#0D5A91;
-  --silver:#B8C5D6;--silver-light:#DDE6F0;--silver-dark:#7A8FA6;
-  --navy:#060A14;--navy-mid:#0D1525;--navy-light:#152035;--navy-card:#111D30;
-  --white:#EEF3FA;--border:rgba(58,180,242,0.15);--border-s:rgba(184,197,214,0.15);
+  --gold:#FFD000;--gold-deep:#E6A800;--gold-glow:rgba(255,208,0,0.25);
+  --black:#0A0A0A;--black-mid:#111111;--black-card:#161616;--black-light:#1E1E1E;
+  --white:#F5F5F0;--gray:#888;--gray-light:#AAAAAA;
+  --blue:#3AB4F2;--green:#25D366;--tg:#2196F3;
+  --border-gold:rgba(255,208,0,0.18);--border-dim:rgba(255,255,255,0.07);
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
 
+/* ── PAGES ── */
 .page{display:none;min-height:100vh;flex-direction:column}
 .page.active{display:flex}
 
+/* ── NAV ── */
 nav{
-  position:sticky;top:0;z-index:100;
+  position:sticky;top:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0.8rem 2rem;
-  background:rgba(6,10,20,0.97);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);flex-shrink:0;
+  padding:0 2rem;height:62px;
+  background:rgba(10,10,10,0.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-gold);
 }
-.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer}
-.nav-logo img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(58,180,242,0.4))}
-.nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-0.01em;line-height:1.1}
-.nav-logo-text span{display:block;font-size:0.6rem;font-weight:500;color:var(--silver);letter-spacing:0.08em;text-transform:uppercase}
-.nav-tabs{display:flex;gap:0.25rem}
-.nav-tab{padding:0.45rem 1rem;border-radius:6px;font-size:0.82rem;font-weight:500;color:var(--silver-dark);cursor:pointer;transition:all 0.2s;border:none;background:transparent}
-.nav-tab:hover{color:var(--blue)}
-.nav-tab.active{background:rgba(58,180,242,0.1);color:var(--blue);border:1px solid var(--border)}
-.nav-cta{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff;padding:0.45rem 1.1rem;border-radius:6px;font-weight:600;font-size:0.82rem;cursor:pointer;border:none;box-shadow:0 0 16px rgba(58,180,242,0.25);transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.85}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.nav-logo img{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(255,208,0,0.4))}
+.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.05em;color:var(--gold);line-height:1}
+.nav-logo-sub{font-size:0.52rem;font-weight:500;color:var(--gray);letter-spacing:0.12em;text-transform:uppercase;display:block}
+.nav-center{display:flex;gap:2px}
+.nav-tab{padding:0.4rem 1rem;border-radius:5px;font-size:0.8rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all 0.2s;border:none;background:transparent;letter-spacing:0.02em}
+.nav-tab:hover{color:var(--white)}
+.nav-tab.active{color:var(--gold);background:rgba(255,208,0,0.08);border:1px solid var(--border-gold)}
+.nav-right{display:flex;align-items:center;gap:0.6rem}
+.btn-login{padding:0.38rem 1rem;border-radius:5px;font-size:0.78rem;font-weight:500;color:var(--gray-light);cursor:pointer;border:1px solid var(--border-dim);background:transparent;transition:all 0.2s;letter-spacing:0.01em}
+.btn-login:hover{border-color:rgba(255,208,0,0.4);color:var(--gold)}
+.btn-signup{padding:0.38rem 1rem;border-radius:5px;font-size:0.78rem;font-weight:600;color:var(--black);cursor:pointer;border:none;background:var(--gold);transition:all 0.2s;letter-spacing:0.01em}
+.btn-signup:hover{background:var(--gold-deep);transform:translateY(-1px)}
 
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff;padding:0.8rem 1.75rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(58,180,242,0.25)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(58,180,242,0.4)}
-.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border-s);color:var(--silver);padding:0.8rem 1.75rem;border-radius:8px;font-size:0.9rem;text-decoration:none;transition:all 0.2s;background:transparent;cursor:pointer}
-.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
-.btn-green{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a7a3a,#25a550);color:#fff;padding:0.8rem 1.75rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,165,80,0.25)}
-.btn-green:hover{transform:translateY(-2px)}
-.btn-tg{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1565a0,#2196F3);color:#fff;padding:0.8rem 1.75rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer}
-.btn-tg:hover{transform:translateY(-2px)}
+/* ── SHARED BTNS ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--black);padding:0.75rem 1.75rem;border-radius:6px;font-weight:700;font-size:0.88rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;letter-spacing:0.02em}
+.btn-primary:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:0 6px 28px var(--gold-glow)}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border-dim);color:var(--gray-light);padding:0.75rem 1.75rem;border-radius:6px;font-size:0.88rem;text-decoration:none;transition:all 0.2s;background:transparent;cursor:pointer}
+.btn-outline:hover{border-color:rgba(255,208,0,0.5);color:var(--gold)}
+.btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--green);color:#fff;padding:0.75rem 1.75rem;border-radius:6px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer}
+.btn-wa:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.btn-tg{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--tg);color:#fff;padding:0.75rem 1.75rem;border-radius:6px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer}
+.btn-tg:hover{filter:brightness(1.1);transform:translateY(-2px)}
 
-.page-content{flex:1;overflow-y:auto}
-section{padding:4.5rem 2rem}
-.section-label{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;color:var(--blue);text-transform:uppercase;margin-bottom:0.5rem}
-h2{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:0.8rem}
-.section-sub{color:var(--silver-dark);font-size:0.95rem;max-width:500px;line-height:1.75}
+/* ── PAGE LAYOUT ── */
+.page-content{flex:1}
+section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.section-tag{font-size:0.65rem;font-weight:700;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
+.section-tag::before{content:'';width:16px;height:1px;background:var(--gold)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1;letter-spacing:0.04em;margin-bottom:0.75rem;color:var(--white)}
+h2 span{color:var(--gold)}
+.section-sub{color:var(--gray);font-size:0.9rem;max-width:480px;line-height:1.8}
 
-.hero{min-height:82vh;display:flex;align-items:center;padding:4rem 2rem 3rem;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 65% 40%,rgba(58,180,242,0.08) 0%,transparent 65%),radial-gradient(ellipse 30% 30% at 5% 85%,rgba(26,126,192,0.05) 0%,transparent 55%)}
-.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(58,180,242,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(58,180,242,0.04) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse 75% 70% at 65% 40%,black 0%,transparent 70%)}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;width:100%;max-width:1100px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(58,180,242,0.08);border:1px solid var(--border);border-radius:100px;padding:0.3rem 0.9rem;font-size:0.75rem;color:var(--blue);font-weight:500;margin-bottom:1.5rem}
-.badge-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-h1{font-family:'Syne',sans-serif;font-size:clamp(2.3rem,4.5vw,4rem);font-weight:800;line-height:1.07;letter-spacing:-0.03em;margin-bottom:1.1rem}
-h1 em{font-style:normal;color:var(--blue)}
-.hero-sub{font-size:0.97rem;color:var(--silver-dark);line-height:1.75;max-width:440px;margin-bottom:1.75rem}
-.hero-actions{display:flex;gap:0.8rem;flex-wrap:wrap}
-.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid var(--border-s)}
-.stat-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;color:var(--blue)}
-.stat-label{font-size:0.75rem;color:var(--silver-dark);margin-top:2px}
+/* ── HERO ── */
+.hero{min-height:88vh;display:flex;align-items:center;padding:5rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,208,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,208,0,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-glow{position:absolute;right:-10%;top:10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,208,0,0.07) 0%,transparent 65%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1100px;width:100%;position:relative}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,208,0,0.08);border:1px solid var(--border-gold);border-radius:100px;padding:0.28rem 0.9rem;font-size:0.7rem;color:var(--gold);font-weight:600;margin-bottom:1.5rem;letter-spacing:0.06em;text-transform:uppercase}
+.dot-pulse{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:dpulse 2s infinite}
+@keyframes dpulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,208,0,0.5)}50%{opacity:0.5;box-shadow:0 0 0 4px rgba(255,208,0,0)}}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:400;line-height:0.95;letter-spacing:0.04em;margin-bottom:1.25rem}
+h1 .hl{color:var(--gold);display:block}
+.hero-sub{font-size:0.95rem;color:var(--gray);line-height:1.8;max-width:420px;margin-bottom:2rem}
+.hero-actions{display:flex;gap:0.75rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border-dim)}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;color:var(--gold)}
+.stat-l{font-size:0.72rem;color:var(--gray);margin-top:1px;letter-spacing:0.04em}
+
+/* ── LOGO VISUAL ── */
 .hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
-.logo-glow{position:absolute;width:280px;height:280px;background:radial-gradient(circle,rgba(58,180,242,0.15) 0%,transparent 70%);border-radius:50%;animation:glow-pulse 3s ease-in-out infinite}
-@keyframes glow-pulse{0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(1.1);opacity:1}}
-.hero-logo-img{width:260px;height:260px;object-fit:contain;position:relative;filter:drop-shadow(0 0 30px rgba(58,180,242,0.35)) drop-shadow(0 0 60px rgba(58,180,242,0.15));animation:float 4s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.logo-stage{position:relative;width:320px;height:320px;display:flex;align-items:center;justify-content:center}
+.ring-a{position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,208,0,0.15);animation:rspin 20s linear infinite}
+.ring-b{position:absolute;width:240px;height:240px;border-radius:50%;border:1px dashed rgba(255,208,0,0.1);animation:rspin 14s linear infinite reverse}
+.ring-a::after,.ring-b::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 0 12px var(--gold),0 0 24px rgba(255,208,0,0.5)}
+.ring-b::after{width:5px;height:5px;top:-2.5px;opacity:0.6}
+@keyframes rspin{to{transform:rotate(360deg)}}
+.logo-halo{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,208,0,0.12) 0%,transparent 70%);animation:hbreathe 3.5s ease-in-out infinite}
+@keyframes hbreathe{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.2);opacity:1}}
+.hero-logo-img{width:180px;height:180px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 0 20px rgba(255,208,0,0.4)) drop-shadow(0 0 50px rgba(255,208,0,0.15));animation:logofloat 4s ease-in-out infinite}
+@keyframes logofloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
-.address-strip{background:var(--navy-mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.1rem 2rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap}
-.addr-item{display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;color:var(--silver-dark)}
-.addr-icon{font-size:1rem;flex-shrink:0}
+/* ── ADDRESS BAR ── */
+.addr-bar{background:var(--black-mid);border-top:1px solid var(--border-gold);border-bottom:1px solid var(--border-gold);padding:0.9rem 2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.addr-item{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--gray)}
 .addr-item strong{color:var(--white);font-weight:500}
-.addr-divider{width:1px;height:28px;background:var(--border-s);flex-shrink:0}
+.addr-sep{width:1px;height:22px;background:var(--border-dim)}
+.badge-open{display:inline-flex;align-items:center;gap:4px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.2);color:#4ade80;font-size:0.62rem;font-weight:700;padding:1px 7px;border-radius:100px;letter-spacing:0.06em;text-transform:uppercase}
+.badge-open::before{content:'';width:4px;height:4px;border-radius:50%;background:#4ade80;display:inline-block}
+.badge-closed{display:inline-flex;align-items:center;gap:4px;background:rgba(255,100,100,0.1);border:1px solid rgba(255,100,100,0.2);color:#ff7070;font-size:0.62rem;font-weight:700;padding:1px 7px;border-radius:100px;letter-spacing:0.06em;text-transform:uppercase}
 
-.quick-services{background:var(--navy-mid)}
-.qs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.85rem;margin-top:2rem}
-.qs-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:12px;padding:1.25rem 1rem;text-align:center;cursor:pointer;transition:all 0.2s}
-.qs-card:hover{border-color:rgba(58,180,242,0.4);transform:translateY(-3px);box-shadow:0 6px 20px rgba(58,180,242,0.1)}
-.qs-icon{font-size:1.6rem;margin-bottom:0.5rem}
-.qs-label{font-size:0.78rem;font-weight:500;color:var(--silver)}
+/* ── PAYMENT STRIP ── */
+.pay-strip{background:var(--black-card);border-bottom:1px solid var(--border-dim);padding:1rem 2rem}
+.pay-strip-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.pay-strip-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;color:var(--gray);text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+.pay-chip{display:flex;align-items:center;gap:5px;background:var(--black-light);border:1px solid var(--border-dim);border-radius:100px;padding:0.28rem 0.75rem;font-size:0.73rem;font-weight:500;color:var(--gray-light);transition:all 0.18s;cursor:default;white-space:nowrap}
+.pay-chip:hover{border-color:rgba(255,208,0,0.3);color:var(--white)}
+.pay-chip svg{flex-shrink:0}
+.pay-chip.coming{border-style:dashed;opacity:0.6}
+.pay-chip.coming .soon-tag{font-size:0.55rem;color:var(--gold);font-weight:700;letter-spacing:0.05em;background:rgba(255,208,0,0.1);border-radius:3px;padding:0 4px}
 
-.contact-quick{background:var(--navy)}
-.cq-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.1rem}
-.cq-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;align-items:flex-start;gap:0.75rem;transition:all 0.2s}
-.cq-card:hover{border-color:rgba(58,180,242,0.35);transform:translateY(-2px)}
-.cq-top{display:flex;align-items:center;gap:10px}
-.cq-icon-wrap{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.cq-title{font-family:'Syne',sans-serif;font-weight:600;font-size:0.95rem}
-.cq-sub{font-size:0.8rem;color:var(--silver-dark);line-height:1.5}
-.cq-btn{margin-top:auto;font-size:0.78rem;font-weight:600;text-decoration:none;padding:0.45rem 1rem;border-radius:6px;transition:all 0.2s}
+/* ── SERVICES GRID (home) ── */
+.home-services{background:var(--black-mid)}
+.home-services section{padding:4rem 2rem}
+.svc-showcase{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border-dim);border:1px solid var(--border-dim);border-radius:12px;overflow:hidden;margin-top:2.5rem}
+.svc-tile{background:var(--black-card);padding:1.5rem 1.25rem;display:flex;flex-direction:column;align-items:flex-start;gap:0.6rem;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.svc-tile::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,208,0,0.05),transparent);opacity:0;transition:opacity 0.2s}
+.svc-tile:hover{background:var(--black-light)}
+.svc-tile:hover::before{opacity:1}
+.svc-tile:hover .svc-tile-arrow{transform:translateX(4px);opacity:1}
+.svc-tile-icon{font-size:1.5rem;line-height:1}
+.svc-tile-name{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:600;color:var(--white);line-height:1.3}
+.svc-tile-desc{font-size:0.72rem;color:var(--gray);line-height:1.5}
+.svc-tile-arrow{font-size:0.75rem;color:var(--gold);opacity:0;transition:all 0.2s;margin-top:auto}
+.svc-tile.featured{background:linear-gradient(135deg,#1a1400,var(--black-card));border-left:2px solid var(--gold)}
+.svc-tile.featured .svc-tile-name{color:var(--gold)}
 
-.services-hero{padding:3.5rem 2rem 2.5rem;background:var(--navy-mid);text-align:center}
-.services-hero h2{margin:0 auto 0.75rem;max-width:600px}
-.services-hero .section-sub{margin:0 auto}
+/* ── TIKTOK HERO SECTION ── */
+.tiktok-hero{background:var(--black);position:relative;overflow:hidden}
+.tiktok-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(254,44,85,0.04) 0%,transparent 60%),linear-gradient(225deg,rgba(0,242,234,0.03) 0%,transparent 50%)}
+.tiktok-hero section{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.tt-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(254,44,85,0.1);border:1px solid rgba(254,44,85,0.25);border-radius:100px;padding:0.28rem 0.85rem;font-size:0.68rem;color:#fe2c55;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.2rem}
+.tiktok-hero h2{font-size:clamp(2.2rem,4vw,3.5rem);color:var(--white)}
+.tiktok-hero h2 span{color:#fe2c55}
+.tt-points{display:flex;flex-direction:column;gap:0.85rem;margin-top:1.5rem;margin-bottom:2rem}
+.tt-point{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.87rem;color:var(--gray-light);line-height:1.5}
+.tt-point-dot{width:6px;height:6px;border-radius:50%;background:#fe2c55;flex-shrink:0;margin-top:5px}
+.tt-visual{display:flex;align-items:center;justify-content:center}
+.tt-card{background:var(--black-card);border:1px solid rgba(254,44,85,0.2);border-radius:20px;padding:2rem;text-align:center;width:240px;position:relative;overflow:hidden}
+.tt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#fe2c55,#00f2ea)}
+.tt-logo-big{width:60px;height:60px;margin:0 auto 1rem}
+.tt-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.05em;color:var(--white);margin-bottom:0.3rem}
+.tt-card-sub{font-size:0.75rem;color:var(--gray);margin-bottom:1.25rem}
+.tt-pill{display:inline-block;background:rgba(254,44,85,0.12);border:1px solid rgba(254,44,85,0.25);border-radius:6px;padding:0.35rem 0.8rem;font-size:0.72rem;font-weight:600;color:#fe2c55;margin-bottom:0.4rem;display:block}
 
-.services-full{background:var(--navy)}
-.cat-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.6rem}
-.cat-title::after{content:'';flex:1;height:1px;background:var(--border)}
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:3rem}
-.svc-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;padding:1.5rem;transition:all 0.25s;position:relative;overflow:hidden}
-.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:0;transition:opacity 0.3s}
-.svc-card:hover{transform:translateY(-4px);border-color:rgba(58,180,242,0.35);box-shadow:0 8px 30px rgba(58,180,242,0.1)}
-.svc-card:hover::before{opacity:1}
-.svc-icon{width:44px;height:44px;border-radius:10px;background:rgba(58,180,242,0.1);border:1px solid rgba(58,180,242,0.2);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:1rem}
-.svc-title{font-family:'Syne',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:0.4rem}
-.svc-desc{color:var(--silver-dark);font-size:0.83rem;line-height:1.65}
-.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:0.85rem}
-.tag{background:rgba(58,180,242,0.08);border:1px solid rgba(58,180,242,0.2);color:var(--blue);font-size:0.68rem;font-weight:500;padding:2px 8px;border-radius:100px}
+/* ── UC HERO SECTION ── */
+.uc-hero{background:var(--black-mid);position:relative;overflow:hidden}
+.uc-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,208,0,0.05) 0%,transparent 55%),linear-gradient(225deg,rgba(255,140,0,0.04) 0%,transparent 50%)}
+.uc-hero section{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.uc-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,208,0,0.1);border:1px solid rgba(255,208,0,0.3);border-radius:100px;padding:0.28rem 0.85rem;font-size:0.68rem;color:var(--gold);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.2rem}
+.uc-hero h2{color:var(--white)}
+.uc-hero h2 span{color:var(--gold)}
+.uc-points{display:flex;flex-direction:column;gap:0.85rem;margin-top:1.5rem;margin-bottom:2rem}
+.uc-point{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.87rem;color:var(--gray-light);line-height:1.5}
+.uc-point-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.uc-visual{display:flex;align-items:center;justify-content:center}
+.uc-card{background:var(--black-card);border:1px solid rgba(255,208,0,0.25);border-radius:20px;padding:2rem 1.5rem;text-align:center;width:260px;position:relative;overflow:hidden}
+.uc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-deep),var(--gold),#fff8b0,var(--gold))}
+.uc-icon-big{width:70px;height:70px;margin:0 auto 1rem;background:rgba(255,208,0,0.08);border:1px solid rgba(255,208,0,0.2);border-radius:16px;display:flex;align-items:center;justify-content:center}
+.uc-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.06em;color:var(--gold);margin-bottom:0.25rem}
+.uc-card-sub{font-size:0.75rem;color:var(--gray);margin-bottom:1.25rem}
+.uc-voucher-pill{display:block;background:rgba(255,208,0,0.1);border:1px solid rgba(255,208,0,0.25);border-radius:8px;padding:0.4rem 0.9rem;font-size:0.74rem;font-weight:600;color:var(--gold);margin-bottom:0.5rem;letter-spacing:0.02em}
+.btn-uc{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--gold-deep),var(--gold));color:var(--black);padding:0.75rem 1.5rem;border-radius:8px;font-weight:700;font-size:0.88rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;letter-spacing:0.02em;width:100%;margin-top:0.75rem}
+.btn-uc:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(255,208,0,0.35)}
 
-.payments-section{background:var(--navy-mid)}
-.pay-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.85rem;margin-top:2rem}
-.pay-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:12px;padding:1.1rem 0.75rem;text-align:center;transition:all 0.2s}
-.pay-card:hover{border-color:rgba(58,180,242,0.4);transform:translateY(-3px);box-shadow:0 6px 20px rgba(58,180,242,0.1)}
-.pay-logo{font-size:1.8rem;margin-bottom:0.45rem}
-.pay-name{font-size:0.78rem;font-weight:500;color:var(--silver-dark)}
-.pay-note{font-size:0.68rem;color:var(--blue);margin-top:2px}
+/* ── CONNECT CARDS ── */
+.connect-section{background:var(--black-mid)}
+.connect-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.connect-card{background:var(--black-card);border:1px solid var(--border-dim);border-radius:12px;padding:1.5rem;display:flex;align-items:center;gap:1.1rem;text-decoration:none;transition:all 0.2s}
+.connect-card:hover{border-color:rgba(255,208,0,0.25);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+.cc-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cc-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:3px}
+.cc-handle{font-size:0.78rem;color:var(--gray)}
+.cc-arrow{margin-left:auto;color:var(--gold);font-size:1.1rem;opacity:0;transition:all 0.2s}
+.connect-card:hover .cc-arrow{opacity:1;transform:translateX(4px)}
 
-.contact-hero{padding:3.5rem 2rem 2.5rem;background:var(--navy-mid);text-align:center}
-.contact-hero h2{margin:0 auto 0.75rem;max-width:600px}
-.contact-hero .section-sub{margin:0 auto}
+/* ══════════════════════════════════
+   SERVICES PAGE
+══════════════════════════════════ */
+.svc-page-header{background:var(--black-mid);padding:3rem 2rem;border-bottom:1px solid var(--border-dim)}
+.svc-page-header-inner{max-width:1100px;margin:0 auto}
+.svc-full{padding:3rem 2rem}
+.svc-full-inner{max-width:1100px;margin:0 auto}
 
-.contact-main{background:var(--navy)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
-.contact-methods{display:flex;flex-direction:column;gap:1rem}
-.method-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:12px;padding:1.25rem;display:flex;align-items:center;gap:1rem;transition:all 0.2s;text-decoration:none}
-.method-card:hover{border-color:rgba(58,180,242,0.4);transform:translateX(4px)}
-.method-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.method-title{font-weight:600;font-size:0.92rem;margin-bottom:2px;color:var(--white)}
-.method-sub{font-size:0.78rem;color:var(--silver-dark)}
-.method-arrow{margin-left:auto;color:var(--blue);font-size:0.9rem}
+/* Category header */
+.cat-hd{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;margin-top:3rem}
+.cat-hd:first-of-type{margin-top:0}
+.cat-hd-icon{font-size:1.1rem}
+.cat-hd-text{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(--white)}
+.cat-hd-line{flex:1;height:1px;background:var(--border-dim)}
+.cat-hd.gold .cat-hd-text{color:var(--gold)}
+.cat-hd.gold .cat-hd-line{background:var(--border-gold)}
 
-.store-map-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;overflow:hidden}
-.store-map-top{background:linear-gradient(135deg,var(--navy-light),var(--navy-card));padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem}
-.store-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--blue)}
-.store-addr-rows{display:flex;flex-direction:column;gap:0.55rem}
-.store-row{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.83rem;color:var(--silver-dark)}
+/* Service cards row */
+.svc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.85rem;margin-bottom:0.5rem}
+.svc-c{background:var(--black-card);border:1px solid var(--border-dim);border-radius:10px;padding:1.25rem;display:flex;flex-direction:column;gap:0.5rem;transition:all 0.22s;position:relative;overflow:hidden;cursor:pointer}
+.svc-c::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform 0.25s;transform-origin:left}
+.svc-c:hover{border-color:rgba(255,208,0,0.25);transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,0.5)}
+.svc-c:hover::after{transform:scaleX(1)}
+.svc-c-icon{width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid var(--border-dim);display:flex;align-items:center;justify-content:center;margin-bottom:0.25rem}
+.svc-c-name{font-family:'Syne',sans-serif;font-weight:600;font-size:0.87rem;color:var(--white)}
+.svc-c-desc{font-size:0.77rem;color:var(--gray);line-height:1.6;flex:1}
+.svc-c-cta{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:600;color:var(--gold);text-decoration:none;margin-top:0.5rem;padding:0.3rem 0;border-bottom:1px solid transparent;transition:border-color 0.2s;width:fit-content}
+.svc-c-cta:hover{border-color:rgba(255,208,0,0.4)}
+
+/* Featured TikTok card */
+.svc-c.tt-featured{background:linear-gradient(135deg,#140009,var(--black-card));border-color:rgba(254,44,85,0.25)}
+.svc-c.tt-featured::after{background:linear-gradient(90deg,#fe2c55,#00f2ea)}
+.svc-c.tt-featured .svc-c-cta{color:#fe2c55}
+.svc-c.tt-featured:hover{border-color:rgba(254,44,85,0.4)}
+.hot-badge{display:inline-block;background:rgba(254,44,85,0.15);border:1px solid rgba(254,44,85,0.3);color:#fe2c55;font-size:0.58rem;font-weight:800;padding:1px 6px;border-radius:3px;letter-spacing:0.08em;text-transform:uppercase;margin-left:6px;vertical-align:middle}
+
+/* Payments section */
+.pay-section{background:var(--black-mid);padding:3rem 2rem;border-top:1px solid var(--border-dim)}
+.pay-section-inner{max-width:1100px;margin:0 auto}
+.pay-cards-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.75rem;margin-top:2rem}
+.pay-c{background:var(--black-card);border:1px solid var(--border-dim);border-radius:10px;padding:1.1rem 0.75rem;text-align:center;transition:all 0.2s}
+.pay-c:hover{border-color:rgba(255,208,0,0.3);transform:translateY(-3px)}
+.pay-c.coming-soon{border-style:dashed;opacity:0.65}
+.pay-c-logo{height:36px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem}
+.pay-c-name{font-size:0.78rem;font-weight:600;color:var(--white);margin-bottom:2px}
+.pay-c-note{font-size:0.65rem;color:var(--gray)}
+.pay-c-soon{font-size:0.6rem;color:var(--gold);font-weight:700;letter-spacing:0.06em;margin-top:3px}
+
+/* ══════════════════════════════════
+   ACCOUNT CREATION MODAL
+══════════════════════════════════ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity 0.25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--black-card);border:1px solid var(--border-gold);border-radius:16px;width:100%;max-width:620px;max-height:90vh;overflow-y:auto;position:relative}
+.modal-header{padding:1.75rem 1.75rem 0;display:flex;align-items:flex-start;justify-content:space-between}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;color:var(--gold)}
+.modal-sub{font-size:0.8rem;color:var(--gray);margin-top:3px}
+.modal-close{width:32px;height:32px;border-radius:6px;border:1px solid var(--border-dim);background:transparent;color:var(--gray);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all 0.2s;flex-shrink:0}
+.modal-close:hover{border-color:rgba(255,208,0,0.4);color:var(--white)}
+.modal-body{padding:1.5rem 1.75rem 1.75rem}
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem}
+.platform-card{background:var(--black-light);border:2px solid var(--border-dim);border-radius:12px;padding:1.25rem 0.75rem;text-align:center;cursor:pointer;transition:all 0.2s;position:relative}
+.platform-card:hover{border-color:rgba(255,208,0,0.3);transform:translateY(-3px)}
+.platform-card.selected{border-color:var(--gold);background:rgba(255,208,0,0.06)}
+.platform-card.selected::before{content:'✓';position:absolute;top:8px;right:10px;font-size:0.7rem;color:var(--gold);font-weight:700}
+.platform-icon{margin:0 auto 0.6rem;display:flex;align-items:center;justify-content:center;width:44px;height:44px}
+.platform-name{font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:600;color:var(--white)}
+.platform-type{font-size:0.65rem;color:var(--gray);margin-top:2px}
+.modal-cta{margin-top:1.5rem;display:flex;gap:0.6rem}
+.modal-cta .btn-primary{flex:1;justify-content:center}
+.modal-cta .btn-outline{flex:1;justify-content:center}
+.modal-note{font-size:0.72rem;color:var(--gray);text-align:center;margin-top:0.75rem}
+
+/* ══════════════════════════════════
+   AUTH MODAL (Login / Signup)
+══════════════════════════════════ */
+.auth-modal{background:var(--black-card);border:1px solid var(--border-gold);border-radius:16px;width:100%;max-width:400px;position:relative}
+.auth-header{padding:1.75rem 1.75rem 0;display:flex;align-items:center;justify-content:space-between}
+.auth-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.04em;color:var(--white)}
+.auth-body{padding:1.25rem 1.75rem 1.75rem}
+.auth-tabs{display:flex;gap:0;margin-bottom:1.5rem;background:var(--black-light);border-radius:7px;padding:3px}
+.auth-tab{flex:1;padding:0.45rem;border-radius:5px;font-size:0.8rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--gray);transition:all 0.2s;letter-spacing:0.02em}
+.auth-tab.active{background:var(--gold);color:var(--black)}
+.form-g{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.85rem}
+.form-g label{font-size:0.72rem;font-weight:500;color:var(--gray);letter-spacing:0.04em;text-transform:uppercase}
+.form-g input{background:var(--black-light);border:1px solid var(--border-dim);border-radius:7px;padding:0.65rem 0.9rem;color:var(--white);font-family:inherit;font-size:0.86rem;outline:none;transition:border-color 0.2s}
+.form-g input:focus{border-color:rgba(255,208,0,0.5);box-shadow:0 0 0 3px rgba(255,208,0,0.06)}
+.auth-btn{width:100%;padding:0.75rem;border-radius:7px;background:var(--gold);color:var(--black);font-weight:700;font-size:0.88rem;border:none;cursor:pointer;transition:all 0.2s;margin-top:0.25rem;letter-spacing:0.02em}
+.auth-btn:hover{background:var(--gold-deep)}
+.auth-divider{text-align:center;font-size:0.72rem;color:var(--gray);margin:0.85rem 0;position:relative}
+.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border-dim)}
+.auth-divider::before{left:0}.auth-divider::after{right:0}
+.auth-social{display:flex;gap:0.6rem}
+.auth-social-btn{flex:1;padding:0.6rem;border-radius:7px;background:var(--black-light);border:1px solid var(--border-dim);color:var(--gray-light);font-size:0.78rem;font-weight:500;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:5px}
+.auth-social-btn:hover{border-color:rgba(255,208,0,0.3);color:var(--white)}
+
+/* ══════════════════════════════════
+   CONTACT PAGE
+══════════════════════════════════ */
+.contact-page-header{background:var(--black-mid);padding:3rem 2rem;text-align:center;border-bottom:1px solid var(--border-dim)}
+.contact-grid-wrap{background:var(--black)}
+.contact-grid-section{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.method-link{display:flex;align-items:center;gap:0.9rem;background:var(--black-card);border:1px solid var(--border-dim);border-radius:10px;padding:1.1rem;text-decoration:none;transition:all 0.2s;margin-bottom:0.75rem}
+.method-link:hover{border-color:rgba(255,208,0,0.3);transform:translateX(4px)}
+.method-ico{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.method-name{font-weight:600;font-size:0.88rem;margin-bottom:2px}
+.method-handle{font-size:0.75rem;color:var(--gray)}
+.method-arr{margin-left:auto;color:var(--gold);font-size:0.85rem;opacity:0;transition:all 0.2s}
+.method-link:hover .method-arr{opacity:1;transform:translateX(3px)}
+
+.store-card{background:var(--black-card);border:1px solid var(--border-dim);border-radius:12px;overflow:hidden;margin-top:1.25rem}
+.store-top{padding:1.5rem;background:linear-gradient(135deg,var(--black-light),var(--black-card))}
+.store-head{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.05em;color:var(--gold);margin-bottom:0.9rem}
+.store-row{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.8rem;color:var(--gray);margin-bottom:0.5rem}
 .store-row strong{color:var(--white);font-weight:500}
-.map-placeholder{background:var(--navy-mid);height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;border-top:1px solid var(--border-s);font-size:0.83rem;color:var(--silver-dark)}
-.map-dot{font-size:2rem}
+.store-map{background:var(--black-mid);height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.35rem;border-top:1px solid var(--border-dim);font-size:0.8rem;color:var(--gray)}
+.store-map a{color:var(--gold);font-size:0.75rem;text-decoration:none;margin-top:3px}
 
-.form-card{background:var(--navy-card);border:1px solid var(--border-s);border-radius:14px;padding:1.75rem}
-.form-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:1.25rem}
-.contact-form{display:flex;flex-direction:column;gap:0.85rem}
-.form-group{display:flex;flex-direction:column;gap:0.3rem}
-label{font-size:0.78rem;font-weight:500;color:var(--silver-dark)}
-input,textarea,select{background:var(--navy-mid);border:1px solid var(--border-s);border-radius:8px;padding:0.7rem 0.9rem;color:var(--white);font-family:inherit;font-size:0.86rem;transition:border-color 0.2s;outline:none}
-input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,180,242,0.1)}
-textarea{resize:vertical;min-height:90px}
-select option{background:var(--navy-card)}
+.form-card{background:var(--black-card);border:1px solid var(--border-dim);border-radius:12px;padding:1.75rem}
+.form-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.04em;margin-bottom:1.25rem;color:var(--gold)}
+.cf-group{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.8rem}
+.cf-group label{font-size:0.68rem;font-weight:600;color:var(--gray);letter-spacing:0.08em;text-transform:uppercase}
+.cf-group input,.cf-group textarea,.cf-group select{background:var(--black-light);border:1px solid var(--border-dim);border-radius:7px;padding:0.65rem 0.85rem;color:var(--white);font-family:inherit;font-size:0.84rem;transition:border-color 0.2s;outline:none}
+.cf-group input:focus,.cf-group textarea:focus,.cf-group select:focus{border-color:rgba(255,208,0,0.4);box-shadow:0 0 0 3px rgba(255,208,0,0.05)}
+.cf-group textarea{resize:vertical;min-height:85px}
+.cf-group select option{background:var(--black-card)}
 
-footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;flex-shrink:0}
-.footer-left{display:flex;align-items:center;gap:10px}
-.footer-left img{width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(58,180,242,0.3))}
-.footer-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--blue)}
-.footer-sub{font-size:0.7rem;color:var(--silver-dark)}
-.footer-copy{color:var(--silver-dark);font-size:0.75rem}
-.footer-socials{display:flex;gap:0.6rem}
-.f-social{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;border:1px solid var(--border-s);color:var(--silver-dark);text-decoration:none;transition:all 0.2s}
-.f-social:hover{border-color:var(--blue);color:var(--blue)}
+/* ── FOOTER ── */
+footer{background:var(--black-mid);border-top:1px solid var(--border-gold);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-brand img{width:28px;height:28px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,208,0,0.35))}
+.footer-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.05em;color:var(--gold)}
+.footer-loc{font-size:0.65rem;color:var(--gray)}
+.footer-copy{font-size:0.7rem;color:var(--gray)}
+.footer-socials{display:flex;gap:0.5rem}
+.f-soc{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-dim);text-decoration:none;transition:all 0.2s}
+.f-soc:hover{border-color:rgba(255,208,0,0.35);transform:translateY(-2px)}
 
+/* ── MOBILE ── */
 @media(max-width:700px){
-  nav{padding:0.7rem 1rem}
-  .nav-cta{display:none}
-  .hero-inner{grid-template-columns:1fr}
-  .hero-visual{display:none}
-  .cq-inner{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  .address-strip{gap:1rem}
-  .addr-divider{display:none}
+  nav{padding:0 1rem}
+  .nav-center{display:none}
+  .hero-inner,.tiktok-hero section,.uc-hero section,.contact-grid-section{grid-template-columns:1fr}
+  .hero-visual,.tt-visual{display:none}
+  .connect-grid{grid-template-columns:1fr}
+  .platform-grid{grid-template-columns:repeat(2,1fr)}
+  section{padding:3rem 1.25rem}
+  .addr-bar{gap:0.75rem}
+  .addr-sep{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- ════════ NAV ════════ -->
 <nav id="main-nav">
   <div class="nav-logo" onclick="showPage('home')">
-    <img src="logo.png" alt="Logo" />
-    <div class="nav-logo-text">APEX <span>Digital House</span></div>
+    <img src="logo.png" alt="Logo"/>
+    <div>
+      <div class="nav-logo-text">APEX DIGITAL HOUSE</div>
+      <span class="nav-logo-sub">Kabul, Afghanistan</span>
+    </div>
   </div>
-  <div class="nav-tabs">
+  <div class="nav-center">
     <button class="nav-tab active" onclick="showPage('home')" id="tab-home">Home</button>
     <button class="nav-tab" onclick="showPage('services')" id="tab-services">Services</button>
     <button class="nav-tab" onclick="showPage('contact')" id="tab-contact">Contact</button>
   </div>
-  <button class="nav-cta" onclick="showPage('contact')">Get Started</button>
+  <div class="nav-right">
+    <button class="btn-login" onclick="openAuth('login')">Log In</button>
+    <button class="btn-signup" onclick="openAuth('signup')">Sign Up</button>
+  </div>
 </nav>
 
-<!-- PAGE 1: HOME -->
+<!-- ════════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════════ -->
 <div class="page active" id="page-home">
   <div class="page-content">
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-grid"></div>
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="hero-badge"><span class="badge-dot"></span>Afghanistan's Premier Digital Hub</div>
-          <h1>Your Gateway to <em>Digital</em> Services</h1>
-          <p class="hero-sub">Social media growth, Google & Facebook Ads, gaming credits, gift cards, crypto exchange — all in one place. Online & in-store.</p>
-          <div class="hero-actions">
-            <button class="btn-primary" onclick="showPage('services')">Explore Services</button>
-            <button class="btn-outline" onclick="showPage('contact')">Contact Us</button>
+
+    <!-- HERO -->
+    <div style="background:var(--black);position:relative;overflow:hidden">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-glow"></div>
+      <div style="max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-tag"><span class="dot-pulse"></span>Afghanistan's #1 Digital Hub</div>
+            <h1>ALL DIGITAL<br><span class="hl">ONE PLACE.</span></h1>
+            <p class="hero-sub">Gaming credits, social media growth, account creation, TikTok cashouts, crypto exchange, MTU transfers — everything digital, done fast.</p>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="showPage('services')">Browse Services</button>
+              <button class="btn-outline" onclick="showPage('contact')">Contact Us</button>
+            </div>
+            <div class="hero-stats">
+              <div><div class="stat-n">100+</div><div class="stat-l">Services</div></div>
+              <div><div class="stat-n">7</div><div class="stat-l">Payment Methods</div></div>
+              <div><div class="stat-n">24/7</div><div class="stat-l">Online Support</div></div>
+            </div>
           </div>
-          <div class="hero-stats">
-            <div><div class="stat-num">100+</div><div class="stat-label">Services</div></div>
-            <div><div class="stat-num">8+</div><div class="stat-label">Payment Methods</div></div>
-            <div><div class="stat-num">24/7</div><div class="stat-label">Online Support</div></div>
+          <div class="hero-visual">
+            <div class="logo-stage">
+              <div class="ring-a"></div>
+              <div class="ring-b"></div>
+              <div class="logo-halo"></div>
+              <img class="hero-logo-img" src="logo.png" alt="Apex Digital House"/>
+            </div>
           </div>
-        </div>
-        <div class="hero-visual">
-          <div class="logo-glow"></div>
-          <img class="hero-logo-img" src="logo.png" alt="Apex Digital House" />
         </div>
       </div>
-    </section>
-
-    <div class="address-strip">
-      <div class="addr-item"><span class="addr-icon">📍</span><strong>کابل، خیرخواه مارکت</strong></div>
-      <div class="addr-divider"></div>
-      <div class="addr-item"><span class="addr-icon">🏪</span>نزدیک صدیق عمر &nbsp;|&nbsp; <strong>F3-076 منزل ۳ دوکان نمبر</strong></div>
-      <div class="addr-divider"></div>
-      <div class="addr-item"><span class="addr-icon">📞</span><strong>+93 789 077 537</strong></div>
-      <div class="addr-divider"></div>
-      <div class="addr-item"><span class="addr-icon">🕐</span>Open Daily &nbsp;|&nbsp; <strong>8am – 9pm</strong></div>
     </div>
 
-    <section class="quick-services">
-      <div class="section-label">Our Services</div>
-      <h2>Everything Digital, In One Place</h2>
-      <div class="qs-grid">
-        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">📣</div><div class="qs-label">Social Media Boost</div></div>
-        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">🎯</div><div class="qs-label">Google & FB Ads</div></div>
-        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">🎮</div><div class="qs-label">Gaming UC</div></div>
-        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">🎁</div><div class="qs-label">Gift Cards</div></div>
-        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">💱</div><div class="qs-label">Crypto / USDT</div></div>
-        <div class="qs-card" onclick="showPage('services')"><div class="qs-icon">💳</div><div class="qs-label">PayPal Services</div></div>
-      </div>
-    </section>
+    <!-- ADDRESS BAR -->
+    <div class="addr-bar">
+      <div class="addr-item">📍 <strong>کابل، خیرخواه مارکت</strong></div>
+      <div class="addr-sep"></div>
+      <div class="addr-item">🚪 <strong>F3-076, منزل ۳</strong></div>
+      <div class="addr-sep"></div>
+      <div class="addr-item">📞 <strong>+93 789 077 537</strong></div>
+      <div class="addr-sep"></div>
+      <div class="addr-item">🕐 Sat–Thu &nbsp;<strong>8:00 AM – 8:00 PM</strong>&nbsp; <span class="badge-open">Open</span>&nbsp;&nbsp;|&nbsp;&nbsp;Fri <span class="badge-closed">Closed</span></div>
+    </div>
 
-    <section class="contact-quick">
-      <div class="section-label">Reach Us Instantly</div>
-      <h2>Connect With Us</h2>
-      <div class="cq-inner" style="margin-top:1.75rem">
-        <div class="cq-card">
-          <div class="cq-top"><div class="cq-icon-wrap" style="background:rgba(37,165,80,0.15)">💬</div><div class="cq-title">WhatsApp</div></div>
-          <div class="cq-sub">Message us directly for fast support and orders.</div>
-          <a href="https://wa.me/93789077537" target="_blank" class="cq-btn btn-green">+93 789 077 537 →</a>
-        </div>
-        <div class="cq-card">
-          <div class="cq-top"><div class="cq-icon-wrap" style="background:rgba(33,150,243,0.15)">✈️</div><div class="cq-title">Telegram Channel</div></div>
-          <div class="cq-sub">Follow for updates, deals, and announcements.</div>
-          <a href="https://t.me/Wajid_gaming_store" target="_blank" class="cq-btn btn-tg">@Wajid_gaming_store →</a>
-        </div>
-        <div class="cq-card">
-          <div class="cq-top"><div class="cq-icon-wrap" style="background:rgba(58,180,242,0.15)">🤖</div><div class="cq-title">UC Order Bot</div></div>
-          <div class="cq-sub">Order PUBG UC instantly through our Telegram bot.</div>
-          <a href="https://t.me/apex_2030_bot" target="_blank" class="cq-btn btn-tg">@apex_2030_bot →</a>
-        </div>
+    <!-- PAYMENT STRIP -->
+    <div class="pay-strip">
+      <div class="pay-strip-inner">
+        <span class="pay-strip-label">We Accept</span>
+        <div class="pay-chip"><svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="#003087"/><path d="M7 6h4c1.6 0 2.5.8 2.5 2.2s-1 2.2-2.5 2.2H8.8L8 14H6L7 6z" fill="#009CDE"/></svg> PayPal</div>
+        <div class="pay-chip"><svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="#26a17b"/><text x="10" y="14" text-anchor="middle" fill="white" font-size="8" font-weight="bold">₮</text></svg> USDT TRC20</div>
+        <div class="pay-chip"><svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="#F3BA2F"/><text x="10" y="14" text-anchor="middle" fill="#111" font-size="7" font-weight="bold">BNB</text></svg> Binance P2P</div>
+        <div class="pay-chip"><svg viewBox="0 0 20 20" width="16" height="16"><rect width="20" height="20" rx="5" fill="#1A7EC0"/><text x="10" y="14" text-anchor="middle" fill="white" font-size="6" font-weight="bold">HESAB</text></svg> HesabPay</div>
+        <div class="pay-chip"><svg viewBox="0 0 20 20" width="16" height="16"><rect width="20" height="20" rx="5" fill="#5b2d8e"/><text x="10" y="14" text-anchor="middle" fill="white" font-size="7" font-weight="bold">ATOMA</text></svg> AtomaPay</div>
+        <div class="pay-chip"><svg viewBox="0 0 20 20" width="16" height="16"><rect width="20" height="20" rx="5" fill="#c0392b"/><text x="10" y="14" text-anchor="middle" fill="white" font-size="6" font-weight="bold">AZIZI</text></svg> Azizi Bank</div>
+        <div class="pay-chip">💵 Cash In-Store</div>
       </div>
-    </section>
+    </div>
+
+    <!-- OUR SERVICES TILES -->
+    <div class="home-services">
+      <section>
+        <div class="section-tag">What We Do</div>
+        <h2>OUR <span>SERVICES</span></h2>
+        <p class="section-sub">Tap any service to learn more and get in touch instantly.</p>
+        <div class="svc-showcase">
+          <div class="svc-tile featured" onclick="showPage('services')">
+            <div class="svc-tile-icon">
+              <svg viewBox="0 0 32 32" width="32" height="32"><rect width="32" height="32" rx="6" fill="black"/><path d="M20 8a4 4 0 004 4v4a8 8 0 01-4-1.2V19a7 7 0 11-7-7v4a3 3 0 103 3V8h4z" fill="#fe2c55"/></svg>
+            </div>
+            <div class="svc-tile-name">TikTok Cashout <span style="font-size:0.6rem;color:#fe2c55;font-weight:700">🔥 HOT</span></div>
+            <div class="svc-tile-desc">Cash out your TikTok earnings & gifts fast</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+          <div class="svc-tile featured" style="border-left-color:var(--gold);background:linear-gradient(135deg,#1a1200,var(--black-card))" onclick="showPage('services')">
+            <div class="svc-tile-icon">
+              <svg viewBox="0 0 32 32" width="32" height="32"><rect width="32" height="32" rx="6" fill="#1a1a2e"/><text x="16" y="21" text-anchor="middle" fill="#FFD000" font-size="12" font-weight="bold">UC</text></svg>
+            </div>
+            <div class="svc-tile-name" style="color:var(--gold)">PUBG UC Vouchers <span style="font-size:0.6rem;color:var(--gold);font-weight:700">🎮 HOT</span></div>
+            <div class="svc-tile-desc">Instant UC voucher codes, best prices</div>
+            <div class="svc-tile-arrow" style="color:var(--gold)">→</div>
+          </div>
+          <div class="svc-tile" onclick="showPage('services')">
+            <div class="svc-tile-icon">📣</div>
+            <div class="svc-tile-name">Social Media Boost</div>
+            <div class="svc-tile-desc">Facebook, Instagram, YouTube, TikTok growth</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+          <div class="svc-tile" onclick="openAccountModal()">
+            <div class="svc-tile-icon">📱</div>
+            <div class="svc-tile-name">Account Creation</div>
+            <div class="svc-tile-desc">Professional accounts on any platform</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+          <div class="svc-tile" onclick="showPage('services')">
+            <div class="svc-tile-icon">🎮</div>
+            <div class="svc-tile-name">Gaming Credits</div>
+            <div class="svc-tile-desc">PUBG UC, Free Fire Diamonds & more</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+          <div class="svc-tile" onclick="showPage('services')">
+            <div class="svc-tile-icon">💱</div>
+            <div class="svc-tile-name">Crypto & Payments</div>
+            <div class="svc-tile-desc">USDT, Binance, PayPal services</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+          <div class="svc-tile" onclick="showPage('services')">
+            <div class="svc-tile-icon">📲</div>
+            <div class="svc-tile-name">MTU Transfer</div>
+            <div class="svc-tile-desc">Mobile credit top-up for local networks</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+          <div class="svc-tile" onclick="showPage('services')">
+            <div class="svc-tile-icon">🎁</div>
+            <div class="svc-tile-name">Gift Cards</div>
+            <div class="svc-tile-desc">Apple, Google Play, Steam, Amazon</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+          <div class="svc-tile" onclick="showPage('services')">
+            <div class="svc-tile-icon">🎯</div>
+            <div class="svc-tile-name">Google & FB Ads</div>
+            <div class="svc-tile-desc">Run ads that actually convert</div>
+            <div class="svc-tile-arrow">→</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TIKTOK CASHOUT SPOTLIGHT -->
+    <div class="tiktok-hero">
+      <section>
+        <div>
+          <div class="tt-badge">
+            <svg viewBox="0 0 24 24" width="12" height="12"><rect width="24" height="24" rx="5" fill="none"/><path d="M19 4a4 4 0 004 4v4a8 8 0 01-4-1V15a7 7 0 11-7-7v4a3 3 0 103 3V4h4z" fill="#fe2c55"/></svg>
+            🔥 High Demand — TikTok Creators
+          </div>
+          <h2>CASH OUT YOUR<br><span>TIKTOK MONEY</span></h2>
+          <p class="section-sub" style="max-width:440px">Are you a TikTok creator earning gifts, diamonds, or Creator Fund money? We help you convert it to real cash — fast, safe, and at the best rates in Kabul.</p>
+          <div class="tt-points">
+            <div class="tt-point"><div class="tt-point-dot"></div>TikTok gifts & diamonds → cash in hand</div>
+            <div class="tt-point"><div class="tt-point-dot"></div>Creator Fund & brand deal payments cashed out</div>
+            <div class="tt-point"><div class="tt-point-dot"></div>Secure, private, and fast — no hassle</div>
+            <div class="tt-point"><div class="tt-point-dot"></div>Best rates in Kabul, guaranteed</div>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+            <a href="https://wa.me/93789077537?text=I want to cash out my TikTok money" target="_blank" class="btn-primary">💬 WhatsApp Us Now</a>
+            <a href="https://t.me/Wajid_gaming_store" target="_blank" class="btn-outline">Telegram →</a>
+          </div>
+        </div>
+        <div class="tt-visual">
+          <div class="tt-card">
+            <div class="tt-logo-big">
+              <svg viewBox="0 0 60 60" width="60" height="60"><rect width="60" height="60" rx="14" fill="#010101"/><path d="M43 18a9 9 0 009 9v9a18 18 0 01-9-2.4V40a16 16 0 11-16-16v9a7 7 0 107 7V18h9z" fill="#fe2c55"/><path d="M43 18a9 9 0 009 9v9a18 18 0 01-9-2.4V40a16 16 0 11-16-16v9a7 7 0 107 7V18h9z" fill="white" opacity="0.1"/></svg>
+            </div>
+            <div class="tt-card-title">TIKTOK CASHOUT</div>
+            <div class="tt-card-sub">We cash out your earnings</div>
+            <span class="tt-pill">🎁 Gifts → Cash</span>
+            <span class="tt-pill" style="background:rgba(0,242,234,0.1);border-color:rgba(0,242,234,0.25);color:#00f2ea;margin-top:0.4rem">💰 Creator Fund</span>
+            <div style="margin-top:1.25rem;font-size:0.7rem;color:var(--gray)">Contact us on WhatsApp<br>to get started today</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- UC VOUCHER SPOTLIGHT -->
+    <div class="uc-hero">
+      <section>
+        <div>
+          <div class="uc-badge">
+            <svg viewBox="0 0 24 24" width="12" height="12"><rect width="24" height="24" rx="5" fill="none"/><rect x="2" y="2" width="20" height="20" rx="5" fill="#FFD000" opacity="0.3"/><text x="12" y="17" text-anchor="middle" fill="#FFD000" font-size="10" font-weight="bold">UC</text></svg>
+            🎮 PUBG Mobile — UC Voucher Codes
+          </div>
+          <h2>GET YOUR <span>PUBG UC</span><br>INSTANTLY</h2>
+          <p class="section-sub" style="max-width:440px">We sell official PUBG UC voucher codes at the best prices in Kabul. Order instantly through our Telegram bot — available 24/7, no waiting.</p>
+          <div class="uc-points">
+            <div class="uc-point"><div class="uc-point-dot"></div>Genuine UC voucher codes — instant delivery</div>
+            <div class="uc-point"><div class="uc-point-dot"></div>Best prices guaranteed — cheaper than the store</div>
+            <div class="uc-point"><div class="uc-point-dot"></div>Order 24/7 through our Telegram bot</div>
+            <div class="uc-point"><div class="uc-point-dot"></div>All UC amounts available — small to large</div>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="btn-uc" style="width:auto">
+              <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.2)"/><path d="M17 7l-3.5 10.5a.38.38 0 01-.6.15l-2.85-2.25L8.7 16.8a.23.23 0 01-.37-.08l-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="white"/></svg>
+              Order UC via Telegram Bot
+            </a>
+            <a href="https://wa.me/93789077537?text=I want to buy PUBG UC vouchers" target="_blank" class="btn-outline">💬 WhatsApp →</a>
+          </div>
+        </div>
+        <div class="uc-visual">
+          <div class="uc-card">
+            <div class="uc-icon-big">
+              <svg viewBox="0 0 50 50" width="46" height="46"><rect width="50" height="50" rx="12" fill="#1a1a2e"/><text x="25" y="32" text-anchor="middle" fill="#FFD000" font-size="20" font-weight="bold">UC</text><path d="M8 38 Q25 44 42 38" stroke="#FFD000" stroke-width="1.5" fill="none" opacity="0.4"/></svg>
+            </div>
+            <div class="uc-card-title">PUBG UC CODES</div>
+            <div class="uc-card-sub">Instant voucher delivery</div>
+            <span class="uc-voucher-pill">🎮 60 UC — Best Starter</span>
+            <span class="uc-voucher-pill">⚡ 325 UC — Most Popular</span>
+            <span class="uc-voucher-pill">💎 660 UC — Great Value</span>
+            <span class="uc-voucher-pill">👑 1800 UC — Pro Pack</span>
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="btn-uc">
+              <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.15)"/><path d="M17 7l-3.5 10.5a.38.38 0 01-.6.15l-2.85-2.25L8.7 16.8a.23.23 0 01-.37-.08l-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="black"/></svg>
+              @apex_2030_bot — Order Now
+            </a>
+            <div style="margin-top:0.85rem;font-size:0.68rem;color:var(--gray)">Telegram bot available 24/7</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- CONNECT -->
+    <div class="connect-section">
+      <section>
+        <div class="section-tag">Reach Us</div>
+        <h2>CONNECT <span>INSTANTLY</span></h2>
+        <div class="connect-grid">
+          <a href="https://wa.me/93789077537" target="_blank" class="connect-card">
+            <div class="cc-icon" style="background:rgba(37,211,102,0.12)">
+              <svg viewBox="0 0 32 32" width="28" height="28"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23 21.5c-.3-.15-1.8-.9-2.1-1s-.5-.15-.7.15-.8 1-1 1.2-.35.2-.65.05a8.2 8.2 0 01-4.1-3.6c-.3-.5.3-.5.87-1.6.1-.2.05-.35-.02-.5s-.7-1.7-.97-2.3c-.25-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 00-.87.4A3.6 3.6 0 0012 15.5c0 2.1 1.55 4.15 1.77 4.45 1.9 2.9 4.1 3.6 7.2 3.6.9 0 1.7-.07 2.3-.4a3.1 3.1 0 001.4-2.15c.07-.55-.2-.88-.5-1z" fill="white"/></svg>
+            </div>
+            <div>
+              <div class="cc-name" style="color:#25D366">WhatsApp</div>
+              <div class="cc-handle">+93 789 077 537</div>
+            </div>
+            <div class="cc-arrow">→</div>
+          </a>
+          <a href="https://t.me/Wajid_gaming_store" target="_blank" class="connect-card">
+            <div class="cc-icon" style="background:rgba(33,150,243,0.12)">
+              <svg viewBox="0 0 32 32" width="28" height="28"><circle cx="16" cy="16" r="16" fill="#2196F3"/><path d="M22 9.5L18 24a.5.5 0 01-.8.2l-4-3.2-2 1.9a.3.3 0 01-.5-.1l-1-3.7-3.7-1.2a.5.5 0 010-.9l14-5.7a.5.5 0 01.3.7z" fill="white"/></svg>
+            </div>
+            <div>
+              <div class="cc-name" style="color:#2196F3">Telegram Channel</div>
+              <div class="cc-handle">@Wajid_gaming_store</div>
+            </div>
+            <div class="cc-arrow">→</div>
+          </a>
+        </div>
+      </section>
+    </div>
+
   </div>
-
   <footer>
-    <div class="footer-left">
-      <img src="logo.png" alt="Logo" />
-      <div><div class="footer-name">Apex Digital House</div><div class="footer-sub">Kabul, Afghanistan</div></div>
-    </div>
-    <div class="footer-copy">© 2025 Apex Digital House. All rights reserved.</div>
+    <div class="footer-brand"><img src="logo.png" alt=""/><div><div class="footer-name">APEX DIGITAL HOUSE</div><div class="footer-loc">Kabul, Afghanistan</div></div></div>
+    <div class="footer-copy">© 2026 Apex Digital House. All rights reserved.</div>
     <div class="footer-socials">
-      <a class="f-social" href="https://wa.me/93789077537" target="_blank">💬</a>
-      <a class="f-social" href="https://t.me/Wajid_gaming_store" target="_blank">✈️</a>
-      <a class="f-social" href="https://t.me/apex_2030_bot" target="_blank">🤖</a>
+      <a class="f-soc" href="https://wa.me/93789077537" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 15.5c-.23-.12-1.35-.67-1.56-.75s-.36-.12-.51.12-.59.75-.73.9-.26.17-.49.06a6.15 6.15 0 01-3.07-2.7c-.23-.38.23-.38.65-1.2.07-.15.04-.26-.02-.37s-.52-1.28-.72-1.73c-.19-.45-.38-.38-.52-.38h-.45a.9.9 0 00-.65.3A2.7 2.7 0 009 11.63c0 1.57 1.16 3.1 1.32 3.34 1.43 2.17 3.07 2.7 5.4 2.7.68 0 1.28-.05 1.73-.3a2.32 2.32 0 001.04-1.61c.06-.41-.14-.66-.37-.76z" fill="white"/></svg></a>
+      <a class="f-soc" href="https://t.me/Wajid_gaming_store" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#2196F3"/><path d="M17 7l-3.5 10.5a.38.38 0 01-.6.15l-2.85-2.25L8.7 16.8a.23.23 0 01-.37-.08l-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="white"/></svg></a>
     </div>
   </footer>
 </div>
 
-<!-- PAGE 2: SERVICES -->
+<!-- ════════════════════════════════════════
+     PAGE: SERVICES
+════════════════════════════════════════ -->
 <div class="page" id="page-services">
   <div class="page-content">
-    <section class="services-hero">
-      <div class="section-label">What We Offer</div>
-      <h2>Our Full Range of Services</h2>
-      <p class="section-sub">From digital marketing to gaming, crypto, and gift cards — we handle it all.</p>
-    </section>
-
-    <section class="services-full">
-      <div class="cat-title">📣 Social Media & Advertising</div>
-      <div class="svc-grid">
-        <div class="svc-card"><div class="svc-icon">📣</div><div class="svc-title">Facebook Page Boosting</div><div class="svc-desc">Grow your Facebook page reach, likes, and followers with effective promotion strategies.</div><div class="tag-row"><span class="tag">Facebook</span><span class="tag">Reach</span><span class="tag">Likes</span></div></div>
-        <div class="svc-card"><div class="svc-icon">📸</div><div class="svc-title">Instagram Growth</div><div class="svc-desc">Increase Instagram followers, story views, and engagement organically and fast.</div><div class="tag-row"><span class="tag">Instagram</span><span class="tag">Followers</span><span class="tag">Views</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🎯</div><div class="svc-title">Facebook Ads Management</div><div class="svc-desc">We create, launch, and optimize Facebook ad campaigns to get you real results.</div><div class="tag-row"><span class="tag">FB Ads</span><span class="tag">Campaigns</span><span class="tag">ROI</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🔍</div><div class="svc-title">Google Ads</div><div class="svc-desc">Search and display ads on Google that drive targeted traffic to your business.</div><div class="tag-row"><span class="tag">Google Ads</span><span class="tag">Search</span><span class="tag">Display</span></div></div>
+    <div class="svc-page-header">
+      <div class="svc-page-header-inner">
+        <div class="section-tag">Full Catalog</div>
+        <h2>OUR <span>SERVICES</span></h2>
+        <p class="section-sub">Every service we offer — tap any card to order instantly via WhatsApp.</p>
       </div>
-
-      <div class="cat-title">🎮 Gaming Credits</div>
-      <div class="svc-grid">
-        <div class="svc-card"><div class="svc-icon">🎮</div><div class="svc-title">PUBG UC (Unknown Cash)</div><div class="svc-desc">Instant UC top-ups for PUBG Mobile at the best prices. Order via our Telegram bot 24/7.</div><div class="tag-row"><span class="tag">PUBG UC</span><span class="tag">Instant</span><span class="tag">Bot Orders</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🔥</div><div class="svc-title">Free Fire Diamonds</div><div class="svc-desc">Top up Free Fire diamonds quickly and securely at competitive rates.</div><div class="tag-row"><span class="tag">Free Fire</span><span class="tag">Diamonds</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🎲</div><div class="svc-title">Other Game Credits</div><div class="svc-desc">Mobile Legends, Valorant, and more — ask us about any game top-up you need.</div><div class="tag-row"><span class="tag">ML Diamonds</span><span class="tag">Valorant</span><span class="tag">More</span></div></div>
-      </div>
-
-      <div class="cat-title">🎁 Gift Cards</div>
-      <div class="svc-grid">
-        <div class="svc-card"><div class="svc-icon">🍎</div><div class="svc-title">iTunes / Apple Gift Cards</div><div class="svc-desc">App Store, Apple Music, and iTunes gift cards delivered digitally.</div><div class="tag-row"><span class="tag">Apple</span><span class="tag">App Store</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🤖</div><div class="svc-title">Google Play Gift Cards</div><div class="svc-desc">Google Play credits for apps, games, and subscriptions.</div><div class="tag-row"><span class="tag">Google Play</span><span class="tag">Android</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🎮</div><div class="svc-title">Steam & Gaming Cards</div><div class="svc-desc">Steam Wallet, Xbox, PlayStation store cards and more.</div><div class="tag-row"><span class="tag">Steam</span><span class="tag">Xbox</span><span class="tag">PSN</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🛍️</div><div class="svc-title">Amazon & Other Cards</div><div class="svc-desc">Amazon gift cards and other international e-commerce gift cards.</div><div class="tag-row"><span class="tag">Amazon</span><span class="tag">International</span></div></div>
-      </div>
-
-      <div class="cat-title">💱 Crypto & Online Payments</div>
-      <div class="svc-grid">
-        <div class="svc-card"><div class="svc-icon">₮</div><div class="svc-title">USDT Exchange</div><div class="svc-desc">Fast and secure USDT TRC20/ERC20 transfers for cross-border payments.</div><div class="tag-row"><span class="tag">USDT</span><span class="tag">TRC20</span><span class="tag">ERC20</span></div></div>
-        <div class="svc-card"><div class="svc-icon">🟡</div><div class="svc-title">Binance Services</div><div class="svc-desc">Binance P2P transfers and crypto exchange assistance.</div><div class="tag-row"><span class="tag">Binance</span><span class="tag">P2P</span><span class="tag">Crypto</span></div></div>
-        <div class="svc-card"><div class="svc-icon">💳</div><div class="svc-title">PayPal Services</div><div class="svc-desc">PayPal top-ups, transfers, and account services handled professionally.</div><div class="tag-row"><span class="tag">PayPal</span><span class="tag">Transfers</span></div></div>
-      </div>
-    </section>
-
-    <section class="payments-section">
-      <div class="section-label">Accepted Payments</div>
-      <h2>Pay With What You Have</h2>
-      <p class="section-sub">We accept all major local and international payment methods.</p>
-      <div class="pay-grid">
-        <div class="pay-card"><div class="pay-logo">💳</div><div class="pay-name">PayPal</div><div class="pay-note">International</div></div>
-        <div class="pay-card"><div class="pay-logo">₮</div><div class="pay-name">USDT</div><div class="pay-note">TRC20 / ERC20</div></div>
-        <div class="pay-card"><div class="pay-logo">🟡</div><div class="pay-name">Binance</div><div class="pay-note">P2P</div></div>
-        <div class="pay-card"><div class="pay-logo">📲</div><div class="pay-name">HesabPay</div><div class="pay-note">Local</div></div>
-        <div class="pay-card"><div class="pay-logo">⚡</div><div class="pay-name">AtomPay</div><div class="pay-note">Local</div></div>
-        <div class="pay-card"><div class="pay-logo">🏦</div><div class="pay-name">Azizi Bank</div><div class="pay-note">Transfer</div></div>
-        <div class="pay-card"><div class="pay-logo">🏪</div><div class="pay-name">Cash</div><div class="pay-note">In-Store</div></div>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <div class="footer-left">
-      <img src="logo.png" alt="Logo" />
-      <div><div class="footer-name">Apex Digital House</div><div class="footer-sub">Kabul, Afghanistan</div></div>
     </div>
-    <div class="footer-copy">© 2025 Apex Digital House. All rights reserved.</div>
+
+    <div class="svc-full">
+      <div class="svc-full-inner">
+
+        <!-- TIKTOK CASHOUT — FEATURED -->
+        <div class="cat-hd" style="margin-top:0"><span class="cat-hd-icon">🔥</span><div class="cat-hd-text" style="color:#fe2c55">TIKTOK CASHOUT <span style="font-size:0.75rem;color:#fe2c55;font-weight:700;font-family:'DM Sans',sans-serif">— BIG OPPORTUNITY</span></div><div class="cat-hd-line" style="background:rgba(254,44,85,0.2)"></div></div>
+        <div class="svc-row">
+          <div class="svc-c tt-featured">
+            <div class="svc-c-icon" style="background:rgba(254,44,85,0.1);border-color:rgba(254,44,85,0.2)"><svg viewBox="0 0 32 32" width="24" height="24"><rect width="32" height="32" rx="7" fill="black"/><path d="M22 8a4 4 0 004 4v4a8 8 0 01-4-1V19a7 7 0 11-7-7v4a3 3 0 103 3V8h4z" fill="#fe2c55"/></svg></div>
+            <div class="svc-c-name">TikTok Creator Cashout <span class="hot-badge">🔥 HOT</span></div>
+            <div class="svc-c-desc">We cash out TikTok gifts, diamonds, and Creator Fund earnings — fast and at the best rates in Kabul. Creators trust us for secure, reliable payouts.</div>
+            <a href="https://wa.me/93789077537?text=I want to cash out my TikTok earnings" target="_blank" class="svc-c-cta">💬 WhatsApp to Cash Out →</a>
+          </div>
+          <div class="svc-c tt-featured">
+            <div class="svc-c-icon" style="background:rgba(254,44,85,0.1);border-color:rgba(254,44,85,0.2)">💰</div>
+            <div class="svc-c-name">USD Sale & Purchase</div>
+            <div class="svc-c-desc">We buy and sell USD — convert physical dollars to digital payments or vice versa at competitive, real-time rates.</div>
+            <a href="https://wa.me/93789077537?text=I want to buy or sell USD" target="_blank" class="svc-c-cta">💬 Contact for Rate →</a>
+          </div>
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+        <div class="cat-hd gold"><span class="cat-hd-icon">📣</span><div class="cat-hd-text">SOCIAL MEDIA &amp; ADS</div><div class="cat-hd-line"></div></div>
+        <div class="svc-row">
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.62 23.1 24 18.1 24 12.07z" fill="#1877F2"/></svg></div><div class="svc-c-name">Facebook Page Boosting</div><div class="svc-c-desc">Grow page reach, likes and followers with proven strategies.</div><a href="https://wa.me/93789077537?text=Facebook Page Boosting" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><defs><radialGradient id="ig2" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#ffd676"/><stop offset="25%" stop-color="#f86434"/><stop offset="55%" stop-color="#cc2e8a"/><stop offset="100%" stop-color="#4b57c3"/></radialGradient></defs><rect width="24" height="24" rx="7" fill="url(#ig2)"/><rect x="7" y="7" width="10" height="10" rx="3" fill="none" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="none" stroke="white" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div><div class="svc-c-name">Instagram Growth</div><div class="svc-c-desc">Followers, views, story engagement — real and fast.</div><a href="https://wa.me/93789077537?text=Instagram Growth service" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div><div class="svc-c-name">Google & Facebook Ads</div><div class="svc-c-desc">Full campaign management — from setup to results.</div><a href="https://wa.me/93789077537?text=Ads Management service" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M23 7s-.3-1.9-1.2-2.7c-1.1-1.2-2.4-1.2-3-1.3C16.6 3 12 3 12 3s-4.6 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5.3 1 7 1 7S.7 9.1.7 11.2v2c0 2.1.3 4.2.3 4.2s.3 1.9 1.2 2.7c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.5 12 21.5 12 21.5s4.6 0 6.8-.3c.6-.1 1.9-.1 3-1.2.9-.8 1.2-2.7 1.2-2.7s.3-2.1.3-4.2v-2C23.3 9.1 23 7 23 7z" fill="#FF0000"/><path d="M9.7 15.5V8.5l6.6 3.5z" fill="white"/></svg></div><div class="svc-c-name">YouTube Growth</div><div class="svc-c-desc">Subscribers, views, and watch time boosted fast.</div><a href="https://wa.me/93789077537?text=YouTube Growth service" target="_blank" class="svc-c-cta">Order →</a></div>
+        </div>
+
+        <!-- ACCOUNT CREATION -->
+        <div class="cat-hd gold"><span class="cat-hd-icon">📱</span><div class="cat-hd-text">PROFESSIONAL ACCOUNT CREATION</div><div class="cat-hd-line"></div></div>
+        <div style="margin-bottom:1rem">
+          <button class="btn-primary" onclick="openAccountModal()" style="font-size:0.85rem;padding:0.65rem 1.5rem">
+            ✦ Choose a Platform to Get Started →
+          </button>
+        </div>
+        <div class="svc-row">
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><rect width="24" height="24" rx="6" fill="black"/><path d="M18 6a4 4 0 004 4v4a8 8 0 01-4-1.2V17a6 6 0 11-6-6v4a2 2 0 102 2V6h4z" fill="#fe2c55"/></svg></div><div class="svc-c-name">TikTok Account</div><div class="svc-c-desc">Pro TikTok setup, branding & optimization.</div><a href="#" onclick="openAccountModal()" class="svc-c-cta">Get Started →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#2196F3"/><path d="M17 7l-3.5 10.5-.6.15-2.85-2.25L8.7 16.8l-.37-.08-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="white"/></svg></div><div class="svc-c-name">Telegram Channel / Group</div><div class="svc-c-desc">Professional Telegram setup & configuration.</div><a href="#" onclick="openAccountModal()" class="svc-c-cta">Get Started →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 15.5c-.23-.12-1.35-.67-1.56-.75s-.36-.12-.51.12-.59.75-.73.9-.26.17-.49.06a6.15 6.15 0 01-3.07-2.7c-.23-.38.23-.38.65-1.2.07-.15.04-.26-.02-.37s-.52-1.28-.72-1.73c-.19-.45-.38-.38-.52-.38h-.45a.9.9 0 00-.65.3A2.7 2.7 0 009 11.63c0 1.57 1.16 3.1 1.32 3.34 1.43 2.17 3.07 2.7 5.4 2.7.68 0 1.28-.05 1.73-.3a2.32 2.32 0 001.04-1.61c.06-.41-.14-.66-.37-.76z" fill="white"/></svg></div><div class="svc-c-name">WhatsApp Business</div><div class="svc-c-desc">Business account with catalog and auto-replies.</div><a href="#" onclick="openAccountModal()" class="svc-c-cta">Get Started →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.62 23.1 24 18.1 24 12.07z" fill="#1877F2"/></svg></div><div class="svc-c-name">Facebook / Instagram</div><div class="svc-c-desc">Full business profile setup and branding.</div><a href="#" onclick="openAccountModal()" class="svc-c-cta">Get Started →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M23 7s-.3-1.9-1.2-2.7c-1.1-1.2-2.4-1.2-3-1.3C16.6 3 12 3 12 3s-4.6 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5.3 1 7 1 7S.7 9.1.7 11.2v2c0 2.1.3 4.2.3 4.2s.3 1.9 1.2 2.7c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.5 12 21.5 12 21.5s4.6 0 6.8-.3c.6-.1 1.9-.1 3-1.2.9-.8 1.2-2.7 1.2-2.7s.3-2.1.3-4.2v-2C23.3 9.1 23 7 23 7z" fill="#FF0000"/><path d="M9.7 15.5V8.5l6.6 3.5z" fill="white"/></svg></div><div class="svc-c-name">YouTube Channel</div><div class="svc-c-desc">Channel creation with branding and SEO setup.</div><a href="#" onclick="openAccountModal()" class="svc-c-cta">Get Started →</a></div>
+        </div>
+
+        <!-- GAMING -->
+        <div class="cat-hd"><span class="cat-hd-icon">🎮</span><div class="cat-hd-text" style="color:var(--gold)">GAMING CREDITS</div><div class="cat-hd-line" style="background:var(--border-gold)"></div></div>
+        <div class="svc-row">
+          <div class="svc-c" style="border-color:rgba(255,208,0,0.15)"><div class="svc-c-icon" style="background:rgba(255,208,0,0.08);border-color:rgba(255,208,0,0.2)"><svg viewBox="0 0 28 28" width="24" height="24"><rect width="28" height="28" rx="6" fill="#1a1a2e"/><text x="14" y="19" text-anchor="middle" fill="#FFD000" font-size="10" font-weight="bold">UC</text></svg></div><div class="svc-c-name">PUBG UC Voucher Codes <span class="hot-badge">🎮 HOT</span></div><div class="svc-c-desc">Instant PUBG Mobile UC voucher codes at the best prices. Order 24/7 through our Telegram bot — fast, easy, reliable.</div><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.6rem"><a href="https://t.me/apex_2030_bot" target="_blank" class="svc-c-cta" style="color:var(--gold)">🤖 @apex_2030_bot →</a><a href="https://wa.me/93789077537?text=PUBG UC order" target="_blank" class="svc-c-cta" style="color:var(--gold)">💬 WhatsApp →</a></div></div>
+          <div class="svc-c" style="border-color:rgba(255,208,0,0.15)"><div class="svc-c-icon" style="background:rgba(255,100,0,0.08);border-color:rgba(255,100,0,0.2)">🔥</div><div class="svc-c-name">Free Fire Diamonds</div><div class="svc-c-desc">Fast and secure diamond top-ups at competitive rates.</div><a href="https://wa.me/93789077537?text=Free Fire Diamonds order" target="_blank" class="svc-c-cta" style="color:var(--gold)">Order →</a></div>
+          <div class="svc-c" style="border-color:rgba(255,208,0,0.15)"><div class="svc-c-icon" style="background:rgba(255,208,0,0.08);border-color:rgba(255,208,0,0.2)">🎲</div><div class="svc-c-name">Other Game Credits</div><div class="svc-c-desc">Mobile Legends, Valorant, and more — just ask.</div><a href="https://wa.me/93789077537?text=Game credits order" target="_blank" class="svc-c-cta" style="color:var(--gold)">Order →</a></div>
+        </div>
+
+        <!-- MTU -->
+        <div class="cat-hd gold"><span class="cat-hd-icon">📲</span><div class="cat-hd-text">MTU — MOBILE CREDIT TRANSFER</div><div class="cat-hd-line"></div></div>
+        <div class="svc-row">
+          <div class="svc-c"><div class="svc-c-icon">📲</div><div class="svc-c-name">MTU Credit Transfer</div><div class="svc-c-desc">Send mobile credit (airtime) directly to any local phone number — fast and reliable.</div><a href="https://wa.me/93789077537?text=MTU transfer" target="_blank" class="svc-c-cta">Order →</a></div>
+        </div>
+
+        <!-- GIFT CARDS -->
+        <div class="cat-hd gold"><span class="cat-hd-icon">🎁</span><div class="cat-hd-text">GIFT CARDS</div><div class="cat-hd-line"></div></div>
+        <div class="svc-row">
+          <div class="svc-c"><div class="svc-c-icon">🍎</div><div class="svc-c-name">Apple / iTunes</div><div class="svc-c-desc">App Store, iTunes, Apple Music cards.</div><a href="https://wa.me/93789077537?text=Apple Gift Card" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 22 22" width="20" height="20"><path d="M20.56 11.25c0-.78-.07-1.53-.2-2.25H11v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M11 22c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H1.18v2.84C2.99 19.53 6.7 22 11 22z" fill="#34A853"/><path d="M4.84 13.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V6.07H1.18C.43 7.55 0 9.22 0 11s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M11 4.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C16.45 1.09 13.97 0 11 0 6.7 0 2.99 2.47 1.18 6.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div><div class="svc-c-name">Google Play</div><div class="svc-c-desc">Google Play credits for apps and games.</div><a href="https://wa.me/93789077537?text=Google Play Gift Card" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon">🎮</div><div class="svc-c-name">Steam / Xbox / PSN</div><div class="svc-c-desc">Gaming store cards for PC and console.</div><a href="https://wa.me/93789077537?text=Steam Xbox PSN Gift Card" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon">🛍️</div><div class="svc-c-name">Amazon & More</div><div class="svc-c-desc">International e-commerce gift cards.</div><a href="https://wa.me/93789077537?text=Amazon Gift Card" target="_blank" class="svc-c-cta">Order →</a></div>
+        </div>
+
+        <!-- CRYPTO & PAYMENTS -->
+        <div class="cat-hd gold"><span class="cat-hd-icon">💱</span><div class="cat-hd-text">CRYPTO &amp; ONLINE PAYMENTS</div><div class="cat-hd-line"></div></div>
+        <div class="svc-row">
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#26a17b"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">₮</text></svg></div><div class="svc-c-name">USDT Exchange (TRC20)</div><div class="svc-c-desc">Fast, secure USDT TRC20 transfers for cross-border payments.</div><a href="https://wa.me/93789077537?text=USDT Exchange" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#F3BA2F"/><text x="12" y="16" text-anchor="middle" fill="#111" font-size="8" font-weight="bold">BNB</text></svg></div><div class="svc-c-name">Binance P2P</div><div class="svc-c-desc">Binance P2P transfers and crypto exchange assistance.</div><a href="https://wa.me/93789077537?text=Binance P2P" target="_blank" class="svc-c-cta">Order →</a></div>
+          <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#003087"/><path d="M9 7h5c2 0 3.5 1 3.5 3s-1.5 3-3.5 3H10.5L9.5 18H7L9 7z" fill="#009CDE"/></svg></div><div class="svc-c-name">PayPal Services</div><div class="svc-c-desc">PayPal top-ups, transfers, and account services.</div><a href="https://wa.me/93789077537?text=PayPal service" target="_blank" class="svc-c-cta">Order →</a></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAYMENTS ACCEPTED -->
+    <div class="pay-section">
+      <div class="pay-section-inner">
+        <div class="section-tag">Accepted Payments</div>
+        <h2>PAY WITH <span>WHAT YOU HAVE</span></h2>
+        <p class="section-sub">All major local and international payment methods accepted.</p>
+        <div class="pay-cards-row">
+          <div class="pay-c"><div class="pay-c-logo"><svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#003087"/><path d="M12 10h7c3 0 5 1.5 5 4.5s-2 4.5-5 4.5h-4l-1.5 8H10L12 10z" fill="#009CDE"/></svg></div><div class="pay-c-name">PayPal</div><div class="pay-c-note">International</div></div>
+          <div class="pay-c"><div class="pay-c-logo"><svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#26a17b"/><text x="18" y="23" text-anchor="middle" fill="white" font-size="13" font-weight="bold">₮</text></svg></div><div class="pay-c-name">USDT</div><div class="pay-c-note">TRC20 only</div></div>
+          <div class="pay-c"><div class="pay-c-logo"><svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#F3BA2F"/><text x="18" y="23" text-anchor="middle" fill="#111" font-size="10" font-weight="bold">BNB</text></svg></div><div class="pay-c-name">Binance</div><div class="pay-c-note">P2P</div></div>
+          <div class="pay-c"><div class="pay-c-logo"><svg viewBox="0 0 36 36" width="36" height="36"><rect width="36" height="36" rx="9" fill="#1A7EC0"/><text x="18" y="21" text-anchor="middle" fill="white" font-size="8" font-weight="bold">HESAB</text><text x="18" y="30" text-anchor="middle" fill="white" font-size="7" font-weight="bold">PAY</text></svg></div><div class="pay-c-name">HesabPay</div><div class="pay-c-note">Local wallet</div></div>
+          <div class="pay-c coming-soon"><div class="pay-c-logo"><svg viewBox="0 0 36 36" width="36" height="36"><rect width="36" height="36" rx="9" fill="#1A7EC0" opacity="0.4"/><text x="18" y="21" text-anchor="middle" fill="white" font-size="7" font-weight="bold">HESAB</text><text x="18" y="29" text-anchor="middle" fill="white" font-size="6" font-weight="bold">AGENT</text></svg></div><div class="pay-c-name">HesabPay Agent</div><div class="pay-c-note">Becoming their agent</div><div class="pay-c-soon">⭐ COMING SOON</div></div>
+          <div class="pay-c"><div class="pay-c-logo"><svg viewBox="0 0 36 36" width="36" height="36"><rect width="36" height="36" rx="9" fill="#5b2d8e"/><text x="18" y="21" text-anchor="middle" fill="white" font-size="9" font-weight="bold">ATOMA</text><text x="18" y="30" text-anchor="middle" fill="white" font-size="7" font-weight="bold">PAY</text></svg></div><div class="pay-c-name">AtomaPay</div><div class="pay-c-note">Local wallet</div></div>
+          <div class="pay-c"><div class="pay-c-logo"><svg viewBox="0 0 36 36" width="36" height="36"><rect width="36" height="36" rx="9" fill="#c0392b"/><text x="18" y="21" text-anchor="middle" fill="white" font-size="8" font-weight="bold">AZIZI</text><text x="18" y="30" text-anchor="middle" fill="white" font-size="7" font-weight="bold">BANK</text></svg></div><div class="pay-c-name">Azizi Bank</div><div class="pay-c-note">Transfer</div></div>
+          <div class="pay-c"><div class="pay-c-logo" style="font-size:2rem">💵</div><div class="pay-c-name">Cash</div><div class="pay-c-note">In-Store</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="footer-brand"><img src="logo.png" alt=""/><div><div class="footer-name">APEX DIGITAL HOUSE</div><div class="footer-loc">Kabul, Afghanistan</div></div></div>
+    <div class="footer-copy">© 2026 Apex Digital House. All rights reserved.</div>
     <div class="footer-socials">
-      <a class="f-social" href="https://wa.me/93789077537" target="_blank">💬</a>
-      <a class="f-social" href="https://t.me/Wajid_gaming_store" target="_blank">✈️</a>
-      <a class="f-social" href="https://t.me/apex_2030_bot" target="_blank">🤖</a>
+      <a class="f-soc" href="https://wa.me/93789077537" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 15.5c-.23-.12-1.35-.67-1.56-.75s-.36-.12-.51.12-.59.75-.73.9-.26.17-.49.06a6.15 6.15 0 01-3.07-2.7c-.23-.38.23-.38.65-1.2.07-.15.04-.26-.02-.37s-.52-1.28-.72-1.73c-.19-.45-.38-.38-.52-.38h-.45a.9.9 0 00-.65.3A2.7 2.7 0 009 11.63c0 1.57 1.16 3.1 1.32 3.34 1.43 2.17 3.07 2.7 5.4 2.7.68 0 1.28-.05 1.73-.3a2.32 2.32 0 001.04-1.61c.06-.41-.14-.66-.37-.76z" fill="white"/></svg></a>
+      <a class="f-soc" href="https://t.me/Wajid_gaming_store" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#2196F3"/><path d="M17 7l-3.5 10.5a.38.38 0 01-.6.15l-2.85-2.25L8.7 16.8a.23.23 0 01-.37-.08l-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="white"/></svg></a>
     </div>
   </footer>
 </div>
 
-<!-- PAGE 3: CONTACT -->
+<!-- ════════════════════════════════════════
+     PAGE: CONTACT
+════════════════════════════════════════ -->
 <div class="page" id="page-contact">
   <div class="page-content">
-    <section class="contact-hero">
-      <div class="section-label">Get in Touch</div>
-      <h2>We're Here to Help</h2>
-      <p class="section-sub">Reach us online anytime, or visit our store in Kabul. Fast responses guaranteed.</p>
-    </section>
-
-    <section class="contact-main">
-      <div class="contact-grid">
-        <div>
-          <p style="font-size:0.8rem;font-weight:600;color:var(--silver-dark);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Contact Channels</p>
-          <div class="contact-methods">
-            <a class="method-card" href="https://wa.me/93789077537" target="_blank">
-              <div class="method-icon" style="background:rgba(37,165,80,0.15)">💬</div>
-              <div><div class="method-title">WhatsApp</div><div class="method-sub">+93 789 077 537</div></div>
-              <div class="method-arrow">→</div>
+    <div class="contact-page-header">
+      <div style="max-width:1100px;margin:0 auto">
+        <div class="section-tag" style="justify-content:center">Get In Touch</div>
+        <h2 style="text-align:center">WE'RE HERE <span>FOR YOU</span></h2>
+        <p class="section-sub" style="margin:0 auto;text-align:center">Reach us online anytime or visit our store in Kabul.</p>
+      </div>
+    </div>
+    <div class="contact-grid-wrap">
+      <section>
+        <div class="contact-grid-section">
+          <div>
+            <p style="font-size:0.65rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Contact Channels</p>
+            <a class="method-link" href="https://wa.me/93789077537" target="_blank">
+              <div class="method-ico" style="background:rgba(37,211,102,0.12)"><svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 15.5c-.23-.12-1.35-.67-1.56-.75s-.36-.12-.51.12-.59.75-.73.9-.26.17-.49.06a6.15 6.15 0 01-3.07-2.7c-.23-.38.23-.38.65-1.2.07-.15.04-.26-.02-.37s-.52-1.28-.72-1.73c-.19-.45-.38-.38-.52-.38h-.45a.9.9 0 00-.65.3A2.7 2.7 0 009 11.63c0 1.57 1.16 3.1 1.32 3.34 1.43 2.17 3.07 2.7 5.4 2.7.68 0 1.28-.05 1.73-.3a2.32 2.32 0 001.04-1.61c.06-.41-.14-.66-.37-.76z" fill="white"/></svg></div>
+              <div><div class="method-name" style="color:#25D366">WhatsApp</div><div class="method-handle">+93 789 077 537</div></div>
+              <div class="method-arr">→</div>
             </a>
-            <a class="method-card" href="https://t.me/Wajid_gaming_store" target="_blank">
-              <div class="method-icon" style="background:rgba(33,150,243,0.15)">✈️</div>
-              <div><div class="method-title">Telegram Channel</div><div class="method-sub">@Wajid_gaming_store</div></div>
-              <div class="method-arrow">→</div>
+            <a class="method-link" href="https://t.me/Wajid_gaming_store" target="_blank">
+              <div class="method-ico" style="background:rgba(33,150,243,0.12)"><svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="12" fill="#2196F3"/><path d="M17 7l-3.5 10.5a.38.38 0 01-.6.15l-2.85-2.25L8.7 16.8a.23.23 0 01-.37-.08l-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="white"/></svg></div>
+              <div><div class="method-name" style="color:#2196F3">Telegram Channel</div><div class="method-handle">@Wajid_gaming_store</div></div>
+              <div class="method-arr">→</div>
             </a>
-            <a class="method-card" href="https://t.me/apex_2030_bot" target="_blank">
-              <div class="method-icon" style="background:rgba(58,180,242,0.15)">🤖</div>
-              <div><div class="method-title">UC Order Bot</div><div class="method-sub">@apex_2030_bot — Order PUBG UC 24/7</div></div>
-              <div class="method-arrow">→</div>
-            </a>
-          </div>
-
-          <div class="store-map-card" style="margin-top:1.25rem">
-            <div class="store-map-top">
-              <div class="store-title">📍 Physical Store — Kabul</div>
-              <div class="store-addr-rows">
+            <div class="store-card">
+              <div class="store-top">
+                <div class="store-head">📍 Physical Store — Kabul</div>
                 <div class="store-row">🏙️ <span><strong>کابل، خیرخواه مارکت</strong></span></div>
                 <div class="store-row">🧭 <span>نزدیک <strong>صدیق عمر</strong></span></div>
                 <div class="store-row">🚪 <span>منزل ۳ — <strong>دوکان نمبر F3-076</strong></span></div>
                 <div class="store-row">📞 <span><strong>+93 789 077 537</strong></span></div>
-                <div class="store-row">🕐 <span>Open Daily &nbsp;<strong>8:00am – 9:00pm</strong></span></div>
+                <div class="store-row">🕐 <span>Sat–Thu &nbsp;<strong>8:00 AM – 8:00 PM</strong> &nbsp;|&nbsp; Fri <strong style="color:#ff6b6b">Closed</strong></span></div>
+              </div>
+              <div class="store-map">
+                <span style="font-size:1.5rem">📍</span>
+                <span>Khairkhwa Market, Kabul, Afghanistan</span>
+                <a href="https://maps.google.com/?q=Khairkhwa+Market+Kabul+Afghanistan" target="_blank">Open in Google Maps →</a>
               </div>
             </div>
-            <div class="map-placeholder">
-              <div class="map-dot">📍</div>
-              <div>Khairkhwa Market, Kabul, Afghanistan</div>
-              <a href="https://maps.google.com/?q=Khairkhwa+Market+Kabul+Afghanistan" target="_blank" style="color:var(--blue);font-size:0.78rem;text-decoration:none;margin-top:4px">Open in Google Maps →</a>
+          </div>
+          <div>
+            <div class="form-card">
+              <div class="form-card-title">Send Us a Message</div>
+              <div class="cf-group"><label>Your Name</label><input type="text" placeholder="e.g. Ahmad Karimi"/></div>
+              <div class="cf-group"><label>WhatsApp / Contact</label><input type="text" placeholder="Your number or email"/></div>
+              <div class="cf-group">
+                <label>Service Needed</label>
+                <select>
+                  <option value="">Choose a service...</option>
+                  <optgroup label="TikTok"><option>TikTok Creator Cashout</option><option>TikTok Promotion</option></optgroup>
+                  <optgroup label="Social Media"><option>Facebook Page Boosting</option><option>Instagram Growth</option><option>Facebook / Google Ads</option><option>YouTube Growth</option></optgroup>
+                  <optgroup label="Account Creation"><option>TikTok Account Setup</option><option>Telegram Channel/Group</option><option>WhatsApp Business</option><option>Facebook / Instagram Account</option><option>YouTube Channel</option></optgroup>
+                  <optgroup label="Gaming"><option>PUBG UC</option><option>Free Fire Diamonds</option><option>Other Game Credits</option></optgroup>
+                  <optgroup label="Money & Payments"><option>USD Sale / Purchase</option><option>MTU Transfer</option><option>USDT (TRC20)</option><option>Binance P2P</option><option>PayPal Services</option></optgroup>
+                  <optgroup label="Gift Cards"><option>Apple / iTunes</option><option>Google Play</option><option>Steam / Xbox / PSN</option><option>Amazon</option></optgroup>
+                </select>
+              </div>
+              <div class="cf-group">
+                <label>Payment Method</label>
+                <select>
+                  <option value="">How will you pay?</option>
+                  <option>PayPal</option><option>USDT (TRC20)</option><option>Binance P2P</option>
+                  <option>HesabPay</option><option>AtomaPay</option>
+                  <option>Azizi Bank</option><option>In-Store Cash</option>
+                </select>
+              </div>
+              <div class="cf-group"><label>Message</label><textarea placeholder="Tell us what you need..."></textarea></div>
+              <button class="btn-primary" style="width:100%;justify-content:center;margin-bottom:0.6rem">Send Message</button>
+              <div style="display:flex;gap:0.6rem">
+                <a href="https://wa.me/93789077537" target="_blank" class="btn-wa" style="flex:1;font-size:0.8rem;padding:0.6rem;justify-content:center">
+                  <svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="rgba(255,255,255,0.2)"/><path d="M14.5 12.9c-.19-.1-1.12-.56-1.3-.62s-.3-.1-.42.1-.5.62-.6.74-.22.14-.4.05a5.1 5.1 0 01-2.56-2.25c-.19-.31.19-.31.54-1 .06-.12.03-.21-.01-.3s-.43-1.07-.6-1.44c-.16-.37-.31-.31-.43-.31h-.37a.75.75 0 00-.54.25A2.25 2.25 0 007.5 9.7c0 1.31.97 2.58 1.1 2.77 1.19 1.81 2.56 2.25 4.5 2.25.56 0 1.06-.04 1.44-.25a1.93 1.93 0 00.87-1.34c.04-.34-.12-.55-.31-.63z" fill="white"/></svg>
+                  WhatsApp
+                </a>
+                <a href="https://t.me/Wajid_gaming_store" target="_blank" class="btn-tg" style="flex:1;font-size:0.8rem;padding:0.6rem;justify-content:center">
+                  <svg viewBox="0 0 20 20" width="16" height="16"><path d="M14.2 5.8l-2.9 8.75a.31.31 0 01-.5.12l-2.37-1.87-1.42 1.37a.19.19 0 01-.3-.07l-.57-2.18-2.18-.68a.31.31 0 010-.57l8.43-3.43a.31.31 0 01.19.57z" fill="white"/></svg>
+                  Telegram
+                </a>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="form-card">
-          <h3>Send Us a Message</h3>
-          <div class="contact-form">
-            <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Ahmad Karimi" /></div>
-            <div class="form-group"><label>WhatsApp / Contact</label><input type="text" placeholder="Your number or email" /></div>
-            <div class="form-group">
-              <label>Service Needed</label>
-              <select>
-                <option value="">Choose a service...</option>
-                <option>Social Media Boosting</option>
-                <option>Facebook / Google Ads</option>
-                <option>PUBG UC (Gaming Credits)</option>
-                <option>Free Fire Diamonds</option>
-                <option>Gift Cards</option>
-                <option>USDT / Binance Exchange</option>
-                <option>PayPal Services</option>
-                <option>HesabPay / AtomPay</option>
-                <option>Azizi Bank Transfer</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Payment Method</label>
-              <select>
-                <option value="">How will you pay?</option>
-                <option>PayPal</option><option>USDT</option><option>Binance</option>
-                <option>HesabPay</option><option>AtomPay</option>
-                <option>Azizi Bank</option><option>In-Store Cash</option>
-              </select>
-            </div>
-            <div class="form-group"><label>Message</label><textarea placeholder="Tell us what you need..."></textarea></div>
-            <button class="btn-primary" style="width:100%">Send Message</button>
-            <div style="display:flex;gap:0.6rem;margin-top:0.25rem">
-              <a href="https://wa.me/93789077537" target="_blank" class="btn-green" style="flex:1;font-size:0.82rem;padding:0.65rem">💬 WhatsApp</a>
-              <a href="https://t.me/Wajid_gaming_store" target="_blank" class="btn-tg" style="flex:1;font-size:0.82rem;padding:0.65rem">✈️ Telegram</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <div class="footer-left">
-      <img src="logo.png" alt="Logo" />
-      <div><div class="footer-name">Apex Digital House</div><div class="footer-sub">Kabul, Afghanistan</div></div>
+      </section>
     </div>
-    <div class="footer-copy">© 2025 Apex Digital House. All rights reserved.</div>
+  </div>
+  <footer>
+    <div class="footer-brand"><img src="logo.png" alt=""/><div><div class="footer-name">APEX DIGITAL HOUSE</div><div class="footer-loc">Kabul, Afghanistan</div></div></div>
+    <div class="footer-copy">© 2026 Apex Digital House. All rights reserved.</div>
     <div class="footer-socials">
-      <a class="f-social" href="https://wa.me/93789077537" target="_blank">💬</a>
-      <a class="f-social" href="https://t.me/Wajid_gaming_store" target="_blank">✈️</a>
-      <a class="f-social" href="https://t.me/apex_2030_bot" target="_blank">🤖</a>
+      <a class="f-soc" href="https://wa.me/93789077537" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 15.5c-.23-.12-1.35-.67-1.56-.75s-.36-.12-.51.12-.59.75-.73.9-.26.17-.49.06a6.15 6.15 0 01-3.07-2.7c-.23-.38.23-.38.65-1.2.07-.15.04-.26-.02-.37s-.52-1.28-.72-1.73c-.19-.45-.38-.38-.52-.38h-.45a.9.9 0 00-.65.3A2.7 2.7 0 009 11.63c0 1.57 1.16 3.1 1.32 3.34 1.43 2.17 3.07 2.7 5.4 2.7.68 0 1.28-.05 1.73-.3a2.32 2.32 0 001.04-1.61c.06-.41-.14-.66-.37-.76z" fill="white"/></svg></a>
+      <a class="f-soc" href="https://t.me/Wajid_gaming_store" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#2196F3"/><path d="M17 7l-3.5 10.5a.38.38 0 01-.6.15l-2.85-2.25L8.7 16.8a.23.23 0 01-.37-.08l-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="white"/></svg></a>
     </div>
   </footer>
 </div>
 
+<!-- ════════════════════════════════════════
+     MODAL: ACCOUNT CREATION
+════════════════════════════════════════ -->
+<div class="modal-overlay" id="account-modal" onclick="closeModals(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">CREATE YOUR ACCOUNT</div>
+        <div class="modal-sub">Select a platform — we'll set up a professional account for you</div>
+      </div>
+      <button class="modal-close" onclick="closeAccountModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="platform-grid" id="platform-grid">
+        <div class="platform-card" onclick="selectPlatform(this,'TikTok')">
+          <div class="platform-icon"><svg viewBox="0 0 44 44" width="44" height="44"><rect width="44" height="44" rx="10" fill="#010101"/><path d="M32 14a7 7 0 007 7v7a14 14 0 01-7-2V30a12 12 0 11-12-12v7a5 5 0 105 5V14h7z" fill="#fe2c55"/></svg></div>
+          <div class="platform-name">TikTok</div>
+          <div class="platform-type">Creator / Business</div>
+        </div>
+        <div class="platform-card" onclick="selectPlatform(this,'Telegram')">
+          <div class="platform-icon"><svg viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#2196F3"/><path d="M31 13l-6.4 19.2a.7.7 0 01-1.1.27l-5.2-4.1L15.9 30a.43.43 0 01-.68-.14l-1.24-4.78-4.78-1.5a.7.7 0 010-1.24l18.5-7.5a.7.7 0 01.42.96z" fill="white"/></svg></div>
+          <div class="platform-name">Telegram</div>
+          <div class="platform-type">Channel / Group</div>
+        </div>
+        <div class="platform-card" onclick="selectPlatform(this,'WhatsApp Business')">
+          <div class="platform-icon"><svg viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#25D366"/><path d="M32 27c-.42-.22-2.47-1.22-2.85-1.36s-.66-.22-.94.22-1.08 1.36-1.33 1.64-.48.31-.89.1a11.25 11.25 0 01-5.6-4.9c-.43-.7.43-.7 1.59-2.18.13-.27.07-.48-.04-.68s-.95-2.3-1.3-3.15c-.35-.82-.7-.7-.95-.7h-.81a1.64 1.64 0 00-1.19.56A5 5 0 0017 19.8c0 2.9 2.1 5.7 2.4 6.1 2.6 3.98 5.6 4.94 9.85 4.94 1.22 0 2.34-.12 3.16-.55a4.24 4.24 0 001.9-2.94c.1-.76-.24-1.2-.68-1.38z" fill="white"/></svg></div>
+          <div class="platform-name">WhatsApp</div>
+          <div class="platform-type">Business</div>
+        </div>
+        <div class="platform-card" onclick="selectPlatform(this,'Facebook')">
+          <div class="platform-icon"><svg viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#1877F2"/><path d="M30 22h-5.5v16H18V22h-4v-7h4v-4c0-5.4 3.3-8 7.8-8 2.3 0 4.2.44 4.2.44v5.4h-2.8c-2.7 0-3.5 1.7-3.5 3.5V15H30z" fill="white"/></svg></div>
+          <div class="platform-name">Facebook</div>
+          <div class="platform-type">Page / Profile</div>
+        </div>
+        <div class="platform-card" onclick="selectPlatform(this,'Instagram')">
+          <div class="platform-icon"><svg viewBox="0 0 44 44" width="44" height="44"><defs><radialGradient id="ig3" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#ffd676"/><stop offset="25%" stop-color="#f86434"/><stop offset="55%" stop-color="#cc2e8a"/><stop offset="100%" stop-color="#4b57c3"/></radialGradient></defs><rect width="44" height="44" rx="12" fill="url(#ig3)"/><rect x="13" y="13" width="18" height="18" rx="5" fill="none" stroke="white" stroke-width="2.5"/><circle cx="22" cy="22" r="5.5" fill="none" stroke="white" stroke-width="2.5"/><circle cx="31.5" cy="12.5" r="1.8" fill="white"/></svg></div>
+          <div class="platform-name">Instagram</div>
+          <div class="platform-type">Business / Creator</div>
+        </div>
+        <div class="platform-card" onclick="selectPlatform(this,'YouTube')">
+          <div class="platform-icon"><svg viewBox="0 0 44 44" width="44" height="44"><rect width="44" height="44" rx="12" fill="#FF0000"/><path d="M35 17s-.4-2.5-1.6-3.4c-1.4-1.5-3-.1-3-.1C27 13 22 13 22 13s-5 0-8.4.5c-.7.1-2.3.1-3.6 1.6C8.8 16.4 8.5 19 8.5 19S8 21.5 8 24v2.5c0 2.5.5 5 .5 5s.4 2.5 1.6 3.4c1.5 1.5 3.3 1.4 4.1 1.5C16.7 36.6 22 36.6 22 36.6s5 0 8.4-.5c.7-.1 2.3-.1 3.6-1.6 1.2-1.1 1.5-3.4 1.5-3.4s.5-2.5.5-5V24c0-2.5-.5-5-.5-5z" fill="white" opacity="0.15"/><path d="M18.5 28.5v-13l10 6.5z" fill="white"/></svg></div>
+          <div class="platform-name">YouTube</div>
+          <div class="platform-type">Channel</div>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a id="modal-wa-btn" href="https://wa.me/93789077537?text=I want to create a professional account" target="_blank" class="btn-primary">💬 Order via WhatsApp</a>
+        <button class="btn-outline" onclick="closeAccountModal()">Cancel</button>
+      </div>
+      <div class="modal-note">We'll create and set up a professional account for you. Contact us to get started.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     MODAL: AUTH (Login / Sign Up)
+════════════════════════════════════════ -->
+<div class="modal-overlay" id="auth-modal" onclick="closeModals(event)">
+  <div class="auth-modal">
+    <div class="auth-header">
+      <div>
+        <div class="auth-title" id="auth-modal-title">WELCOME BACK</div>
+      </div>
+      <button class="modal-close" onclick="closeAuthModal()">✕</button>
+    </div>
+    <div class="auth-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="auth-tab-login" onclick="switchAuth('login')">Log In</button>
+        <button class="auth-tab" id="auth-tab-signup" onclick="switchAuth('signup')">Sign Up</button>
+      </div>
+      <div id="auth-login-form">
+        <div class="form-g"><label>Phone / Email</label><input type="text" placeholder="Your phone or email"/></div>
+        <div class="form-g"><label>Password</label><input type="password" placeholder="••••••••"/></div>
+        <button class="auth-btn">Log In →</button>
+        <div class="auth-divider">or continue with</div>
+        <div class="auth-social">
+          <button class="auth-social-btn"><svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="#25D366"/><path d="M14.5 12.9c-.19-.1-1.12-.56-1.3-.62s-.3-.1-.42.1-.5.62-.6.74-.22.14-.4.05a5.1 5.1 0 01-2.56-2.25c-.19-.31.19-.31.54-1 .06-.12.03-.21-.01-.3s-.43-1.07-.6-1.44c-.16-.37-.31-.31-.43-.31h-.37a.75.75 0 00-.54.25A2.25 2.25 0 007.5 9.7c0 1.31.97 2.58 1.1 2.77 1.19 1.81 2.56 2.25 4.5 2.25.56 0 1.06-.04 1.44-.25a1.93 1.93 0 00.87-1.34c.04-.34-.12-.55-.31-.63z" fill="white"/></svg> WhatsApp</button>
+          <button class="auth-social-btn"><svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="#2196F3"/><path d="M14.2 5.8l-2.9 8.75a.31.31 0 01-.5.12l-2.37-1.87-1.42 1.37a.19.19 0 01-.3-.07l-.57-2.18-2.18-.68a.31.31 0 010-.57l8.43-3.43a.31.31 0 01.19.57z" fill="white"/></svg> Telegram</button>
+        </div>
+      </div>
+      <div id="auth-signup-form" style="display:none">
+        <div class="form-g"><label>Full Name</label><input type="text" placeholder="Your name"/></div>
+        <div class="form-g"><label>Phone / WhatsApp</label><input type="text" placeholder="+93 ..."/></div>
+        <div class="form-g"><label>Password</label><input type="password" placeholder="Create a password"/></div>
+        <button class="auth-btn">Create Account →</button>
+        <div class="auth-divider">or sign up with</div>
+        <div class="auth-social">
+          <button class="auth-social-btn"><svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="#25D366"/><path d="M14.5 12.9c-.19-.1-1.12-.56-1.3-.62s-.3-.1-.42.1-.5.62-.6.74-.22.14-.4.05a5.1 5.1 0 01-2.56-2.25c-.19-.31.19-.31.54-1 .06-.12.03-.21-.01-.3s-.43-1.07-.6-1.44c-.16-.37-.31-.31-.43-.31h-.37a.75.75 0 00-.54.25A2.25 2.25 0 007.5 9.7c0 1.31.97 2.58 1.1 2.77 1.19 1.81 2.56 2.25 4.5 2.25.56 0 1.06-.04 1.44-.25a1.93 1.93 0 00.87-1.34c.04-.34-.12-.55-.31-.63z" fill="white"/></svg> WhatsApp</button>
+          <button class="auth-social-btn"><svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="#2196F3"/><path d="M14.2 5.8l-2.9 8.75a.31.31 0 01-.5.12l-2.37-1.87-1.42 1.37a.19.19 0 01-.3-.07l-.57-2.18-2.18-.68a.31.31 0 010-.57l8.43-3.43a.31.31 0 01.19.57z" fill="white"/></svg> Telegram</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+// Page nav
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
@@ -464,6 +925,53 @@ function showPage(id){
   document.getElementById('tab-'+id).classList.add('active');
   window.scrollTo(0,0);
 }
+
+// Account modal
+let selectedPlatform = null;
+function openAccountModal(){
+  document.getElementById('account-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeAccountModal(){
+  document.getElementById('account-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function selectPlatform(el, name){
+  document.querySelectorAll('.platform-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPlatform = name;
+  const msg = encodeURIComponent('I want to create a professional ' + name + ' account');
+  document.getElementById('modal-wa-btn').href = 'https://wa.me/93789077537?text=' + msg;
+}
+
+// Auth modal
+function openAuth(tab){
+  document.getElementById('auth-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  switchAuth(tab);
+}
+function closeAuthModal(){
+  document.getElementById('auth-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function switchAuth(tab){
+  const isLogin = tab==='login';
+  document.getElementById('auth-login-form').style.display = isLogin ? 'block' : 'none';
+  document.getElementById('auth-signup-form').style.display = isLogin ? 'none' : 'block';
+  document.getElementById('auth-tab-login').classList.toggle('active', isLogin);
+  document.getElementById('auth-tab-signup').classList.toggle('active', !isLogin);
+  document.getElementById('auth-modal-title').textContent = isLogin ? 'WELCOME BACK' : 'CREATE ACCOUNT';
+}
+
+// Close modals on overlay click
+function closeModals(e){
+  if(e.target.classList.contains('modal-overlay')){
+    closeAccountModal();
+    closeAuthModal();
+  }
+}
+// ESC key
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAccountModal();closeAuthModal()}});
 </script>
 </body>
 </html>
