@@ -1083,6 +1083,7 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
                 <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M17.5 2.5l-15 7 6 2 2 6 7-15z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
                 Send Message via Email
               </button>
+              <div id="cf-msg" style="display:none;border-radius:8px;padding:0.65rem 0.85rem;font-size:0.78rem;margin-bottom:0.5rem;font-weight:500"></div>
               <div style="display:flex;gap:0.6rem">
                 <a href="tel:+93789077537" class="btn-wa" style="flex:1;font-size:0.8rem;padding:0.6rem;justify-content:center;background:#444;color:#fff">
                   <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M4 3h3l1.5 4-2 1.5a9.5 9.5 0 004 4L12 10l4 1.5V15a1 1 0 01-1 1A13 13 0 013 4a1 1 0 011-1z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
@@ -1215,6 +1216,7 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
         <div style="display:flex;justify-content:flex-end;margin-bottom:0.85rem">
           <a href="mailto:apexdigitalhouse2026@gmail.com?subject=Password Reset Request" style="font-size:0.72rem;color:var(--gold);text-decoration:none">Forgot password?</a>
         </div>
+        <div class="auth-msg" id="login-msg"></div>
         <button class="auth-btn" onclick="handleLogin()">
           <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M13 10H3m0 0l3-3m-3 3l3 3M10 3h5a2 2 0 012 2v10a2 2 0 01-2 2h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Log In →
@@ -1297,6 +1299,7 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
             <button class="pw-toggle" onclick="togglePw('signup-pw2',this)" type="button">👁</button>
           </div>
         </div>
+        <div class="auth-msg" id="signup-msg"></div>
         <button class="auth-btn" onclick="handleSignup()">
           <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 4v4l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           Create Account →
@@ -1307,7 +1310,7 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
   </div>
 </div>
 
-<script>
+<script type="module">
 // Page nav
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -1316,6 +1319,7 @@ function showPage(id){
   document.getElementById('tab-'+id).classList.add('active');
   window.scrollTo(0,0);
 }
+window.showPage = showPage;
 
 // Account modal
 let selectedPlatform = null;
@@ -1334,6 +1338,9 @@ function selectPlatform(el, name){
   const msg = encodeURIComponent('I want to create a professional ' + name + ' account');
   document.getElementById('modal-wa-btn').href = 'https://wa.me/93789077537?text=' + msg;
 }
+window.openAccountModal = openAccountModal;
+window.closeAccountModal = closeAccountModal;
+window.selectPlatform = selectPlatform;
 
 // Auth modal
 function openAuth(tab){
@@ -1354,6 +1361,9 @@ function switchAuth(tab){
   document.getElementById('auth-modal-title').textContent = isLogin ? 'WELCOME BACK' : 'CREATE ACCOUNT';
   document.getElementById('auth-modal-subtitle').textContent = isLogin ? 'Sign in to your Apex Digital House account' : 'Join Apex Digital House';
 }
+window.openAuth = openAuth;
+window.closeAuthModal = closeAuthModal;
+window.switchAuth = switchAuth;
 
 // Role selection
 function selectLoginRole(el, role){
@@ -1365,6 +1375,8 @@ function selectSignupRole(el, role){
   el.classList.add('selected');
   document.getElementById('emp-fields').style.display = (role==='employee') ? 'block' : 'none';
 }
+window.selectLoginRole = selectLoginRole;
+window.selectSignupRole = selectSignupRole;
 
 // Password visibility toggle
 function togglePw(id, btn){
@@ -1372,6 +1384,7 @@ function togglePw(id, btn){
   if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}
   else{inp.type='password';btn.textContent='👁';}
 }
+window.togglePw = togglePw;
 
 // Password strength checker
 function checkPwStrength(pw){
@@ -1392,57 +1405,226 @@ function checkPwStrength(pw){
   bars.forEach((b,i)=>{b.className='pw-bar';if(i<score)b.classList.add(levels[score]);});
   lbl.textContent=labels[score];lbl.style.color=score<=1?'#ff4d4d':score===2?'#ffaa00':score===3?'#4ade80':'#22c55e';
 }
+window.checkPwStrength = checkPwStrength;
 
-// Login handler
-function handleLogin(){
-  const email = document.getElementById('login-email').value.trim();
-  const pw = document.getElementById('login-pw').value;
-  const role = document.querySelector('#login-role-selector .role-card.selected')?.dataset?.role||'customer';
-  if(!email||!pw){alert('Please enter your email and password.');return;}
-  if(!email.includes('@')){alert('Please enter a valid email address.');return;}
-  // Staff/owner check
-  if(role==='staff'){
-    alert('Staff portal access requires approval. Contact management at apexdigitalhouse2026@gmail.com');
-    return;
-  }
-  alert('Login functionality requires a backend. Contact us at apexdigitalhouse2026@gmail.com to set up your account.');
+// ══════════════════════════════════════════
+//  FIREBASE — Real Authentication
+// ══════════════════════════════════════════
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDe4RVAGQdGqWomTy6xfNaS3cPC2sgR0eU",
+  authDomain: "apex-digital-house.firebaseapp.com",
+  projectId: "apex-digital-house",
+  storageBucket: "apex-digital-house.firebasestorage.app",
+  messagingSenderId: "928966734885",
+  appId: "1:928966734885:web:5f61bdfd6695aa05f8bbcc",
+  measurementId: "G-4VEQ4YCVK7"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ── Inline message helper ──
+function showMsg(id, text, type){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.className = 'auth-msg ' + type + ' show';
+  el.innerHTML = text;
+  el.style.display = 'block';
+}
+function clearMsg(id){
+  const el = document.getElementById(id);
+  if(el){el.className='auth-msg';el.style.display='none';el.innerHTML='';}
 }
 
-// Signup handler
-function handleSignup(){
-  const email = document.getElementById('signup-email').value.trim();
-  const pw = document.getElementById('signup-pw').value;
-  const pw2 = document.getElementById('signup-pw2').value;
-  const role = document.querySelector('#signup-role-selector .role-card.selected')?.dataset?.role||'customer';
-  if(!email.includes('@')){alert('Please enter a valid email address.');return;}
-  if(pw.length<8){alert('Password must be at least 8 characters.');return;}
-  if(pw!==pw2){alert('Passwords do not match. Please try again.');return;}
-  if(role==='employee'){
-    alert('Employee account requests are sent to management for approval. We will contact you at the provided email within 24 hours.');
+// ── Button loading state ──
+function setBtnLoading(btn, loading, defaultText){
+  btn.disabled = loading;
+  btn.innerHTML = loading
+    ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(0,0,0,0.3)" stroke-width="3"/><path d="M12 2a10 10 0 0110 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite"/></path></svg> Please wait...'
+    : defaultText;
+}
+
+// ── Update nav after login ──
+function updateNavUser(user, userData){
+  const btnLogin = document.querySelector('.btn-login');
+  const btnSignup = document.querySelector('.btn-signup');
+  if(user && userData){
+    btnLogin.textContent = userData.name ? userData.name.split(' ')[0] : 'Account';
+    btnLogin.onclick = () => showUserMenu(user, userData);
+    btnSignup.textContent = 'Log Out';
+    btnSignup.style.background = 'transparent';
+    btnSignup.style.border = '1px solid rgba(255,80,80,0.4)';
+    btnSignup.style.color = '#ff7070';
+    btnSignup.onclick = () => handleLogout();
   } else {
-    alert('Account registration requires backend setup. Please contact us at apexdigitalhouse2026@gmail.com to get started.');
+    btnLogin.textContent = 'Log In';
+    btnLogin.onclick = () => openAuth('login');
+    btnSignup.textContent = 'Sign Up';
+    btnSignup.style.background = '';
+    btnSignup.style.border = '';
+    btnSignup.style.color = '';
+    btnSignup.onclick = () => openAuth('signup');
   }
 }
 
-// Contact form — sends email via mailto
+function showUserMenu(user, userData){
+  openAuth('login');
+  showMsg('login-msg',
+    `<strong>Signed in as ${userData.name || user.email}</strong><br>
+     Role: ${userData.role || 'Customer'} &nbsp;|&nbsp;
+     <a href="#" onclick="handleLogout();return false;" style="color:#ff7070">Log Out</a>`,
+    'info');
+}
+
+// ── Watch auth state ──
+onAuthStateChanged(auth, async (user) => {
+  if(user){
+    try{
+      const snap = await getDoc(doc(db,'users', user.uid));
+      const data = snap.exists() ? snap.data() : {};
+      updateNavUser(user, data);
+    } catch(e){ updateNavUser(user, {}); }
+  } else {
+    updateNavUser(null, null);
+  }
+});
+
+// ── LOGIN ──
+async function handleLogin(){
+  clearMsg('login-msg');
+  const email = document.getElementById('login-email').value.trim();
+  const pw    = document.getElementById('login-pw').value;
+  const role  = document.querySelector('#login-role-selector .role-card.selected')?.dataset?.role||'customer';
+  const btn   = document.querySelector('#auth-login-form .auth-btn');
+
+  if(!email || !pw){
+    showMsg('login-msg','Please enter your email and password.','error'); return;
+  }
+  if(!email.includes('@')){
+    showMsg('login-msg','Please enter a valid email address.','error'); return;
+  }
+
+  setBtnLoading(btn, true, 'Log In →');
+  try {
+    const cred = await signInWithEmailAndPassword(auth, email, pw);
+    const snap = await getDoc(doc(db,'users', cred.user.uid));
+    const data = snap.exists() ? snap.data() : {};
+
+    // Check role matches
+    if(role === 'staff' && data.role === 'customer'){
+      await signOut(auth);
+      showMsg('login-msg','This account is not a staff account. Please select "Customer" or contact management.','error');
+      setBtnLoading(btn, false, 'Log In →'); return;
+    }
+    if(role === 'staff' && data.status === 'pending'){
+      await signOut(auth);
+      showMsg('login-msg','Your staff account is pending approval. We will notify you at <strong>'+email+'</strong>.','info');
+      setBtnLoading(btn, false, 'Log In →'); return;
+    }
+
+    showMsg('login-msg','✅ Welcome back, <strong>'+(data.name||email)+'</strong>! You are now signed in.','success');
+    setTimeout(()=>closeAuthModal(), 1800);
+  } catch(err){
+    const msgs = {
+      'auth/user-not-found':'No account found with this email. Please sign up first.',
+      'auth/wrong-password':'Incorrect password. Please try again.',
+      'auth/invalid-credential':'Incorrect email or password. Please try again.',
+      'auth/too-many-requests':'Too many attempts. Please wait a few minutes and try again.',
+      'auth/invalid-email':'Please enter a valid email address.',
+      'auth/network-request-failed':'Network error. Please check your internet connection.'
+    };
+    showMsg('login-msg', msgs[err.code] || 'Login failed: '+err.message, 'error');
+  }
+  setBtnLoading(btn, false, 'Log In →');
+}
+
+// ── SIGNUP ──
+async function handleSignup(){
+  clearMsg('signup-msg');
+  const name   = document.querySelector('#auth-signup-form input[autocomplete="name"]').value.trim();
+  const email  = document.getElementById('signup-email').value.trim();
+  const phone  = document.querySelector('#auth-signup-form input[type="tel"]').value.trim();
+  const pw     = document.getElementById('signup-pw').value;
+  const pw2    = document.getElementById('signup-pw2').value;
+  const role   = document.querySelector('#signup-role-selector .role-card.selected')?.dataset?.role||'customer';
+  const btn    = document.querySelector('#auth-signup-form .auth-btn');
+  const empId  = role==='employee' ? document.querySelector('#emp-fields input[type="text"]')?.value.trim() : '';
+  const dept   = role==='employee' ? document.querySelector('#emp-fields select')?.value : '';
+
+  if(!name){ showMsg('signup-msg','Please enter your full name.','error'); return; }
+  if(!email.includes('@')){ showMsg('signup-msg','Please enter a valid email address.','error'); return; }
+  if(!phone){ showMsg('signup-msg','Please enter your phone number.','error'); return; }
+  if(pw.length < 8){ showMsg('signup-msg','Password must be at least 8 characters.','error'); return; }
+  if(pw !== pw2){ showMsg('signup-msg','Passwords do not match. Please try again.','error'); return; }
+  if(role==='employee' && !empId){ showMsg('signup-msg','Please enter your Employee ID provided by management.','error'); return; }
+
+  setBtnLoading(btn, true, 'Create Account →');
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pw);
+    const userData = {
+      name, email, phone, role,
+      status: role==='employee' ? 'pending' : 'active',
+      createdAt: serverTimestamp(),
+      ...(role==='employee' && { employeeId: empId, department: dept })
+    };
+    await setDoc(doc(db,'users', cred.user.uid), userData);
+
+    if(role === 'employee'){
+      await signOut(auth);
+      showMsg('signup-msg',
+        '✅ <strong>Request submitted!</strong><br>Your employee account is pending owner approval. We will contact you at <strong>'+email+'</strong> within 24 hours.',
+        'success');
+    } else {
+      showMsg('signup-msg',
+        '✅ <strong>Account created!</strong><br>Welcome to Apex Digital House, <strong>'+name+'</strong>! You are now signed in.',
+        'success');
+      setTimeout(()=>closeAuthModal(), 2000);
+    }
+  } catch(err){
+    const msgs = {
+      'auth/email-already-in-use':'An account with this email already exists. Please log in instead.',
+      'auth/weak-password':'Password is too weak. Please use at least 8 characters with numbers and symbols.',
+      'auth/invalid-email':'Please enter a valid email address.',
+      'auth/network-request-failed':'Network error. Please check your internet connection.'
+    };
+    showMsg('signup-msg', msgs[err.code] || 'Signup failed: '+err.message, 'error');
+  }
+  setBtnLoading(btn, false, 'Create Account →');
+}
+
+// ── LOGOUT ──
+async function handleLogout(){
+  await signOut(auth);
+  closeAuthModal();
+}
+
+// ── Contact form ──
 function sendContactForm(){
-  const name = document.getElementById('cf-name').value.trim();
+  const name    = document.getElementById('cf-name').value.trim();
   const contact = document.getElementById('cf-contact').value.trim();
   const service = document.getElementById('cf-service').value;
   const payment = document.getElementById('cf-payment').value;
   const message = document.getElementById('cf-message').value.trim();
-  if(!name||!contact||!message){alert('Please fill in your name, contact info, and message.');return;}
-  const subject = encodeURIComponent('New Inquiry' + (service?' — '+service:'') + ' | Apex Digital House');
-  const body = encodeURIComponent(
-    'Name: '+name+'\n'+
-    'Contact: '+contact+'\n'+
-    (service?'Service: '+service+'\n':'')+
-    (payment?'Payment Method: '+payment+'\n':'')+
-    '\nMessage:\n'+message+'\n\n'+
-    '— Sent from apexdigitalhouse.com'
-  );
+  if(!name||!contact||!message){
+    const msg = document.getElementById('cf-msg');
+    if(msg){msg.className='cf-msg error';msg.textContent='Please fill in your name, contact info, and message.';}
+    return;
+  }
+  const subject = encodeURIComponent('New Inquiry'+(service?' — '+service:'')+' | Apex Digital House');
+  const body = encodeURIComponent('Name: '+name+'\nContact: '+contact+'\n'+(service?'Service: '+service+'\n':'')+(payment?'Payment: '+payment+'\n':'')+'\nMessage:\n'+message+'\n\n— Sent from apexdigitalhouse.com');
   window.location.href = 'mailto:apexdigitalhouse2026@gmail.com?subject='+subject+'&body='+body;
 }
+
+// expose to HTML onclick attributes
+window.handleLogin   = handleLogin;
+window.handleSignup  = handleSignup;
+window.handleLogout  = handleLogout;
+window.sendContactForm = sendContactForm;
 
 // Close modals on overlay click
 function closeModals(e){
@@ -1451,6 +1633,7 @@ function closeModals(e){
     closeAuthModal();
   }
 }
+window.closeModals = closeModals;
 // ESC key
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAccountModal();closeAuthModal()}});
 </script>
