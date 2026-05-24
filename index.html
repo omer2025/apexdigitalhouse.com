@@ -1687,7 +1687,7 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
         <div class="auth-section-label">Personal Information</div>
         <div class="form-g">
           <label>Full Name <span class="req">*</span></label>
-          <input type="text" placeholder="e.g. Ahmad Karimi" autocomplete="name"/>
+          <input type="text" id="signup-name" placeholder="e.g. Ahmad Karimi" autocomplete="name"/>
         </div>
         <div class="form-g">
           <label>Email Address <span class="req">*</span></label>
@@ -1695,16 +1695,16 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
         </div>
         <div class="form-g">
           <label>Phone Number <span class="req">*</span></label>
-          <input type="tel" placeholder="+93 789 000 000" autocomplete="tel"/>
+          <input type="tel" id="signup-phone" placeholder="+93 789 000 000" autocomplete="tel"/>
         </div>
         <div id="emp-fields" style="display:none">
           <div class="form-g">
             <label>Employee ID / Staff Code <span class="req">*</span></label>
-            <input type="text" placeholder="Provided by management"/>
+            <input type="text" id="emp-id-input" placeholder="Provided by management"/>
           </div>
           <div class="form-g">
             <label>Department</label>
-            <select>
+            <select id="emp-dept-select">
               <option value="">Select department...</option>
               <option>Sales & Customer Service</option>
               <option>Crypto & Payments</option>
@@ -2030,15 +2030,15 @@ window._fbLogin = async function(){
 // ── SIGNUP ──
 window._fbSignup = async function(){
   clearMsg('signup-msg');
-  const name=document.querySelector('#auth-signup-form input[autocomplete="name"]').value.trim();
-  const email=document.getElementById('signup-email').value.trim();
-  const phone=document.querySelector('#auth-signup-form input[type="tel"]').value.trim();
-  const pw=document.getElementById('signup-pw').value;
-  const pw2=document.getElementById('signup-pw2').value;
-  const role=document.querySelector('#signup-role-selector .role-card.selected')?.dataset?.role||'customer';
-  const btn=document.querySelector('#auth-signup-form .auth-btn');
-  const empId=role==='employee'?document.querySelector('#emp-fields input[type="text"]')?.value.trim():'';
-  const dept=role==='employee'?document.querySelector('#emp-fields select')?.value:'';
+  const name  = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+  const phone = document.getElementById('signup-phone').value.trim();
+  const pw    = document.getElementById('signup-pw').value;
+  const pw2   = document.getElementById('signup-pw2').value;
+  const role  = document.querySelector('#signup-role-selector .role-card.selected')?.dataset?.role||'customer';
+  const btn   = document.querySelector('#auth-signup-form .auth-btn');
+  const empId = role==='employee'?(document.getElementById('emp-id-input')?.value.trim()||''):'';
+  const dept  = role==='employee'?(document.getElementById('emp-dept-select')?.value||''):'';
   if(!name){showMsg('signup-msg','Please enter your full name.','error');return;}
   if(!email.includes('@')){showMsg('signup-msg','Please enter a valid email address.','error');return;}
   if(!phone){showMsg('signup-msg','Please enter your phone number.','error');return;}
