@@ -395,6 +395,107 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
 .uc-standout-tile .svc-tile-name{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:0.04em;color:#FFD000!important}
 
 
+/* ── SERVICES TABS ── */
+.svc-tabs-bar{display:flex;gap:4px;padding:1.25rem 2rem 0;max-width:1100px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.svc-tabs-bar::-webkit-scrollbar{display:none}
+.svc-tab-btn{padding:0.5rem 1.1rem;border-radius:8px 8px 0 0;font-size:0.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border-dim);border-bottom:none;background:var(--black-mid);color:var(--gray);transition:all 0.2s;white-space:nowrap;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.svc-tab-btn:hover{color:var(--white);background:var(--black-light)}
+.svc-tab-btn.active{background:var(--black-card);color:var(--gold);border-color:var(--border-gold)}
+.svc-tab-panel{display:none;padding:1.5rem 2rem 3rem;max-width:1100px;margin:0 auto}
+.svc-tab-panel.active{display:block}
+
+/* ── TIKTOK HERO PANEL ── */
+.tt-hero-panel{background:linear-gradient(135deg,#0d0005,#1a000a,#0d0005);border:1px solid rgba(254,44,85,0.25);border-radius:20px;overflow:hidden;position:relative;padding:2.5rem;margin-bottom:1.5rem}
+.tt-hero-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(254,44,85,0.08) 0%,transparent 60%),linear-gradient(225deg,rgba(0,242,234,0.05) 0%,transparent 50%);pointer-events:none}
+.tt-hero-top{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;position:relative;z-index:1}
+.tt-logo-official{display:flex;align-items:center;gap:16px;margin-bottom:1.25rem}
+.tt-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.75rem;margin-top:1.5rem;position:relative;z-index:1}
+.tt-step{background:rgba(255,255,255,0.04);border:1px solid rgba(254,44,85,0.15);border-radius:12px;padding:1rem;text-align:center}
+.tt-step-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fe2c55;line-height:1;opacity:0.7}
+.tt-step-text{font-size:0.75rem;color:var(--gray-light);margin-top:4px;line-height:1.4}
+.tt-cta-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem;position:relative;z-index:1}
+
+/* ── UC HERO PANEL ── */
+.uc-hero-panel{background:linear-gradient(135deg,#050510,#0d0d28,#050510);border:1px solid rgba(255,208,0,0.25);border-radius:20px;overflow:hidden;position:relative;padding:2.5rem;margin-bottom:1.5rem}
+.uc-hero-panel::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(255,208,0,0.08) 0%,transparent 65%);pointer-events:none}
+.uc-logo-real{display:flex;align-items:center;gap:16px;margin-bottom:1rem}
+.uc-voucher-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.6rem;margin-top:1.25rem;position:relative;z-index:1}
+.uc-voucher-card{background:linear-gradient(135deg,rgba(255,208,0,0.08),rgba(255,208,0,0.04));border:1px solid rgba(255,208,0,0.2);border-radius:10px;padding:0.85rem;text-align:center;cursor:pointer;transition:all 0.2s;text-decoration:none;display:block}
+.uc-voucher-card:hover{border-color:rgba(255,208,0,0.5);transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,208,0,0.15)}
+.uc-voucher-amount{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;color:#FFD000;line-height:1;text-shadow:0 0 12px rgba(255,208,0,0.4)}
+.uc-voucher-label{font-size:0.6rem;color:rgba(255,208,0,0.6);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-top:2px}
+.uc-voucher-price{font-size:0.7rem;color:var(--gray);margin-top:4px}
+
+/* ── GIFT CARDS TABS ── */
+.gc-brand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+.gc-brand-card{background:var(--black-card);border:1px solid var(--border-dim);border-radius:14px;overflow:hidden;cursor:pointer;transition:all 0.25s;text-decoration:none;display:block}
+.gc-brand-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,0.5);border-color:rgba(255,208,0,0.25)}
+.gc-brand-visual{height:110px;display:flex;align-items:center;justify-content:center;position:relative}
+.gc-brand-info{padding:0.75rem;border-top:1px solid var(--border-dim)}
+.gc-brand-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;color:var(--white)}
+.gc-brand-sub{font-size:0.65rem;color:var(--gray);margin-top:2px}
+.gc-order-btn{display:inline-flex;align-items:center;gap:4px;font-size:0.65rem;font-weight:700;color:var(--gold);margin-top:5px}
+
+/* ── ACCOUNT CREATION TABS ── */
+.acc-platform-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.acc-platform-tab{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.75rem;font-weight:600;cursor:pointer;border:1px solid var(--border-dim);background:transparent;color:var(--gray);transition:all 0.2s}
+.acc-platform-tab:hover{color:var(--white)}
+.acc-platform-tab.active{background:rgba(255,208,0,0.1);border-color:var(--border-gold);color:var(--gold)}
+.acc-detail-panel{display:none}
+.acc-detail-panel.active{display:block}
+.acc-detail-card{background:var(--black-card);border:1px solid var(--border-dim);border-radius:16px;padding:1.75rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.acc-features{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin:1rem 0}
+.acc-features li{display:flex;align-items:flex-start;gap:8px;font-size:0.83rem;color:var(--gray-light)}
+.acc-features li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px}
+.acc-visual{display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(255,255,255,0.02);border-radius:12px;border:1px solid var(--border-dim)}
+@media(max-width:700px){
+  .tt-hero-top,.acc-detail-card{grid-template-columns:1fr}
+  .svc-tabs-bar{padding:1rem 1rem 0}
+  .svc-tab-panel{padding:1rem 1rem 2rem}
+}
+/* ── PROFILE PAGE ── */
+.profile-page{background:var(--black);min-height:100vh}
+.profile-header{background:linear-gradient(135deg,var(--black-mid),var(--black-card));border-bottom:1px solid var(--border-gold);padding:2.5rem 2rem}
+.profile-header-inner{max-width:700px;margin:0 auto;display:flex;align-items:center;gap:1.5rem}
+.profile-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold-deep),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--black);flex-shrink:0;position:relative;box-shadow:0 0 0 3px rgba(255,208,0,0.2),0 0 30px rgba(255,208,0,0.15)}
+.profile-verified-badge{position:absolute;bottom:-2px;right:-2px;width:22px;height:22px;background:#22c55e;border-radius:50%;border:2px solid var(--black-card);display:flex;align-items:center;justify-content:center;font-size:0.65rem}
+.profile-display-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;color:var(--white);line-height:1}
+.profile-display-email{font-size:0.8rem;color:var(--gray);margin-top:3px}
+.profile-role-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(255,208,0,0.1);border:1px solid var(--border-gold);border-radius:100px;padding:2px 10px;font-size:0.62rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-top:6px}
+.profile-body{max-width:700px;margin:0 auto;padding:2rem}
+.profile-section{background:var(--black-card);border:1px solid var(--border-dim);border-radius:14px;overflow:hidden;margin-bottom:1rem}
+.profile-section-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border-dim);display:flex;align-items:center;gap:8px}
+.profile-section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;color:var(--white)}
+.profile-field{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-dim);gap:1rem}
+.profile-field:last-child{border-bottom:none}
+.profile-field-label{font-size:0.7rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:3px}
+.profile-field-value{font-size:0.88rem;color:var(--white)}
+.profile-field-edit{background:rgba(255,208,0,0.08);border:1px solid var(--border-gold);color:var(--gold);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0}
+.profile-field-edit:hover{background:rgba(255,208,0,0.15)}
+.profile-edit-form{padding:1rem 1.25rem;background:rgba(255,208,0,0.03);border-top:1px solid var(--border-dim);display:none}
+.profile-edit-form.open{display:block}
+.profile-edit-form input{width:100%;background:var(--black-light);border:1px solid var(--border-dim);border-radius:7px;padding:0.6rem 0.85rem;color:var(--white);font-family:inherit;font-size:0.86rem;outline:none;transition:border-color 0.2s;margin-bottom:0.6rem}
+.profile-edit-form input:focus{border-color:rgba(255,208,0,0.5)}
+.profile-edit-actions{display:flex;gap:0.5rem}
+.profile-save-btn{background:var(--gold);color:var(--black);border:none;border-radius:6px;padding:0.5rem 1.25rem;font-weight:700;font-size:0.8rem;cursor:pointer;transition:all 0.2s}
+.profile-save-btn:hover{background:var(--gold-deep)}
+.profile-cancel-btn{background:transparent;color:var(--gray);border:1px solid var(--border-dim);border-radius:6px;padding:0.5rem 1rem;font-size:0.8rem;cursor:pointer}
+.profile-msg{font-size:0.75rem;padding:0.5rem 0.75rem;border-radius:6px;margin-top:0.5rem;display:none}
+.profile-msg.ok{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;display:block}
+.profile-msg.err{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.3);color:#ff7070;display:block}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border-dim)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-label{font-size:0.85rem;color:var(--white);font-weight:500}
+.toggle-sub{font-size:0.7rem;color:var(--gray);margin-top:2px}
+.toggle-switch{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--black-light);border:1px solid var(--border-dim);border-radius:100px;cursor:pointer;transition:all 0.3s}
+.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:2px;top:2px;background:var(--gray);border-radius:50%;transition:all 0.3s}
+.toggle-switch input:checked+.toggle-slider{background:rgba(255,208,0,0.15);border-color:var(--gold)}
+.toggle-switch input:checked+.toggle-slider::before{transform:translateX(20px);background:var(--gold)}
+.profile-logout-btn{width:100%;padding:0.85rem;border-radius:10px;background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.25);color:#ff7070;font-weight:700;font-size:0.88rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:0.5rem}
+.profile-logout-btn:hover{background:rgba(255,80,80,0.15)}
+
 @media(max-width:700px){
   nav{padding:0 1rem}
   .nav-center{display:none}
@@ -407,6 +508,8 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
   .addr-sep{display:none}
   .gaming-grid{grid-template-columns:1fr}
   .gift-grid{grid-template-columns:1fr 1fr}
+  .profile-header-inner{flex-direction:column;text-align:center}
+  .profile-body{padding:1rem}
 }
 </style>
 </head>
@@ -425,6 +528,7 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
     <button class="nav-tab active" onclick="showPage('home')" id="tab-home">Home</button>
     <button class="nav-tab" onclick="showPage('services')" id="tab-services">Services</button>
     <button class="nav-tab" onclick="showPage('contact')" id="tab-contact">Contact</button>
+    <button class="nav-tab" onclick="showPage('profile')" id="tab-profile" style="display:none">My Account</button>
   </div>
   <div class="nav-right">
     <button class="btn-login" onclick="openAuth('login')">Log In</button>
@@ -727,12 +831,471 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
       <div class="svc-page-header-inner">
         <div class="section-tag">Full Catalog</div>
         <h2>OUR <span>SERVICES</span></h2>
-        <p class="section-sub">Every service we offer — tap any card to order instantly via WhatsApp.</p>
+        <p class="section-sub">Select a category below — tap any card to order instantly.</p>
       </div>
     </div>
 
-    <div class="svc-full">
-      <div class="svc-full-inner">
+    <!-- TAB BAR -->
+    <div class="svc-tabs-bar">
+      <button class="svc-tab-btn active" onclick="showSvcTab('tiktok',this)">
+        <svg viewBox="0 0 18 18" width="14" height="14"><rect width="18" height="18" rx="4" fill="#010101"/><path d="M13 5a3 3 0 003 3v3a6 6 0 01-3-.8V13a5 5 0 11-5-5v3a2 2 0 102 2V5h3z" fill="#fe2c55"/></svg>
+        TikTok Cashout
+      </button>
+      <button class="svc-tab-btn" onclick="showSvcTab('uc',this)">
+        <svg viewBox="0 0 18 18" width="14" height="14"><rect width="18" height="18" rx="4" fill="#1a1a2e"/><text x="9" y="13" text-anchor="middle" fill="#FFD000" font-size="8" font-weight="900">UC</text></svg>
+        PUBG UC
+      </button>
+      <button class="svc-tab-btn" onclick="showSvcTab('giftcards',this)">🎁 Gift Cards</button>
+      <button class="svc-tab-btn" onclick="showSvcTab('accounts',this)">📱 Account Creation</button>
+      <button class="svc-tab-btn" onclick="showSvcTab('social',this)">📣 Social Media</button>
+      <button class="svc-tab-btn" onclick="showSvcTab('crypto',this)">💱 Crypto & Payments</button>
+      <button class="svc-tab-btn" onclick="showSvcTab('gaming',this)">🎮 Gaming Credits</button>
+    </div>
+
+    <!-- ══ TAB: TIKTOK CASHOUT ══ -->
+    <div class="svc-tab-panel active" id="svc-tiktok">
+      <div class="tt-hero-panel">
+        <div class="tt-hero-top">
+          <div>
+            <div class="tt-logo-official">
+              <!-- Official TikTok Logo SVG -->
+              <svg viewBox="0 0 60 60" width="56" height="56" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="60" rx="14" fill="#010101"/>
+                <!-- Cyan shadow -->
+                <path d="M39 12a11 11 0 0011 11v11a22 22 0 01-11-3V38a18 18 0 11-18-18v11a7 7 0 107 7V12h11z" fill="#00f2ea" transform="translate(-2,2)"/>
+                <!-- Pink shadow -->
+                <path d="M39 12a11 11 0 0011 11v11a22 22 0 01-11-3V38a18 18 0 11-18-18v11a7 7 0 107 7V12h11z" fill="#fe2c55" transform="translate(2,-2)"/>
+                <!-- Main black -->
+                <path d="M39 12a11 11 0 0011 11v11a22 22 0 01-11-3V38a18 18 0 11-18-18v11a7 7 0 107 7V12h11z" fill="white"/>
+              </svg>
+              <div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;color:white;line-height:1">TIKTOK</div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.08em;color:#fe2c55">CREATOR CASHOUT</div>
+              </div>
+              <span style="background:rgba(254,44,85,0.15);border:1px solid rgba(254,44,85,0.4);color:#fe2c55;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:100px;letter-spacing:0.08em;height:fit-content">🔥 HIGH DEMAND</span>
+            </div>
+            <p style="font-size:0.9rem;color:var(--gray-light);line-height:1.7;max-width:480px">Are you a TikTok creator earning gifts, diamonds, or Creator Fund money? We convert it to <strong style="color:white">real cash</strong> — fast, safe, and at the best rates in Kabul.</p>
+          </div>
+          <div style="text-align:center;flex-shrink:0">
+            <div style="background:rgba(254,44,85,0.1);border:1px solid rgba(254,44,85,0.2);border-radius:16px;padding:1.5rem 2rem">
+              <div style="font-size:2rem;margin-bottom:0.5rem">💸</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:#fe2c55;line-height:1">BEST</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:white;letter-spacing:0.06em">RATES IN KABUL</div>
+              <div style="font-size:0.65rem;color:var(--gray);margin-top:6px">Guaranteed</div>
+            </div>
+          </div>
+        </div>
+        <div class="tt-steps">
+          <div class="tt-step"><div class="tt-step-num">01</div><div class="tt-step-text">Contact us on WhatsApp with your TikTok username</div></div>
+          <div class="tt-step"><div class="tt-step-num">02</div><div class="tt-step-text">We verify your earnings & give you the best rate</div></div>
+          <div class="tt-step"><div class="tt-step-num">03</div><div class="tt-step-text">Transfer your gifts/diamonds to us securely</div></div>
+          <div class="tt-step"><div class="tt-step-num">04</div><div class="tt-step-text">Receive cash — in-store or via digital payment</div></div>
+        </div>
+        <div class="tt-cta-row">
+          <a href="https://wa.me/93789077537?text=I want to cash out my TikTok earnings" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#fe2c55,#cc0033)">
+            <svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="rgba(255,255,255,0.2)"/><path d="M14.5 12.9c-.19-.1-1.12-.56-1.3-.62s-.3-.1-.42.1-.5.62-.6.74-.22.14-.4.05a5.1 5.1 0 01-2.56-2.25c-.19-.31.19-.31.54-1 .06-.12.03-.21-.01-.3s-.43-1.07-.6-1.44c-.16-.37-.31-.31-.43-.31h-.37a.75.75 0 00-.54.25A2.25 2.25 0 007.5 9.7c0 1.31.97 2.58 1.1 2.77 1.19 1.81 2.56 2.25 4.5 2.25.56 0 1.06-.04 1.44-.25a1.93 1.93 0 00.87-1.34c.04-.34-.12-.55-.31-.63z" fill="white"/></svg>
+            💬 WhatsApp — Cash Out Now
+          </a>
+          <a href="https://t.me/Wajid_gaming_store" target="_blank" class="btn-outline">Telegram Channel →</a>
+        </div>
+      </div>
+      <!-- What we cash out -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem">
+        <div style="background:var(--black-card);border:1px solid rgba(254,44,85,0.15);border-radius:12px;padding:1.25rem;display:flex;gap:0.75rem;align-items:flex-start">
+          <span style="font-size:1.5rem">🎁</span>
+          <div><div style="font-weight:600;font-size:0.88rem;color:white;margin-bottom:4px">Gifts & Diamonds</div><div style="font-size:0.75rem;color:var(--gray)">Roses, TikTok Universe, Lions — all gift types cashed out</div></div>
+        </div>
+        <div style="background:var(--black-card);border:1px solid rgba(254,44,85,0.15);border-radius:12px;padding:1.25rem;display:flex;gap:0.75rem;align-items:flex-start">
+          <span style="font-size:1.5rem">💰</span>
+          <div><div style="font-weight:600;font-size:0.88rem;color:white;margin-bottom:4px">Creator Fund</div><div style="font-size:0.75rem;color:var(--gray)">Monthly creator earnings converted to cash at best rates</div></div>
+        </div>
+        <div style="background:var(--black-card);border:1px solid rgba(254,44,85,0.15);border-radius:12px;padding:1.25rem;display:flex;gap:0.75rem;align-items:flex-start">
+          <span style="font-size:1.5rem">🤝</span>
+          <div><div style="font-weight:600;font-size:0.88rem;color:white;margin-bottom:4px">Brand Deal Payments</div><div style="font-size:0.75rem;color:var(--gray)">International brand payments converted to local cash</div></div>
+        </div>
+        <div style="background:var(--black-card);border:1px solid rgba(254,44,85,0.15);border-radius:12px;padding:1.25rem;display:flex;gap:0.75rem;align-items:flex-start">
+          <span style="font-size:1.5rem">🔒</span>
+          <div><div style="font-weight:600;font-size:0.88rem;color:white;margin-bottom:4px">100% Secure</div><div style="font-size:0.75rem;color:var(--gray)">Private, safe, no hassle — trusted by creators in Kabul</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TAB: PUBG UC ══ -->
+    <div class="svc-tab-panel" id="svc-uc">
+      <div class="uc-hero-panel">
+        <div style="position:relative;z-index:1">
+          <div class="uc-logo-real">
+            <!-- Real UC Logo from uploaded image recreated as SVG -->
+            <svg viewBox="0 0 90 56" width="90" height="56" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ucFrame" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#C8A84B"/>
+                  <stop offset="40%" stop-color="#FFE082"/>
+                  <stop offset="100%" stop-color="#8D6E1A"/>
+                </linearGradient>
+                <linearGradient id="ucBg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1a1a1a"/>
+                  <stop offset="100%" stop-color="#0a0a0a"/>
+                </linearGradient>
+              </defs>
+              <!-- Outer metallic frame -->
+              <path d="M8 4 L82 4 L88 12 L88 44 L82 52 L8 52 L2 44 L2 12 Z" fill="url(#ucFrame)"/>
+              <!-- Inner dark bg -->
+              <path d="M10 7 L80 7 L85 14 L85 42 L80 49 L10 49 L5 42 L5 14 Z" fill="url(#ucBg)"/>
+              <!-- Highlight edge -->
+              <path d="M10 7 L80 7 L85 14 L10 14 Z" fill="rgba(255,255,255,0.08)"/>
+              <!-- UC Text -->
+              <text x="45" y="36" text-anchor="middle" fill="white" font-size="24" font-weight="900" font-family="Arial Black,Impact,sans-serif" letter-spacing="2" style="filter:drop-shadow(0 0 4px rgba(255,208,0,0.6))">UC</text>
+              <!-- Corner accents -->
+              <circle cx="10" cy="10" r="2" fill="#FFE082" opacity="0.6"/>
+              <circle cx="80" cy="10" r="2" fill="#FFE082" opacity="0.6"/>
+              <circle cx="80" cy="46" r="2" fill="#FFE082" opacity="0.6"/>
+              <circle cx="10" cy="46" r="2" fill="#FFE082" opacity="0.6"/>
+            </svg>
+            <div>
+              <div style="font-size:0.6rem;font-weight:700;color:rgba(255,208,0,0.6);letter-spacing:0.12em;text-transform:uppercase">PUBG Mobile</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#FFD000;line-height:1;text-shadow:0 0 20px rgba(255,208,0,0.4)">UC VOUCHERS</div>
+              <div style="font-size:0.72rem;color:var(--gray);margin-top:2px">Instant delivery • Best prices • 24/7</div>
+            </div>
+            <span style="background:rgba(255,208,0,0.12);border:1px solid rgba(255,208,0,0.35);color:#FFD000;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:100px;letter-spacing:0.08em;height:fit-content">🎮 HOT</span>
+          </div>
+          <p style="font-size:0.88rem;color:var(--gray-light);line-height:1.7;max-width:520px;margin-bottom:1.25rem">Get genuine PUBG UC voucher codes at the <strong style="color:white">best prices in Kabul</strong>. Order any amount 24/7 through our Telegram bot — instant delivery, no waiting.</p>
+          <div class="uc-voucher-grid">
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="uc-voucher-card">
+              <div class="uc-voucher-amount">60</div>
+              <div class="uc-voucher-label">UC</div>
+              <div class="uc-voucher-price">Starter Pack</div>
+            </a>
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="uc-voucher-card">
+              <div class="uc-voucher-amount">325</div>
+              <div class="uc-voucher-label">UC</div>
+              <div class="uc-voucher-price" style="color:#FFD000;font-weight:700">⭐ Most Popular</div>
+            </a>
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="uc-voucher-card">
+              <div class="uc-voucher-amount">660</div>
+              <div class="uc-voucher-label">UC</div>
+              <div class="uc-voucher-price">Great Value</div>
+            </a>
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="uc-voucher-card">
+              <div class="uc-voucher-amount">1800</div>
+              <div class="uc-voucher-label">UC</div>
+              <div class="uc-voucher-price">👑 Pro Pack</div>
+            </a>
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="uc-voucher-card">
+              <div class="uc-voucher-amount">3850</div>
+              <div class="uc-voucher-label">UC</div>
+              <div class="uc-voucher-price">Elite Pack</div>
+            </a>
+            <a href="https://wa.me/93789077537?text=Custom UC order" target="_blank" class="uc-voucher-card" style="border-style:dashed">
+              <div class="uc-voucher-amount" style="font-size:1.2rem">ANY</div>
+              <div class="uc-voucher-label">AMOUNT</div>
+              <div class="uc-voucher-price">Custom order</div>
+            </a>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem">
+            <a href="https://t.me/apex_2030_bot" target="_blank" class="btn-primary">
+              <svg viewBox="0 0 20 20" width="16" height="16"><circle cx="10" cy="10" r="10" fill="rgba(0,0,0,0.2)"/><path d="M14 8l-2.4 7.5a.25.25 0 01-.4.1l-1.9-1.5-1.1 1.1a.16.16 0 01-.25-.06l-.46-1.77-1.77-.56a.25.25 0 010-.45l6.8-2.77a.25.25 0 01.15.43z" fill="white"/></svg>
+              Order via @apex_2030_bot
+            </a>
+            <a href="https://wa.me/93789077537?text=I want to buy PUBG UC vouchers" target="_blank" class="btn-outline">💬 WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TAB: GIFT CARDS ══ -->
+    <div class="svc-tab-panel" id="svc-giftcards">
+      <p style="color:var(--gray);font-size:0.85rem;margin-bottom:1.5rem">Genuine gift card codes — delivered instantly via WhatsApp or Telegram. All major brands available.</p>
+      <div class="gc-brand-grid">
+
+        <!-- Apple iTunes -->
+        <a href="https://wa.me/93789077537?text=Apple iTunes Gift Card" target="_blank" class="gc-brand-card">
+          <div class="gc-brand-visual" style="background:linear-gradient(135deg,#667eea,#764ba2,#f093fb)">
+            <svg viewBox="0 0 50 60" width="40" height="48" style="filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5))"><path d="M41.5 31.8c0-6.6 5.4-9.8 5.6-9.9-3-4.4-7.7-5-9.4-5.1-4-.4-7.8 2.4-9.8 2.4-2 0-5.1-2.3-8.4-2.3-4.3.1-8.4 2.5-10.6 6.4-4.6 7.9-1.2 19.5 3.2 25.9 2.2 3.1 4.7 6.6 8.1 6.5 3.2-.1 4.5-2.1 8.4-2.1 3.9 0 5 2.1 8.4 2 3.5-.06 5.7-3.2 7.9-6.3 2.5-3.6 3.5-7.1 3.6-7.3-.1-.04-7.1-2.8-7.1-10.8z" fill="white"/><path d="M34.9 12.1c1.8-2.1 3-5 2.7-8-2.5.1-5.6 1.7-7.4 3.9-1.6 1.9-3 4.9-2.6 7.8 2.8.2 5.6-1.5 7.3-3.7z" fill="white"/></svg>
+          </div>
+          <div class="gc-brand-info">
+            <div class="gc-brand-name">Apple / iTunes</div>
+            <div class="gc-brand-sub">App Store, Music, Movies</div>
+            <div class="gc-order-btn">Order Now →</div>
+          </div>
+        </a>
+
+        <!-- Google Play -->
+        <a href="https://wa.me/93789077537?text=Google Play Gift Card" target="_blank" class="gc-brand-card">
+          <div class="gc-brand-visual" style="background:#f8f9fa">
+            <svg viewBox="0 0 70 70" width="60" height="60">
+              <path d="M8 8 L38 35 L8 62 Z" fill="#00C4CC"/>
+              <path d="M8 8 L62 35 L38 35 Z" fill="#4CAF50"/>
+              <path d="M38 35 L62 35 L8 62 Z" fill="#FFD000"/>
+              <path d="M8 62 L38 35 Z" fill="#F44336"/>
+            </svg>
+          </div>
+          <div class="gc-brand-info">
+            <div class="gc-brand-name">Google Play</div>
+            <div class="gc-brand-sub">Apps, Games, Subscriptions</div>
+            <div class="gc-order-btn">Order Now →</div>
+          </div>
+        </a>
+
+        <!-- Steam -->
+        <a href="https://wa.me/93789077537?text=Steam Gift Card" target="_blank" class="gc-brand-card">
+          <div class="gc-brand-visual" style="background:linear-gradient(135deg,#1b2838,#2a475e)">
+            <svg viewBox="0 0 60 60" width="52" height="52" style="filter:drop-shadow(0 0 8px rgba(102,192,244,0.4))">
+              <circle cx="30" cy="30" r="28" fill="none" stroke="#66c0f4" stroke-width="2.5"/>
+              <circle cx="30" cy="30" r="12" fill="none" stroke="#66c0f4" stroke-width="3"/>
+              <circle cx="30" cy="30" r="6" fill="#66c0f4"/>
+              <line x1="30" y1="2" x2="30" y2="18" stroke="#66c0f4" stroke-width="3" stroke-linecap="round"/>
+              <line x1="58" y1="30" x2="42" y2="30" stroke="#66c0f4" stroke-width="3" stroke-linecap="round"/>
+              <line x1="30" y1="58" x2="30" y2="42" stroke="#66c0f4" stroke-width="3" stroke-linecap="round"/>
+              <line x1="2" y1="30" x2="18" y2="30" stroke="#66c0f4" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="gc-brand-info">
+            <div class="gc-brand-name">Steam</div>
+            <div class="gc-brand-sub">PC Games & Software</div>
+            <div class="gc-order-btn">Order Now →</div>
+          </div>
+        </a>
+
+        <!-- Xbox -->
+        <a href="https://wa.me/93789077537?text=Xbox Gift Card" target="_blank" class="gc-brand-card">
+          <div class="gc-brand-visual" style="background:linear-gradient(135deg,#0e0e0e,#1a1a1a)">
+            <svg viewBox="0 0 60 60" width="52" height="52">
+              <circle cx="30" cy="30" r="28" fill="#107C10"/>
+              <circle cx="30" cy="30" r="22" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <path d="M16 22 C16 22 22 16 30 16 C22 24 18 32 20 40 C16 36 12 28 16 22Z" fill="white" opacity="0.9"/>
+              <path d="M44 22 C44 22 38 16 30 16 C38 24 42 32 40 40 C44 36 48 28 44 22Z" fill="white" opacity="0.9"/>
+              <path d="M20 40 C22 48 30 52 30 52 C30 52 38 48 40 40 C36 44 24 44 20 40Z" fill="white" opacity="0.9"/>
+              <circle cx="30" cy="30" r="8" fill="white" opacity="0.15"/>
+            </svg>
+          </div>
+          <div class="gc-brand-info">
+            <div class="gc-brand-name">Xbox</div>
+            <div class="gc-brand-sub">Game Pass & Credits</div>
+            <div class="gc-order-btn">Order Now →</div>
+          </div>
+        </a>
+
+        <!-- PSN -->
+        <a href="https://wa.me/93789077537?text=PlayStation PSN Gift Card" target="_blank" class="gc-brand-card">
+          <div class="gc-brand-visual" style="background:linear-gradient(135deg,#00439C,#003087)">
+            <svg viewBox="0 0 80 50" width="70" height="44">
+              <text x="8" y="38" fill="white" font-size="32" font-weight="900" font-family="Arial Black,sans-serif" letter-spacing="-1">PS</text>
+              <circle cx="62" cy="25" r="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+              <text x="54" y="31" fill="white" font-size="14" font-weight="700" font-family="Arial,sans-serif">N</text>
+            </svg>
+          </div>
+          <div class="gc-brand-info">
+            <div class="gc-brand-name">PlayStation (PSN)</div>
+            <div class="gc-brand-sub">PS4, PS5 Credits</div>
+            <div class="gc-order-btn">Order Now →</div>
+          </div>
+        </a>
+
+        <!-- Amazon -->
+        <a href="https://wa.me/93789077537?text=Amazon Gift Card" target="_blank" class="gc-brand-card">
+          <div class="gc-brand-visual" style="background:linear-gradient(135deg,#131921,#232f3e)">
+            <svg viewBox="0 0 90 40" width="80" height="36">
+              <text x="45" y="28" text-anchor="middle" fill="#FF9900" font-size="26" font-weight="900" font-family="Arial,sans-serif">amazon</text>
+              <path d="M15 33 Q45 43 75 33" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M72 30 L76 33 L72 36" fill="#FF9900"/>
+            </svg>
+          </div>
+          <div class="gc-brand-info">
+            <div class="gc-brand-name">Amazon</div>
+            <div class="gc-brand-sub">Shopping & Prime</div>
+            <div class="gc-order-btn">Order Now →</div>
+          </div>
+        </a>
+
+      </div>
+      <div style="margin-top:1.25rem;background:var(--black-card);border:1px solid var(--border-gold);border-radius:10px;padding:1rem 1.25rem;font-size:0.8rem;color:var(--gray)">
+        💡 <strong style="color:var(--gold)">Don't see your card?</strong> We carry many more brands — contact us on WhatsApp and we'll source it for you.
+        <a href="https://wa.me/93789077537?text=I need a gift card" target="_blank" style="color:var(--gold);font-weight:600;margin-left:8px">Ask us →</a>
+      </div>
+    </div>
+
+    <!-- ══ TAB: ACCOUNT CREATION ══ -->
+    <div class="svc-tab-panel" id="svc-accounts">
+      <p style="color:var(--gray);font-size:0.85rem;margin-bottom:1.25rem">We professionally set up and brand accounts on any platform. Select one to see what's included.</p>
+      <div class="acc-platform-tabs">
+        <button class="acc-platform-tab active" onclick="showAccTab('tiktok-acc',this)">
+          <svg viewBox="0 0 16 16" width="12" height="12" style="display:inline;margin-right:4px"><rect width="16" height="16" rx="4" fill="#010101"/><path d="M11 4a3 3 0 003 3v3a6 6 0 01-3-.8V12a5 5 0 11-5-5v3a2 2 0 102 2V4h3z" fill="#fe2c55"/></svg>
+          TikTok
+        </button>
+        <button class="acc-platform-tab" onclick="showAccTab('telegram-acc',this)">Telegram</button>
+        <button class="acc-platform-tab" onclick="showAccTab('whatsapp-acc',this)">WhatsApp Business</button>
+        <button class="acc-platform-tab" onclick="showAccTab('facebook-acc',this)">Facebook</button>
+        <button class="acc-platform-tab" onclick="showAccTab('instagram-acc',this)">Instagram</button>
+        <button class="acc-platform-tab" onclick="showAccTab('youtube-acc',this)">YouTube</button>
+      </div>
+
+      <!-- TikTok -->
+      <div class="acc-detail-panel active" id="acc-tiktok-acc">
+        <div class="acc-detail-card">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.04em;color:white;margin-bottom:0.5rem">TikTok Account Setup</div>
+            <p style="font-size:0.82rem;color:var(--gray);line-height:1.6">Professional TikTok creator or business account — fully set up, branded, and ready to grow.</p>
+            <ul class="acc-features">
+              <li>Creator or Business account registration</li>
+              <li>Profile photo, bio & link setup</li>
+              <li>Niche & category optimization</li>
+              <li>First content strategy guide</li>
+              <li>TikTok Shop setup (if needed)</li>
+            </ul>
+            <a href="https://wa.me/93789077537?text=I want a TikTok account setup" target="_blank" class="btn-primary" style="width:fit-content">Order via WhatsApp →</a>
+          </div>
+          <div class="acc-visual">
+            <svg viewBox="0 0 80 80" width="80" height="80"><rect width="80" height="80" rx="18" fill="#010101"/><path d="M54 20a14 14 0 0014 14v14a28 28 0 01-14-4V52a24 24 0 11-24-24v14a10 10 0 1010 10V20h14z" fill="#fe2c55" opacity="0.8"/><path d="M54 20a14 14 0 0014 14v14a28 28 0 01-14-4V52a24 24 0 11-24-24v14a10 10 0 1010 10V20h14z" fill="white" opacity="0.15"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Telegram -->
+      <div class="acc-detail-panel" id="acc-telegram-acc">
+        <div class="acc-detail-card">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.04em;color:white;margin-bottom:0.5rem">Telegram Channel / Group</div>
+            <p style="font-size:0.82rem;color:var(--gray);line-height:1.6">Professional Telegram channel or group — configured for your business or community.</p>
+            <ul class="acc-features">
+              <li>Channel or Group creation & setup</li>
+              <li>Username, description & photo</li>
+              <li>Bot integration (optional)</li>
+              <li>Auto-reply & welcome message</li>
+              <li>Member invite link setup</li>
+            </ul>
+            <a href="https://wa.me/93789077537?text=I want a Telegram channel setup" target="_blank" class="btn-primary" style="width:fit-content">Order via WhatsApp →</a>
+          </div>
+          <div class="acc-visual"><svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="40" fill="#2196F3"/><path d="M58 22L44 62a1 1 0 01-1.6.4l-9.6-7.6-5.6 5.4a.76.76 0 01-1.2-.28l-2.2-8.4-8.4-2.6a1 1 0 010-1.8l37-15a1 1 0 011 1.4z" fill="white"/></svg></div>
+        </div>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="acc-detail-panel" id="acc-whatsapp-acc">
+        <div class="acc-detail-card">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.04em;color:white;margin-bottom:0.5rem">WhatsApp Business</div>
+            <p style="font-size:0.82rem;color:var(--gray);line-height:1.6">Professional WhatsApp Business account with catalog, auto-replies, and branding.</p>
+            <ul class="acc-features">
+              <li>Business account verification</li>
+              <li>Product catalog setup</li>
+              <li>Auto-reply & away messages</li>
+              <li>Business hours configuration</li>
+              <li>QR code for customers</li>
+            </ul>
+            <a href="https://wa.me/93789077537?text=I want a WhatsApp Business setup" target="_blank" class="btn-primary" style="width:fit-content">Order via WhatsApp →</a>
+          </div>
+          <div class="acc-visual"><svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="40" fill="#25D366"/><path d="M58 36C58 47 49.7 56 40 56c-3.2 0-6.2-.9-8.8-2.4L20 56l2.5-11C21 42.4 20 39.3 20 36c0-11 8.3-20 18-20s20 9 20 20z" fill="white"/><path d="M33 29h-3.4a1.6 1.6 0 00-1.3.7 5 5 0 00-1.3 3.4c0 2.9 2.1 5.7 2.4 6.1 2.6 4 5.7 5.5 9.8 5.5 1.2 0 2.3-.1 3.1-.5a4.2 4.2 0 001.9-2.9c.1-.7-.3-1.2-.7-1.5l-3.4-1.7c-.4-.2-.7-.2-.9.2-.3.5-1.1 1.7-1.4 2s-.5.3-.9.1a12.5 12.5 0 01-6.2-5.4c-.3-.5.3-.5 1.2-2.2.1-.3.07-.5-.03-.7l-1.3-3.1z" fill="#25D366"/></svg></div>
+        </div>
+      </div>
+
+      <!-- Facebook -->
+      <div class="acc-detail-panel" id="acc-facebook-acc">
+        <div class="acc-detail-card">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.04em;color:white;margin-bottom:0.5rem">Facebook Page / Profile</div>
+            <p style="font-size:0.82rem;color:var(--gray);line-height:1.6">Professional Facebook business page with full branding and optimization.</p>
+            <ul class="acc-features"><li>Page creation & category setup</li><li>Cover photo & profile branding</li><li>About section & contact info</li><li>CTA button configuration</li><li>Initial post schedule</li></ul>
+            <a href="https://wa.me/93789077537?text=I want a Facebook page setup" target="_blank" class="btn-primary" style="width:fit-content">Order via WhatsApp →</a>
+          </div>
+          <div class="acc-visual"><svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="40" fill="#1877F2"/><path d="M53 40h-9v24H34V40h-6V30h6V24c0-8 4.7-12 12.3-12 3.6 0 7.7.6 7.7.6V22h-5c-3.8 0-5 2.4-5 5v3h10z" fill="white"/></svg></div>
+        </div>
+      </div>
+
+      <!-- Instagram -->
+      <div class="acc-detail-panel" id="acc-instagram-acc">
+        <div class="acc-detail-card">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.04em;color:white;margin-bottom:0.5rem">Instagram Business / Creator</div>
+            <p style="font-size:0.82rem;color:var(--gray);line-height:1.6">Professional Instagram account ready for business growth and brand deals.</p>
+            <ul class="acc-features"><li>Business or Creator account setup</li><li>Bio, highlights & link-in-bio</li><li>Profile branding & aesthetic</li><li>Insights & analytics access</li><li>Shop integration (if needed)</li></ul>
+            <a href="https://wa.me/93789077537?text=I want an Instagram account setup" target="_blank" class="btn-primary" style="width:fit-content">Order via WhatsApp →</a>
+          </div>
+          <div class="acc-visual"><svg viewBox="0 0 80 80" width="80" height="80"><defs><radialGradient id="igG" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#ffd676"/><stop offset="25%" stop-color="#f86434"/><stop offset="55%" stop-color="#cc2e8a"/><stop offset="100%" stop-color="#4b57c3"/></radialGradient></defs><rect width="80" height="80" rx="18" fill="url(#igG)"/><rect x="22" y="22" width="36" height="36" rx="10" fill="none" stroke="white" stroke-width="4"/><circle cx="40" cy="40" r="11" fill="none" stroke="white" stroke-width="4"/><circle cx="56" cy="24" r="3.5" fill="white"/></svg></div>
+        </div>
+      </div>
+
+      <!-- YouTube -->
+      <div class="acc-detail-panel" id="acc-youtube-acc">
+        <div class="acc-detail-card">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.04em;color:white;margin-bottom:0.5rem">YouTube Channel</div>
+            <p style="font-size:0.82rem;color:var(--gray);line-height:1.6">Professional YouTube channel with branding, SEO setup, and monetization pathway.</p>
+            <ul class="acc-features"><li>Channel creation & branding</li><li>Banner, icon & about section</li><li>SEO-optimized channel description</li><li>Playlist & section structure</li><li>Monetization eligibility guide</li></ul>
+            <a href="https://wa.me/93789077537?text=I want a YouTube channel setup" target="_blank" class="btn-primary" style="width:fit-content">Order via WhatsApp →</a>
+          </div>
+          <div class="acc-visual"><svg viewBox="0 0 80 80" width="80" height="80"><rect width="80" height="80" rx="18" fill="#FF0000"/><path d="M65 40s0-12-1.5-17.8a8.8 8.8 0 00-6.2-6.2C51.5 14.5 40 14.5 40 14.5s-11.5 0-17.3 1.5a8.8 8.8 0 00-6.2 6.2C15 28 15 40 15 40s0 12 1.5 17.8a8.8 8.8 0 006.2 6.2C28.5 65.5 40 65.5 40 65.5s11.5 0 17.3-1.5a8.8 8.8 0 006.2-6.2C65 52 65 40 65 40z" fill="white" opacity="0.15"/><path d="M34 50V30l18 10z" fill="white"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TAB: SOCIAL MEDIA ══ -->
+    <div class="svc-tab-panel" id="svc-social">
+      <div class="svc-row">
+        <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.62 23.1 24 18.1 24 12.07z" fill="#1877F2"/></svg></div><div class="svc-c-name">Facebook Page Boosting</div><div class="svc-c-desc">Grow page reach, likes and followers with proven strategies.</div><a href="https://wa.me/93789077537?text=Facebook Page Boosting" target="_blank" class="svc-c-cta">Order →</a></div>
+        <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><defs><radialGradient id="ig3" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#ffd676"/><stop offset="25%" stop-color="#f86434"/><stop offset="55%" stop-color="#cc2e8a"/><stop offset="100%" stop-color="#4b57c3"/></radialGradient></defs><rect width="24" height="24" rx="7" fill="url(#ig3)"/><rect x="7" y="7" width="10" height="10" rx="3" fill="none" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="none" stroke="white" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div><div class="svc-c-name">Instagram Growth</div><div class="svc-c-desc">Followers, views, story engagement — real and fast.</div><a href="https://wa.me/93789077537?text=Instagram Growth service" target="_blank" class="svc-c-cta">Order →</a></div>
+        <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div><div class="svc-c-name">Google & Facebook Ads</div><div class="svc-c-desc">Full campaign management — from setup to results.</div><a href="https://wa.me/93789077537?text=Ads Management service" target="_blank" class="svc-c-cta">Order →</a></div>
+        <div class="svc-c yt-standout"><div class="svc-c-icon" style="background:rgba(255,0,0,0.12)!important;border-color:rgba(255,0,0,0.25)!important"><svg viewBox="0 0 44 44" width="32" height="32"><defs><linearGradient id="ytG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF3333"/><stop offset="100%" stop-color="#CC0000"/></linearGradient></defs><rect width="44" height="44" rx="10" fill="url(#ytG2)"/><path d="M34 22s0-6-.8-8.9A4.4 4.4 0 0030 9.8C27.2 9 22 9 22 9s-5.2 0-8 .8a4.4 4.4 0 00-3.2 3.3C10 16 10 22 10 22s0 6 .8 8.9a4.4 4.4 0 003.2 3.3C16.8 35 22 35 22 35s5.2 0 8-.8a4.4 4.4 0 003.2-3.3C34 28 34 22 34 22z" fill="white" opacity="0.15"/><path d="M19 27V17l10 5z" fill="white"/></svg></div><div class="svc-c-name" style="color:#FF3333;font-family:'Bebas Neue',sans-serif;font-size:1.05rem">▶ YouTube Growth</div><div class="svc-c-desc">Subscribers, views, and watch time boosted fast.</div><a href="https://wa.me/93789077537?text=YouTube Growth service" target="_blank" class="svc-c-cta" style="color:#FF3333">Order →</a></div>
+      </div>
+    </div>
+
+    <!-- ══ TAB: CRYPTO ══ -->
+    <div class="svc-tab-panel" id="svc-crypto">
+      <div class="svc-row">
+        <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#26a17b"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">₮</text></svg></div><div class="svc-c-name">USDT Exchange (TRC20)</div><div class="svc-c-desc">Fast, secure USDT TRC20 transfers for cross-border payments.</div><a href="https://wa.me/93789077537?text=USDT Exchange" target="_blank" class="svc-c-cta">Order →</a></div>
+        <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#F3BA2F"/><text x="12" y="16" text-anchor="middle" fill="#111" font-size="8" font-weight="bold">BNB</text></svg></div><div class="svc-c-name">Binance P2P</div><div class="svc-c-desc">Binance P2P transfers and crypto exchange assistance.</div><a href="https://wa.me/93789077537?text=Binance P2P" target="_blank" class="svc-c-cta">Order →</a></div>
+        <div class="svc-c"><div class="svc-c-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12" fill="#003087"/><path d="M9 7h5c2 0 3.5 1 3.5 3s-1.5 3-3.5 3H10.5L9.5 18H7L9 7z" fill="#009CDE"/></svg></div><div class="svc-c-name">PayPal Services</div><div class="svc-c-desc">PayPal top-ups, transfers, and account services.</div><a href="https://wa.me/93789077537?text=PayPal service" target="_blank" class="svc-c-cta">Order →</a></div>
+        <div class="svc-c"><div class="svc-c-icon">💵</div><div class="svc-c-name">USD Sale & Purchase</div><div class="svc-c-desc">Buy or sell physical USD at competitive real-time rates.</div><a href="https://wa.me/93789077537?text=USD exchange" target="_blank" class="svc-c-cta">Order →</a></div>
+      </div>
+    </div>
+
+    <!-- ══ TAB: GAMING ══ -->
+    <div class="svc-tab-panel" id="svc-gaming">
+      <div class="gaming-grid">
+        <a href="https://t.me/apex_2030_bot" target="_blank" class="game-card uc-3d-card" style="grid-column:span 2;height:180px">
+          <div class="game-card-bg"></div><div class="game-card-glow"></div><div class="game-card-shine"></div>
+          <div class="game-card-content" style="display:flex;align-items:flex-end;justify-content:space-between;width:100%">
+            <div>
+              <div style="font-size:0.6rem;font-weight:700;color:rgba(255,208,0,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px">PUBG Mobile</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:#FFD000;line-height:1;text-shadow:0 0 20px rgba(255,208,0,0.5)">UC VOUCHERS</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+                <span style="background:rgba(255,208,0,0.1);border:1px solid rgba(255,208,0,0.25);border-radius:100px;padding:2px 10px;font-size:0.62rem;color:#FFD000;font-weight:600">60 UC</span>
+                <span style="background:rgba(255,208,0,0.1);border:1px solid rgba(255,208,0,0.25);border-radius:100px;padding:2px 10px;font-size:0.62rem;color:#FFD000;font-weight:600">325 UC</span>
+                <span style="background:rgba(255,208,0,0.1);border:1px solid rgba(255,208,0,0.25);border-radius:100px;padding:2px 10px;font-size:0.62rem;color:#FFD000;font-weight:600">660 UC</span>
+                <span style="background:rgba(255,208,0,0.15);border:1px solid rgba(255,208,0,0.4);border-radius:100px;padding:2px 10px;font-size:0.62rem;color:#FFD000;font-weight:700">1800 UC 👑</span>
+              </div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:0.6rem;color:rgba(255,255,255,0.5);margin-bottom:6px;letter-spacing:0.06em">ORDER VIA</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:white">@apex_2030_bot</div>
+              <div style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:rgba(255,208,0,0.15);border:1px solid rgba(255,208,0,0.4);border-radius:6px;padding:5px 12px;font-size:0.72rem;font-weight:700;color:#FFD000">Telegram Bot →</div>
+            </div>
+          </div>
+        </a>
+        <a href="https://wa.me/93789077537?text=Free Fire Diamonds order" target="_blank" class="game-card ff-card">
+          <div class="game-card-bg"></div><div class="game-card-glow"></div><div class="game-card-shine"></div>
+          <span class="game-card-cta">Order →</span>
+          <div class="game-card-content"><div class="game-card-logo"><svg viewBox="0 0 44 44" width="36" height="36"><rect width="44" height="44" rx="10" fill="rgba(255,100,0,0.3)"/><text x="22" y="30" text-anchor="middle" fill="#ff8833" font-size="22" font-weight="900">🔥</text></svg></div><div class="game-card-name">FREE FIRE<br>DIAMONDS</div><span class="game-card-badge" style="background:rgba(255,100,0,0.2);border:1px solid rgba(255,100,0,0.4);color:#ff8833">⚡ Fast Top-Up</span></div>
+        </a>
+        <a href="https://wa.me/93789077537?text=Game credits order" target="_blank" class="game-card other-card">
+          <div class="game-card-bg"></div><div class="game-card-glow"></div><div class="game-card-shine"></div>
+          <span class="game-card-cta">Order →</span>
+          <div class="game-card-content"><div class="game-card-logo"><svg viewBox="0 0 44 44" width="36" height="36"><rect width="44" height="44" rx="10" fill="rgba(150,100,255,0.25)"/><circle cx="22" cy="22" r="10" fill="none" stroke="#9966ff" stroke-width="2"/><line x1="22" y1="12" x2="22" y2="32" stroke="#9966ff" stroke-width="2"/><line x1="12" y1="22" x2="32" y2="22" stroke="#9966ff" stroke-width="2"/></svg></div><div class="game-card-name">MOBILE<br>LEGENDS &amp; MORE</div><span class="game-card-badge" style="background:rgba(150,100,255,0.2);border:1px solid rgba(150,100,255,0.35);color:#bb88ff">🎮 All Games</span></div>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- end svc-full -->
+
+  <footer>
+    <div class="footer-brand"><img src="logo.png" alt=""/><div><div class="footer-name">APEX DIGITAL HOUSE</div><div class="footer-loc">Kabul, Afghanistan</div></div></div>
+    <div class="footer-copy">© 2026 Apex Digital House. All rights reserved.</div>
+    <div class="footer-socials">
+      <a class="f-soc" href="https://wa.me/93789077537" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 15.5c-.23-.12-1.35-.67-1.56-.75s-.36-.12-.51.12-.59.75-.73.9-.26.17-.49.06a6.15 6.15 0 01-3.07-2.7c-.23-.38.23-.38.65-1.2.07-.15.04-.26-.02-.37s-.52-1.28-.72-1.73c-.19-.45-.38-.38-.52-.38h-.45a.9.9 0 00-.65.3A2.7 2.7 0 009 11.63c0 1.57 1.16 3.1 1.32 3.34 1.43 2.17 3.07 2.7 5.4 2.7.68 0 1.28-.05 1.73-.3a2.32 2.32 0 001.04-1.61c.06-.41-.14-.66-.37-.76z" fill="white"/></svg></a>
+      <a class="f-soc" href="https://t.me/Wajid_gaming_store" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="12" fill="#2196F3"/><path d="M17 7l-3.5 10.5a.38.38 0 01-.6.15l-2.85-2.25L8.7 16.8a.23.23 0 01-.37-.08l-.68-2.62-2.62-.82a.38.38 0 010-.68l10.12-4.12a.38.38 0 01.23.52z" fill="white"/></svg></a>
+    </div>
+  </footer>
+</div>
 
         <!-- TIKTOK CASHOUT — FEATURED -->
         <div class="cat-hd" style="margin-top:0"><span class="cat-hd-icon">🔥</span><div class="cat-hd-text" style="color:#fe2c55">TIKTOK CASHOUT <span style="font-size:0.75rem;color:#fe2c55;font-weight:700;font-family:'DM Sans',sans-serif">— BIG OPPORTUNITY</span></div><div class="cat-hd-line" style="background:rgba(254,44,85,0.2)"></div></div>
@@ -1115,6 +1678,181 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
 </div>
 
 <!-- ════════════════════════════════════════
+     PAGE: PROFILE
+════════════════════════════════════════ -->
+<div class="page" id="page-profile">
+  <div class="profile-page">
+    <!-- Header -->
+    <div class="profile-header">
+      <div class="profile-header-inner">
+        <div class="profile-avatar" id="profile-avatar">
+          A
+          <div class="profile-verified-badge">✓</div>
+        </div>
+        <div>
+          <div class="profile-display-name" id="profile-display-name">Loading...</div>
+          <div class="profile-display-email" id="profile-display-email"></div>
+          <div class="profile-role-tag" id="profile-role-tag">Customer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="profile-body">
+
+      <!-- Personal Info -->
+      <div class="profile-section">
+        <div class="profile-section-header">
+          <span class="profile-section-icon">👤</span>
+          <span class="profile-section-title">Personal Information</span>
+        </div>
+        <!-- Full Name -->
+        <div class="profile-field">
+          <div>
+            <div class="profile-field-label">Full Name</div>
+            <div class="profile-field-value" id="pf-name-val">—</div>
+          </div>
+          <button class="profile-field-edit" onclick="toggleEdit('name')">Edit</button>
+        </div>
+        <div class="profile-edit-form" id="edit-name">
+          <input type="text" id="pf-name-input" placeholder="Your full name"/>
+          <div class="profile-edit-actions">
+            <button class="profile-save-btn" onclick="saveName()">Save</button>
+            <button class="profile-cancel-btn" onclick="toggleEdit('name')">Cancel</button>
+          </div>
+          <div class="profile-msg" id="msg-name"></div>
+        </div>
+        <!-- Phone -->
+        <div class="profile-field">
+          <div>
+            <div class="profile-field-label">Phone Number</div>
+            <div class="profile-field-value" id="pf-phone-val">—</div>
+          </div>
+          <button class="profile-field-edit" onclick="toggleEdit('phone')">Edit</button>
+        </div>
+        <div class="profile-edit-form" id="edit-phone">
+          <input type="tel" id="pf-phone-input" placeholder="+93 789 000 000"/>
+          <div class="profile-edit-actions">
+            <button class="profile-save-btn" onclick="savePhone()">Save</button>
+            <button class="profile-cancel-btn" onclick="toggleEdit('phone')">Cancel</button>
+          </div>
+          <div class="profile-msg" id="msg-phone"></div>
+        </div>
+        <!-- Email — read only -->
+        <div class="profile-field">
+          <div>
+            <div class="profile-field-label">Email Address</div>
+            <div class="profile-field-value" id="pf-email-val">—</div>
+          </div>
+          <span style="font-size:0.65rem;color:#4ade80;font-weight:700">✓ Verified</span>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="profile-section">
+        <div class="profile-section-header">
+          <span class="profile-section-icon">🔑</span>
+          <span class="profile-section-title">Security</span>
+        </div>
+        <!-- Change Password -->
+        <div class="profile-field">
+          <div>
+            <div class="profile-field-label">Password</div>
+            <div class="profile-field-value">••••••••••••</div>
+          </div>
+          <button class="profile-field-edit" onclick="toggleEdit('pw')">Change</button>
+        </div>
+        <div class="profile-edit-form" id="edit-pw">
+          <input type="password" id="pf-pw-current" placeholder="Current password"/>
+          <input type="password" id="pf-pw-new" placeholder="New password (min 8 chars)" oninput="checkPwStrength(this.value)"/>
+          <input type="password" id="pf-pw-confirm" placeholder="Confirm new password"/>
+          <div class="profile-edit-actions">
+            <button class="profile-save-btn" onclick="savePassword()">Update Password</button>
+            <button class="profile-cancel-btn" onclick="toggleEdit('pw')">Cancel</button>
+          </div>
+          <div class="profile-msg" id="msg-pw"></div>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div class="profile-section">
+        <div class="profile-section-header">
+          <span class="profile-section-icon">⚙️</span>
+          <span class="profile-section-title">Preferences</span>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">🤳 Face ID / Biometric Login</div>
+            <div class="toggle-sub">Use your face or fingerprint to sign in on this device</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-biometric" onchange="toggleBiometric(this)"/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">🔔 Order Notifications</div>
+            <div class="toggle-sub">Get notified when your order status changes</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-notif" checked/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">🌙 Coming Soon: Dark / Light Mode</div>
+            <div class="toggle-sub">More personalization options coming soon</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" disabled/>
+            <span class="toggle-slider" style="opacity:0.4"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Account Info -->
+      <div class="profile-section">
+        <div class="profile-section-header">
+          <span class="profile-section-icon">🛡️</span>
+          <span class="profile-section-title">Account</span>
+        </div>
+        <div class="profile-field">
+          <div>
+            <div class="profile-field-label">Account Status</div>
+            <div class="profile-field-value" style="color:#4ade80">✓ Active & Verified</div>
+          </div>
+        </div>
+        <div class="profile-field">
+          <div>
+            <div class="profile-field-label">Member Since</div>
+            <div class="profile-field-value" id="pf-joined">—</div>
+          </div>
+        </div>
+        <div class="profile-field">
+          <div>
+            <div class="profile-field-label">Account Type</div>
+            <div class="profile-field-value" id="pf-role-val">Customer</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logout -->
+      <button class="profile-logout-btn" onclick="handleLogout()">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M7 3H4a1 1 0 00-1 1v12a1 1 0 001 1h3M13 14l4-4-4-4M17 10H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Log Out
+      </button>
+
+    </div>
+  </div>
+  <footer>
+    <div class="footer-brand"><img src="logo.png" alt=""/><div><div class="footer-name">APEX DIGITAL HOUSE</div><div class="footer-loc">Kabul, Afghanistan</div></div></div>
+    <div class="footer-copy">© 2026 Apex Digital House. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════
      MODAL: ACCOUNT CREATION
 ════════════════════════════════════════ -->
 <div class="modal-overlay" id="account-modal" onclick="closeModals(event)">
@@ -1310,19 +2048,39 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
   </div>
 </div>
 
-<script type="module">
-// Page nav
+<!-- ══ SCRIPT 1: All UI functions (regular script, loads immediately) ══ -->
+<script>
+// ── Page navigation ──
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
+  var pg = document.getElementById('page-'+id);
+  var tb = document.getElementById('tab-'+id);
+  if(pg) pg.classList.add('active');
+  if(tb) tb.classList.add('active');
   window.scrollTo(0,0);
 }
-window.showPage = showPage;
 
-// Account modal
-let selectedPlatform = null;
+// ── Services tabs ──
+function showSvcTab(id, btn){
+  document.querySelectorAll('.svc-tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.svc-tab-btn').forEach(b=>b.classList.remove('active'));
+  var panel = document.getElementById('svc-'+id);
+  if(panel) panel.classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+// ── Account creation sub-tabs ──
+function showAccTab(id, btn){
+  document.querySelectorAll('.acc-detail-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.acc-platform-tab').forEach(b=>b.classList.remove('active'));
+  var panel = document.getElementById('acc-'+id);
+  if(panel) panel.classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+// ── Account modal ──
+var selectedPlatform = null;
 function openAccountModal(){
   document.getElementById('account-modal').classList.add('open');
   document.body.style.overflow='hidden';
@@ -1335,14 +2093,11 @@ function selectPlatform(el, name){
   document.querySelectorAll('.platform-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   selectedPlatform = name;
-  const msg = encodeURIComponent('I want to create a professional ' + name + ' account');
+  var msg = encodeURIComponent('I want to create a professional ' + name + ' account');
   document.getElementById('modal-wa-btn').href = 'https://wa.me/93789077537?text=' + msg;
 }
-window.openAccountModal = openAccountModal;
-window.closeAccountModal = closeAccountModal;
-window.selectPlatform = selectPlatform;
 
-// Auth modal
+// ── Auth modal ──
 function openAuth(tab){
   document.getElementById('auth-modal').classList.add('open');
   document.body.style.overflow='hidden';
@@ -1353,19 +2108,14 @@ function closeAuthModal(){
   document.body.style.overflow='';
 }
 function switchAuth(tab){
-  const isLogin = tab==='login';
-  document.getElementById('auth-login-form').style.display = isLogin ? 'block' : 'none';
-  document.getElementById('auth-signup-form').style.display = isLogin ? 'none' : 'block';
+  var isLogin = tab==='login';
+  document.getElementById('auth-login-form').style.display = isLogin?'block':'none';
+  document.getElementById('auth-signup-form').style.display = isLogin?'none':'block';
   document.getElementById('auth-tab-login').classList.toggle('active', isLogin);
   document.getElementById('auth-tab-signup').classList.toggle('active', !isLogin);
-  document.getElementById('auth-modal-title').textContent = isLogin ? 'WELCOME BACK' : 'CREATE ACCOUNT';
-  document.getElementById('auth-modal-subtitle').textContent = isLogin ? 'Sign in to your Apex Digital House account' : 'Join Apex Digital House';
+  document.getElementById('auth-modal-title').textContent = isLogin?'WELCOME BACK':'CREATE ACCOUNT';
+  document.getElementById('auth-modal-subtitle').textContent = isLogin?'Sign in to your Apex Digital House account':'Join Apex Digital House';
 }
-window.openAuth = openAuth;
-window.closeAuthModal = closeAuthModal;
-window.switchAuth = switchAuth;
-
-// Role selection
 function selectLoginRole(el, role){
   document.querySelectorAll('#login-role-selector .role-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
@@ -1373,46 +2123,87 @@ function selectLoginRole(el, role){
 function selectSignupRole(el, role){
   document.querySelectorAll('#signup-role-selector .role-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  document.getElementById('emp-fields').style.display = (role==='employee') ? 'block' : 'none';
+  document.getElementById('emp-fields').style.display=(role==='employee')?'block':'none';
 }
-window.selectLoginRole = selectLoginRole;
-window.selectSignupRole = selectSignupRole;
+function closeModals(e){
+  if(e.target.classList.contains('modal-overlay')){
+    closeAccountModal();
+    closeAuthModal();
+  }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeAccountModal();closeAuthModal();}
+});
 
-// Password visibility toggle
+// ── Password UI ──
 function togglePw(id, btn){
-  const inp = document.getElementById(id);
+  var inp = document.getElementById(id);
   if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}
   else{inp.type='password';btn.textContent='👁';}
 }
-window.togglePw = togglePw;
-
-// Password strength checker
 function checkPwStrength(pw){
-  const ui = document.getElementById('pw-strength-ui');
-  const lbl = document.getElementById('pw-strength-lbl');
-  const bars = [document.getElementById('pb1'),document.getElementById('pb2'),document.getElementById('pb3'),document.getElementById('pb4')];
-  const tips = document.getElementById('pw-tips');
+  var ui=document.getElementById('pw-strength-ui');
+  var lbl=document.getElementById('pw-strength-lbl');
+  var bars=[document.getElementById('pb1'),document.getElementById('pb2'),document.getElementById('pb3'),document.getElementById('pb4')];
+  var tips=document.getElementById('pw-tips');
   if(!pw){ui.style.display='none';tips.style.display='block';return;}
-  ui.style.display='block';
-  tips.style.display='none';
-  let score=0;
-  if(pw.length>=8) score++;
-  if(/[A-Z]/.test(pw)&&/[a-z]/.test(pw)) score++;
-  if(/[0-9]/.test(pw)) score++;
-  if(/[^A-Za-z0-9]/.test(pw)) score++;
-  const levels=['','weak','fair','good','strong'];
-  const labels=['','Weak — keep going','Fair — getting better','Good — almost there!','Strong — excellent!'];
-  bars.forEach((b,i)=>{b.className='pw-bar';if(i<score)b.classList.add(levels[score]);});
-  lbl.textContent=labels[score];lbl.style.color=score<=1?'#ff4d4d':score===2?'#ffaa00':score===3?'#4ade80':'#22c55e';
+  ui.style.display='block';tips.style.display='none';
+  var score=0;
+  if(pw.length>=8)score++;
+  if(/[A-Z]/.test(pw)&&/[a-z]/.test(pw))score++;
+  if(/[0-9]/.test(pw))score++;
+  if(/[^A-Za-z0-9]/.test(pw))score++;
+  var levels=['','weak','fair','good','strong'];
+  var labels=['','Weak — keep going','Fair — getting better','Good — almost there!','Strong — excellent!'];
+  bars.forEach(function(b,i){b.className='pw-bar';if(i<score)b.classList.add(levels[score]);});
+  lbl.textContent=labels[score];
+  lbl.style.color=score<=1?'#ff4d4d':score===2?'#ffaa00':score===3?'#4ade80':'#22c55e';
 }
-window.checkPwStrength = checkPwStrength;
 
-// ══════════════════════════════════════════
-//  FIREBASE — Real Authentication
-// ══════════════════════════════════════════
+// ── Contact form ──
+function sendContactForm(){
+  var name=document.getElementById('cf-name').value.trim();
+  var contact=document.getElementById('cf-contact').value.trim();
+  var service=document.getElementById('cf-service').value;
+  var payment=document.getElementById('cf-payment').value;
+  var message=document.getElementById('cf-message').value.trim();
+  var msg=document.getElementById('cf-msg');
+  if(!name||!contact||!message){
+    if(msg){msg.style.display='block';msg.style.background='rgba(255,80,80,0.1)';msg.style.border='1px solid rgba(255,80,80,0.3)';msg.style.color='#ff7070';msg.style.borderRadius='8px';msg.style.padding='0.65rem 0.85rem';msg.style.fontSize='0.78rem';msg.textContent='Please fill in your name, contact info, and message.';}
+    return;
+  }
+  var subject=encodeURIComponent('New Inquiry'+(service?' — '+service:'')+' | Apex Digital House');
+  var body=encodeURIComponent('Name: '+name+'\nContact: '+contact+'\n'+(service?'Service: '+service+'\n':'')+(payment?'Payment: '+payment+'\n':'')+'\nMessage:\n'+message+'\n\n— apexdigitalhouse.com');
+  window.location.href='mailto:apexdigitalhouse2026@gmail.com?subject='+subject+'&body='+body;
+}
+
+// ── Profile edit toggles ──
+function toggleEdit(section){
+  var form=document.getElementById('edit-'+section);
+  if(!form)return;
+  form.classList.toggle('open');
+  if(form.classList.contains('open')){
+    if(section==='name'){var v=document.getElementById('pf-name-val');var i=document.getElementById('pf-name-input');if(i&&v&&v.textContent!=='—')i.value=v.textContent;}
+    if(section==='phone'){var v=document.getElementById('pf-phone-val');var i=document.getElementById('pf-phone-input');if(i&&v&&v.textContent!=='—')i.value=v.textContent;}
+  }
+}
+
+// Placeholders — Firebase module fills these in
+function handleLogin(){if(window._fbLogin)window._fbLogin();else alert('Loading...');}
+function handleSignup(){if(window._fbSignup)window._fbSignup();else alert('Loading...');}
+function handleLogout(){if(window._fbLogout)window._fbLogout();}
+function saveName(){if(window._fbSaveName)window._fbSaveName();}
+function savePhone(){if(window._fbSavePhone)window._fbSavePhone();}
+function savePassword(){if(window._fbSavePw)window._fbSavePw();}
+function toggleBiometric(el){if(window._fbBiometric)window._fbBiometric(el);}
+function resendVerification(e,p){if(window._fbResend)window._fbResend(e,p);}
+</script>
+
+<!-- ══ SCRIPT 2: Firebase only (module) ══ -->
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, query, collection, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDe4RVAGQdGqWomTy6xfNaS3cPC2sgR0eU",
@@ -1428,214 +2219,226 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ── Inline message helper ──
-function showMsg(id, text, type){
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.className = 'auth-msg ' + type + ' show';
-  el.innerHTML = text;
-  el.style.display = 'block';
+function showMsg(id,text,type){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.className='auth-msg '+type+' show';
+  el.innerHTML=text;
+  el.style.display='block';
 }
 function clearMsg(id){
-  const el = document.getElementById(id);
+  const el=document.getElementById(id);
   if(el){el.className='auth-msg';el.style.display='none';el.innerHTML='';}
 }
-
-// ── Button loading state ──
-function setBtnLoading(btn, loading, defaultText){
-  btn.disabled = loading;
-  btn.innerHTML = loading
-    ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(0,0,0,0.3)" stroke-width="3"/><path d="M12 2a10 10 0 0110 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite"/></path></svg> Please wait...'
-    : defaultText;
+function setBtnLoading(btn,loading,def){
+  if(!btn)return;
+  btn.disabled=loading;
+  btn.innerHTML=loading?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(0,0,0,0.3)" stroke-width="3"/><path d="M12 2a10 10 0 0110 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite"/></path></svg> Please wait...':def;
 }
 
-// ── Update nav after login ──
-function updateNavUser(user, userData){
-  const btnLogin = document.querySelector('.btn-login');
-  const btnSignup = document.querySelector('.btn-signup');
-  if(user && userData){
-    btnLogin.textContent = userData.name ? userData.name.split(' ')[0] : 'Account';
-    btnLogin.onclick = () => showUserMenu(user, userData);
-    btnSignup.textContent = 'Log Out';
-    btnSignup.style.background = 'transparent';
-    btnSignup.style.border = '1px solid rgba(255,80,80,0.4)';
-    btnSignup.style.color = '#ff7070';
-    btnSignup.onclick = () => handleLogout();
+function updateNavUser(user,userData){
+  const btnLogin=document.querySelector('.btn-login');
+  const btnSignup=document.querySelector('.btn-signup');
+  const tabProfile=document.getElementById('tab-profile');
+  if(user&&userData){
+    const fn=userData.name?userData.name.split(' ')[0]:'Account';
+    btnLogin.textContent='👤 '+fn;
+    btnLogin.onclick=()=>showPage('profile');
+    btnSignup.textContent='Log Out';
+    btnSignup.style.background='transparent';
+    btnSignup.style.border='1px solid rgba(255,80,80,0.4)';
+    btnSignup.style.color='#ff7070';
+    btnSignup.onclick=()=>window._fbLogout();
+    if(tabProfile)tabProfile.style.display='inline-flex';
+    loadProfile(user,userData);
   } else {
-    btnLogin.textContent = 'Log In';
-    btnLogin.onclick = () => openAuth('login');
-    btnSignup.textContent = 'Sign Up';
-    btnSignup.style.background = '';
-    btnSignup.style.border = '';
-    btnSignup.style.color = '';
-    btnSignup.onclick = () => openAuth('signup');
+    btnLogin.textContent='Log In';
+    btnLogin.onclick=()=>openAuth('login');
+    btnSignup.textContent='Sign Up';
+    btnSignup.style.background='';
+    btnSignup.style.border='';
+    btnSignup.style.color='';
+    btnSignup.onclick=()=>openAuth('signup');
+    if(tabProfile)tabProfile.style.display='none';
   }
 }
 
-function showUserMenu(user, userData){
-  openAuth('login');
-  showMsg('login-msg',
-    `<strong>Signed in as ${userData.name || user.email}</strong><br>
-     Role: ${userData.role || 'Customer'} &nbsp;|&nbsp;
-     <a href="#" onclick="handleLogout();return false;" style="color:#ff7070">Log Out</a>`,
-    'info');
+function loadProfile(user,data){
+  const name=data.name||'User';
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  const av=document.getElementById('profile-avatar');
+  if(av)av.childNodes[0].textContent=name.charAt(0).toUpperCase();
+  set('profile-display-name',name);
+  set('profile-display-email',user.email);
+  set('profile-role-tag',data.role==='employee'?'👔 Employee':'🛍️ Customer');
+  set('pf-name-val',name);
+  set('pf-phone-val',data.phone||'—');
+  set('pf-email-val',user.email);
+  set('pf-role-val',data.role==='employee'?'Employee':'Customer');
+  if(data.createdAt){
+    const d=data.createdAt.toDate?data.createdAt.toDate():new Date(data.createdAt);
+    set('pf-joined',d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}));
+  }
+  const bio=document.getElementById('toggle-biometric');
+  if(bio)bio.checked=localStorage.getItem('biometric_enabled')==='true';
 }
 
-// ── Watch auth state ──
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth,async(user)=>{
   if(user){
-    try{
-      const snap = await getDoc(doc(db,'users', user.uid));
-      const data = snap.exists() ? snap.data() : {};
-      updateNavUser(user, data);
-    } catch(e){ updateNavUser(user, {}); }
-  } else {
-    updateNavUser(null, null);
-  }
+    try{const snap=await getDoc(doc(db,'users',user.uid));updateNavUser(user,snap.exists()?snap.data():{});}
+    catch(e){updateNavUser(user,{});}
+  } else {updateNavUser(null,null);}
 });
 
 // ── LOGIN ──
-async function handleLogin(){
+window._fbLogin = async function(){
   clearMsg('login-msg');
-  const email = document.getElementById('login-email').value.trim();
-  const pw    = document.getElementById('login-pw').value;
-  const role  = document.querySelector('#login-role-selector .role-card.selected')?.dataset?.role||'customer';
-  const btn   = document.querySelector('#auth-login-form .auth-btn');
-
-  if(!email || !pw){
-    showMsg('login-msg','Please enter your email and password.','error'); return;
-  }
-  if(!email.includes('@')){
-    showMsg('login-msg','Please enter a valid email address.','error'); return;
-  }
-
-  setBtnLoading(btn, true, 'Log In →');
-  try {
-    const cred = await signInWithEmailAndPassword(auth, email, pw);
-    const snap = await getDoc(doc(db,'users', cred.user.uid));
-    const data = snap.exists() ? snap.data() : {};
-
-    // Check role matches
-    if(role === 'staff' && data.role === 'customer'){
+  const email=document.getElementById('login-email').value.trim();
+  const pw=document.getElementById('login-pw').value;
+  const role=document.querySelector('#login-role-selector .role-card.selected')?.dataset?.role||'customer';
+  const btn=document.querySelector('#auth-login-form .auth-btn');
+  if(!email||!pw){showMsg('login-msg','Please enter your email and password.','error');return;}
+  if(!email.includes('@')){showMsg('login-msg','Please enter a valid email address.','error');return;}
+  setBtnLoading(btn,true,'Log In →');
+  try{
+    const cred=await signInWithEmailAndPassword(auth,email,pw);
+    if(!cred.user.emailVerified){
       await signOut(auth);
-      showMsg('login-msg','This account is not a staff account. Please select "Customer" or contact management.','error');
-      setBtnLoading(btn, false, 'Log In →'); return;
+      showMsg('login-msg',`⚠️ <strong>Email not verified.</strong><br>Check <strong>${email}</strong> for the verification link.<br><br><a href="#" onclick="resendVerification('${email}','${pw}');return false;" style="color:var(--gold);font-weight:600;text-decoration:underline">Resend verification email →</a>`,'error');
+      setBtnLoading(btn,false,'Log In →');return;
     }
-    if(role === 'staff' && data.status === 'pending'){
-      await signOut(auth);
-      showMsg('login-msg','Your staff account is pending approval. We will notify you at <strong>'+email+'</strong>.','info');
-      setBtnLoading(btn, false, 'Log In →'); return;
-    }
-
-    showMsg('login-msg','✅ Welcome back, <strong>'+(data.name||email)+'</strong>! You are now signed in.','success');
-    setTimeout(()=>closeAuthModal(), 1800);
+    const snap=await getDoc(doc(db,'users',cred.user.uid));
+    const data=snap.exists()?snap.data():{};
+    if(role==='staff'&&data.role==='customer'){await signOut(auth);showMsg('login-msg','This is not a staff account. Select "Customer".','error');setBtnLoading(btn,false,'Log In →');return;}
+    if(role==='staff'&&data.status==='pending'){await signOut(auth);showMsg('login-msg','Your staff account is pending approval.','info');setBtnLoading(btn,false,'Log In →');return;}
+    showMsg('login-msg','✅ Welcome back, <strong>'+(data.name||email)+'</strong>!','success');
+    setTimeout(()=>closeAuthModal(),1800);
   } catch(err){
-    const msgs = {
-      'auth/user-not-found':'No account found with this email. Please sign up first.',
-      'auth/wrong-password':'Incorrect password. Please try again.',
-      'auth/invalid-credential':'Incorrect email or password. Please try again.',
-      'auth/too-many-requests':'Too many attempts. Please wait a few minutes and try again.',
-      'auth/invalid-email':'Please enter a valid email address.',
-      'auth/network-request-failed':'Network error. Please check your internet connection.'
-    };
-    showMsg('login-msg', msgs[err.code] || 'Login failed: '+err.message, 'error');
+    const m={'auth/invalid-credential':'Incorrect email or password.','auth/too-many-requests':'Too many attempts. Wait a few minutes.','auth/network-request-failed':'Network error. Check your connection.'};
+    showMsg('login-msg',m[err.code]||'Login failed: '+err.message,'error');
   }
-  setBtnLoading(btn, false, 'Log In →');
-}
+  setBtnLoading(btn,false,'Log In →');
+};
 
 // ── SIGNUP ──
-async function handleSignup(){
+window._fbSignup = async function(){
   clearMsg('signup-msg');
-  const name   = document.querySelector('#auth-signup-form input[autocomplete="name"]').value.trim();
-  const email  = document.getElementById('signup-email').value.trim();
-  const phone  = document.querySelector('#auth-signup-form input[type="tel"]').value.trim();
-  const pw     = document.getElementById('signup-pw').value;
-  const pw2    = document.getElementById('signup-pw2').value;
-  const role   = document.querySelector('#signup-role-selector .role-card.selected')?.dataset?.role||'customer';
-  const btn    = document.querySelector('#auth-signup-form .auth-btn');
-  const empId  = role==='employee' ? document.querySelector('#emp-fields input[type="text"]')?.value.trim() : '';
-  const dept   = role==='employee' ? document.querySelector('#emp-fields select')?.value : '';
-
-  if(!name){ showMsg('signup-msg','Please enter your full name.','error'); return; }
-  if(!email.includes('@')){ showMsg('signup-msg','Please enter a valid email address.','error'); return; }
-  if(!phone){ showMsg('signup-msg','Please enter your phone number.','error'); return; }
-  if(pw.length < 8){ showMsg('signup-msg','Password must be at least 8 characters.','error'); return; }
-  if(pw !== pw2){ showMsg('signup-msg','Passwords do not match. Please try again.','error'); return; }
-  if(role==='employee' && !empId){ showMsg('signup-msg','Please enter your Employee ID provided by management.','error'); return; }
-
-  setBtnLoading(btn, true, 'Create Account →');
-  try {
-    const cred = await createUserWithEmailAndPassword(auth, email, pw);
-    const userData = {
-      name, email, phone, role,
-      status: role==='employee' ? 'pending' : 'active',
-      createdAt: serverTimestamp(),
-      ...(role==='employee' && { employeeId: empId, department: dept })
-    };
-    await setDoc(doc(db,'users', cred.user.uid), userData);
-
-    if(role === 'employee'){
-      await signOut(auth);
-      showMsg('signup-msg',
-        '✅ <strong>Request submitted!</strong><br>Your employee account is pending owner approval. We will contact you at <strong>'+email+'</strong> within 24 hours.',
-        'success');
-    } else {
-      showMsg('signup-msg',
-        '✅ <strong>Account created!</strong><br>Welcome to Apex Digital House, <strong>'+name+'</strong>! You are now signed in.',
-        'success');
-      setTimeout(()=>closeAuthModal(), 2000);
-    }
+  const name=document.querySelector('#auth-signup-form input[autocomplete="name"]').value.trim();
+  const email=document.getElementById('signup-email').value.trim();
+  const phone=document.querySelector('#auth-signup-form input[type="tel"]').value.trim();
+  const pw=document.getElementById('signup-pw').value;
+  const pw2=document.getElementById('signup-pw2').value;
+  const role=document.querySelector('#signup-role-selector .role-card.selected')?.dataset?.role||'customer';
+  const btn=document.querySelector('#auth-signup-form .auth-btn');
+  const empId=role==='employee'?document.querySelector('#emp-fields input[type="text"]')?.value.trim():'';
+  const dept=role==='employee'?document.querySelector('#emp-fields select')?.value:'';
+  if(!name){showMsg('signup-msg','Please enter your full name.','error');return;}
+  if(!email.includes('@')){showMsg('signup-msg','Please enter a valid email address.','error');return;}
+  if(!phone){showMsg('signup-msg','Please enter your phone number.','error');return;}
+  if(pw.length<8){showMsg('signup-msg','Password must be at least 8 characters.','error');return;}
+  if(pw!==pw2){showMsg('signup-msg','Passwords do not match.','error');return;}
+  if(role==='employee'&&!empId){showMsg('signup-msg','Please enter your Employee ID.','error');return;}
+  setBtnLoading(btn,true,'Create Account →');
+  try{
+    const phoneQ=query(collection(db,'users'),where('phone','==',phone));
+    const phoneSnap=await getDocs(phoneQ);
+    if(!phoneSnap.empty){showMsg('signup-msg','This phone number is already linked to an account.','error');setBtnLoading(btn,false,'Create Account →');return;}
+    const cred=await createUserWithEmailAndPassword(auth,email,pw);
+    await sendEmailVerification(cred.user);
+    await setDoc(doc(db,'users',cred.user.uid),{name,email,phone,role,status:role==='employee'?'pending':'unverified',createdAt:serverTimestamp(),...(role==='employee'&&{employeeId:empId,department:dept})});
+    await signOut(auth);
+    showMsg('signup-msg',`📧 <strong>Check your email!</strong><br>We sent a verification link to <strong>${email}</strong>. Click it to activate your account.`,'success');
   } catch(err){
-    const msgs = {
-      'auth/email-already-in-use':'An account with this email already exists. Please log in instead.',
-      'auth/weak-password':'Password is too weak. Please use at least 8 characters with numbers and symbols.',
-      'auth/invalid-email':'Please enter a valid email address.',
-      'auth/network-request-failed':'Network error. Please check your internet connection.'
-    };
-    showMsg('signup-msg', msgs[err.code] || 'Signup failed: '+err.message, 'error');
+    const m={'auth/email-already-in-use':'This email is already registered. Please log in.','auth/weak-password':'Password too weak.','auth/network-request-failed':'Network error.'};
+    showMsg('signup-msg',m[err.code]||'Signup failed: '+err.message,'error');
   }
-  setBtnLoading(btn, false, 'Create Account →');
-}
+  setBtnLoading(btn,false,'Create Account →');
+};
 
 // ── LOGOUT ──
-async function handleLogout(){
+window._fbLogout = async function(){
   await signOut(auth);
   closeAuthModal();
-}
+  showPage('home');
+};
 
-// ── Contact form ──
-function sendContactForm(){
-  const name    = document.getElementById('cf-name').value.trim();
-  const contact = document.getElementById('cf-contact').value.trim();
-  const service = document.getElementById('cf-service').value;
-  const payment = document.getElementById('cf-payment').value;
-  const message = document.getElementById('cf-message').value.trim();
-  if(!name||!contact||!message){
-    const msg = document.getElementById('cf-msg');
-    if(msg){msg.className='cf-msg error';msg.textContent='Please fill in your name, contact info, and message.';}
-    return;
+// ── RESEND VERIFICATION ──
+window._fbResend = async function(email,pw){
+  try{
+    const cred=await signInWithEmailAndPassword(auth,email,pw);
+    await sendEmailVerification(cred.user);
+    await signOut(auth);
+    showMsg('login-msg','📧 Verification email resent! Check <strong>'+email+'</strong>.','info');
+  } catch(e){showMsg('login-msg','Could not resend. Try logging in again.','error');}
+};
+
+// ── PROFILE SAVE NAME ──
+window._fbSaveName = async function(){
+  const name=document.getElementById('pf-name-input').value.trim();
+  const msg=document.getElementById('msg-name');
+  if(!name){msg.className='profile-msg err';msg.textContent='Please enter your name.';return;}
+  try{
+    await updateDoc(doc(db,'users',auth.currentUser.uid),{name});
+    document.getElementById('pf-name-val').textContent=name;
+    document.getElementById('profile-display-name').textContent=name;
+    document.getElementById('profile-avatar').childNodes[0].textContent=name.charAt(0).toUpperCase();
+    document.querySelector('.btn-login').textContent='👤 '+name.split(' ')[0];
+    msg.className='profile-msg ok';msg.textContent='✅ Name updated!';
+    setTimeout(()=>toggleEdit('name'),1200);
+  } catch(e){msg.className='profile-msg err';msg.textContent='Failed. Try again.';}
+};
+
+// ── PROFILE SAVE PHONE ──
+window._fbSavePhone = async function(){
+  const phone=document.getElementById('pf-phone-input').value.trim();
+  const msg=document.getElementById('msg-phone');
+  if(!phone){msg.className='profile-msg err';msg.textContent='Please enter a phone number.';return;}
+  try{
+    const q=query(collection(db,'users'),where('phone','==',phone));
+    const snap=await getDocs(q);
+    if(!snap.empty&&snap.docs[0].id!==auth.currentUser.uid){msg.className='profile-msg err';msg.textContent='Phone already linked to another account.';return;}
+    await updateDoc(doc(db,'users',auth.currentUser.uid),{phone});
+    document.getElementById('pf-phone-val').textContent=phone;
+    msg.className='profile-msg ok';msg.textContent='✅ Phone updated!';
+    setTimeout(()=>toggleEdit('phone'),1200);
+  } catch(e){msg.className='profile-msg err';msg.textContent='Failed. Try again.';}
+};
+
+// ── PROFILE SAVE PASSWORD ──
+window._fbSavePw = async function(){
+  const current=document.getElementById('pf-pw-current').value;
+  const newPw=document.getElementById('pf-pw-new').value;
+  const confirm=document.getElementById('pf-pw-confirm').value;
+  const msg=document.getElementById('msg-pw');
+  if(!current){msg.className='profile-msg err';msg.textContent='Enter your current password.';return;}
+  if(newPw.length<8){msg.className='profile-msg err';msg.textContent='New password must be at least 8 characters.';return;}
+  if(newPw!==confirm){msg.className='profile-msg err';msg.textContent='Passwords do not match.';return;}
+  try{
+    const cred=EmailAuthProvider.credential(auth.currentUser.email,current);
+    await reauthenticateWithCredential(auth.currentUser,cred);
+    await updatePassword(auth.currentUser,newPw);
+    msg.className='profile-msg ok';msg.textContent='✅ Password updated!';
+    document.getElementById('pf-pw-current').value='';
+    document.getElementById('pf-pw-new').value='';
+    document.getElementById('pf-pw-confirm').value='';
+    setTimeout(()=>toggleEdit('pw'),1500);
+  } catch(e){
+    const m={'auth/wrong-password':'Current password is incorrect.','auth/too-many-requests':'Too many attempts.'};
+    msg.className='profile-msg err';msg.textContent=m[e.code]||'Failed to update password.';
   }
-  const subject = encodeURIComponent('New Inquiry'+(service?' — '+service:'')+' | Apex Digital House');
-  const body = encodeURIComponent('Name: '+name+'\nContact: '+contact+'\n'+(service?'Service: '+service+'\n':'')+(payment?'Payment: '+payment+'\n':'')+'\nMessage:\n'+message+'\n\n— Sent from apexdigitalhouse.com');
-  window.location.href = 'mailto:apexdigitalhouse2026@gmail.com?subject='+subject+'&body='+body;
-}
+};
 
-// expose to HTML onclick attributes
-window.handleLogin   = handleLogin;
-window.handleSignup  = handleSignup;
-window.handleLogout  = handleLogout;
-window.sendContactForm = sendContactForm;
-
-// Close modals on overlay click
-function closeModals(e){
-  if(e.target.classList.contains('modal-overlay')){
-    closeAccountModal();
-    closeAuthModal();
-  }
-}
-window.closeModals = closeModals;
-// ESC key
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAccountModal();closeAuthModal()}});
+// ── BIOMETRIC ──
+window._fbBiometric = async function(checkbox){
+  if(checkbox.checked){
+    if(!window.PublicKeyCredential){checkbox.checked=false;return;}
+    try{
+      const ok=await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
+      if(!ok){checkbox.checked=false;alert('No biometric sensor found on this device.');return;}
+      localStorage.setItem('biometric_enabled','true');
+    } catch(e){checkbox.checked=false;}
+  } else {localStorage.setItem('biometric_enabled','false');}
+};
 </script>
 </body>
 </html>
