@@ -296,6 +296,17 @@ h1 .hl{color:var(--gold);display:block}
 .auth-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 .auth-note{font-size:0.67rem;color:var(--gray);text-align:center;margin-top:0.85rem;line-height:1.6}
 .auth-note a{color:var(--gold);text-decoration:none}
+
+.auth-msg{font-size:0.75rem;line-height:1.55;padding:0.65rem 0.8rem;border-radius:7px;margin:0.75rem 0;display:none}
+.auth-msg.show{display:block}
+.auth-msg.success{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.28);color:#4ade80}
+.auth-msg.error{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.28);color:#ff7070}
+.auth-msg.info{background:rgba(58,180,242,0.1);border:1px solid rgba(58,180,242,0.28);color:#7dd3fc}
+.google-auth-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#1f1f1f;border:none;border-radius:8px;padding:0.8rem 1rem;font-weight:800;font-size:0.9rem;cursor:pointer;transition:all 0.2s;margin-top:0.65rem;box-shadow:0 2px 12px rgba(0,0,0,0.25)}
+.google-auth-btn:hover{transform:translateY(-1px);box-shadow:0 7px 24px rgba(255,255,255,0.12)}
+.google-auth-btn svg{flex-shrink:0}
+.auth-simple-box{background:rgba(255,208,0,0.04);border:1px solid var(--border-gold);border-radius:10px;padding:0.9rem;margin-bottom:1rem;font-size:0.75rem;color:var(--gray-light);line-height:1.55}
+
 .auth-section-label{font-size:0.62rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-gold);margin-top:1rem}
 .auth-section-label:first-child{margin-top:0}
 
@@ -1646,27 +1657,13 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
             <div class="role-desc">Employee & admin access</div>
           </div>
         </div>
-        <div class="auth-section-label">Credentials</div>
-        <div class="form-g">
-          <label>Email Address <span class="req">*</span></label>
-          <input type="email" id="login-email" placeholder="e.g. you@example.com" autocomplete="email"/>
-        </div>
-        <div class="form-g">
-          <label>Password <span class="req">*</span></label>
-          <div class="pw-wrap">
-            <input type="password" id="login-pw" placeholder="••••••••" autocomplete="current-password"/>
-            <button class="pw-toggle" onclick="togglePw('login-pw',this)" type="button">👁</button>
-          </div>
-        </div>
-        <div style="display:flex;justify-content:flex-end;margin-bottom:0.85rem">
-          <a href="mailto:apexdigitalhouse2026@gmail.com?subject=Password Reset Request" style="font-size:0.72rem;color:var(--gold);text-decoration:none">Forgot password?</a>
-        </div>
+        <div class="auth-simple-box">Use your Gmail account. No password to remember and no verification email needed.</div>
         <div class="auth-msg" id="login-msg"></div>
-        <button class="auth-btn" onclick="handleLogin()">
-          <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M13 10H3m0 0l3-3m-3 3l3 3M10 3h5a2 2 0 012 2v10a2 2 0 01-2 2h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Log In →
+        <button class="google-auth-btn" onclick="handleLogin()">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Sign in with Google
         </button>
-        <div class="auth-note">Staff / Owner accounts require approval.<br>Contact us at <a href="mailto:apexdigitalhouse2026@gmail.com">apexdigitalhouse2026@gmail.com</a></div>
+        <div class="auth-note">Staff / Owner accounts still require approval.<br>Contact us at <a href="mailto:apexdigitalhouse2026@gmail.com">apexdigitalhouse2026@gmail.com</a></div>
       </div>
 
       <!-- ── SIGNUP FORM ── -->
@@ -1683,19 +1680,6 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
             <div class="role-name">Employee</div>
             <div class="role-desc">Staff portal access</div>
           </div>
-        </div>
-        <div class="auth-section-label">Personal Information</div>
-        <div class="form-g">
-          <label>Full Name <span class="req">*</span></label>
-          <input type="text" id="signup-name" placeholder="e.g. Ahmad Karimi" autocomplete="name"/>
-        </div>
-        <div class="form-g">
-          <label>Email Address <span class="req">*</span></label>
-          <input type="email" id="signup-email" placeholder="e.g. you@example.com" autocomplete="email"/>
-        </div>
-        <div class="form-g">
-          <label>Phone Number <span class="req">*</span></label>
-          <input type="tel" id="signup-phone" placeholder="+93 789 000 000" autocomplete="tel"/>
         </div>
         <div id="emp-fields" style="display:none">
           <div class="form-g">
@@ -1714,40 +1698,11 @@ footer{background:var(--black-mid);border-top:1px solid var(--border-gold);paddi
             </select>
           </div>
         </div>
-        <div class="auth-section-label">Security</div>
-        <div class="form-g">
-          <label>Password <span class="req">*</span></label>
-          <div class="pw-wrap">
-            <input type="password" id="signup-pw" placeholder="Create a strong password" autocomplete="new-password" oninput="checkPwStrength(this.value)"/>
-            <button class="pw-toggle" onclick="togglePw('signup-pw',this)" type="button">👁</button>
-          </div>
-          <div class="pw-strength" id="pw-strength-ui" style="display:none">
-            <div class="pw-bar-row">
-              <div class="pw-bar" id="pb1"></div>
-              <div class="pw-bar" id="pb2"></div>
-              <div class="pw-bar" id="pb3"></div>
-              <div class="pw-bar" id="pb4"></div>
-            </div>
-            <div class="pw-strength-label" id="pw-strength-lbl"></div>
-          </div>
-          <ul class="pw-tips" id="pw-tips">
-            <li>At least 8 characters</li>
-            <li>Uppercase &amp; lowercase letters</li>
-            <li>At least one number (0–9)</li>
-            <li>A symbol: ! @ # $ % ^ &amp; *</li>
-          </ul>
-        </div>
-        <div class="form-g">
-          <label>Confirm Password <span class="req">*</span></label>
-          <div class="pw-wrap">
-            <input type="password" id="signup-pw2" placeholder="Re-enter your password" autocomplete="new-password"/>
-            <button class="pw-toggle" onclick="togglePw('signup-pw2',this)" type="button">👁</button>
-          </div>
-        </div>
+        <div class="auth-simple-box">Create your account with Gmail. Firebase will handle the secure sign-in for you.</div>
         <div class="auth-msg" id="signup-msg"></div>
-        <button class="auth-btn" onclick="handleSignup()">
-          <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 4v4l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          Create Account →
+        <button class="google-auth-btn" onclick="handleSignup()">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
         </button>
         <div class="auth-note">Employee accounts require owner approval before activation.<br>Questions? <a href="mailto:apexdigitalhouse2026@gmail.com">apexdigitalhouse2026@gmail.com</a></div>
       </div>
@@ -1909,7 +1864,7 @@ function resendVerification(e,p){if(window._fbResend)window._fbResend(e,p);}
 <!-- ══ SCRIPT 2: Firebase only (module) ══ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, updateDoc, query, collection, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -1997,70 +1952,76 @@ onAuthStateChanged(auth,async(user)=>{
   } else {updateNavUser(null,null);}
 });
 
-// ── LOGIN ──
-window._fbLogin = async function(){
-  clearMsg('login-msg');
-  const email=document.getElementById('login-email').value.trim();
-  const pw=document.getElementById('login-pw').value;
-  const role=document.querySelector('#login-role-selector .role-card.selected')?.dataset?.role||'customer';
-  const btn=document.querySelector('#auth-login-form .auth-btn');
-  if(!email||!pw){showMsg('login-msg','Please enter your email and password.','error');return;}
-  if(!email.includes('@')){showMsg('login-msg','Please enter a valid email address.','error');return;}
-  setBtnLoading(btn,true,'Log In →');
-  try{
-    const cred=await signInWithEmailAndPassword(auth,email,pw);
-    if(!cred.user.emailVerified){
-      await signOut(auth);
-      showMsg('login-msg',`⚠️ <strong>Email not verified.</strong><br>Check <strong>${email}</strong> for the verification link.<br><br><a href="#" onclick="resendVerification('${email}','${pw}');return false;" style="color:var(--gold);font-weight:600;text-decoration:underline">Resend verification email →</a>`,'error');
-      setBtnLoading(btn,false,'Log In →');return;
-    }
-    const snap=await getDoc(doc(db,'users',cred.user.uid));
-    const data=snap.exists()?snap.data():{};
-    if(role==='staff'&&data.role==='customer'){await signOut(auth);showMsg('login-msg','This is not a staff account. Select "Customer".','error');setBtnLoading(btn,false,'Log In →');return;}
-    if(role==='staff'&&data.status==='pending'){await signOut(auth);showMsg('login-msg','Your staff account is pending approval.','info');setBtnLoading(btn,false,'Log In →');return;}
-    showMsg('login-msg','✅ Welcome back, <strong>'+(data.name||email)+'</strong>!','success');
-    setTimeout(()=>closeAuthModal(),1800);
-  } catch(err){
-    const m={'auth/invalid-credential':'Incorrect email or password.','auth/too-many-requests':'Too many attempts. Wait a few minutes.','auth/network-request-failed':'Network error. Check your connection.'};
-    showMsg('login-msg',m[err.code]||'Login failed: '+err.message,'error');
+// ── GOOGLE LOGIN / SIGNUP ──
+async function signInWithGoogleFlow(mode){
+  const msgId = mode === 'signup' ? 'signup-msg' : 'login-msg';
+  clearMsg(msgId);
+  const roleSelector = mode === 'signup' ? '#signup-role-selector' : '#login-role-selector';
+  const selectedRole = document.querySelector(`${roleSelector} .role-card.selected`)?.dataset?.role || 'customer';
+  const role = selectedRole === 'staff' ? 'employee' : selectedRole;
+  const empId = role === 'employee' ? (document.getElementById('emp-id-input')?.value.trim() || '') : '';
+  const dept = role === 'employee' ? (document.getElementById('emp-dept-select')?.value || '') : '';
+  if(mode === 'signup' && role === 'employee' && !empId){
+    showMsg(msgId,'Please enter your Employee ID / Staff Code first.','error');
+    return;
   }
-  setBtnLoading(btn,false,'Log In →');
-};
 
-// ── SIGNUP ──
-window._fbSignup = async function(){
-  clearMsg('signup-msg');
-  const name  = document.getElementById('signup-name').value.trim();
-  const email = document.getElementById('signup-email').value.trim();
-  const phone = document.getElementById('signup-phone').value.trim();
-  const pw    = document.getElementById('signup-pw').value;
-  const pw2   = document.getElementById('signup-pw2').value;
-  const role  = document.querySelector('#signup-role-selector .role-card.selected')?.dataset?.role||'customer';
-  const btn   = document.querySelector('#auth-signup-form .auth-btn');
-  const empId = role==='employee'?(document.getElementById('emp-id-input')?.value.trim()||''):'';
-  const dept  = role==='employee'?(document.getElementById('emp-dept-select')?.value||''):'';
-  if(!name){showMsg('signup-msg','Please enter your full name.','error');return;}
-  if(!email.includes('@')){showMsg('signup-msg','Please enter a valid email address.','error');return;}
-  if(!phone){showMsg('signup-msg','Please enter your phone number.','error');return;}
-  if(pw.length<8){showMsg('signup-msg','Password must be at least 8 characters.','error');return;}
-  if(pw!==pw2){showMsg('signup-msg','Passwords do not match.','error');return;}
-  if(role==='employee'&&!empId){showMsg('signup-msg','Please enter your Employee ID.','error');return;}
-  setBtnLoading(btn,true,'Create Account →');
+  const btn = document.querySelector(`#auth-${mode}-form .google-auth-btn`);
+  setBtnLoading(btn,true,'Continue with Google');
   try{
-    const phoneQ=query(collection(db,'users'),where('phone','==',phone));
-    const phoneSnap=await getDocs(phoneQ);
-    if(!phoneSnap.empty){showMsg('signup-msg','This phone number is already linked to an account.','error');setBtnLoading(btn,false,'Create Account →');return;}
-    const cred=await createUserWithEmailAndPassword(auth,email,pw);
-    await sendEmailVerification(cred.user);
-    await setDoc(doc(db,'users',cred.user.uid),{name,email,phone,role,status:role==='employee'?'pending':'unverified',createdAt:serverTimestamp(),...(role==='employee'&&{employeeId:empId,department:dept})});
-    await signOut(auth);
-    showMsg('signup-msg',`📧 <strong>Check your email!</strong><br>We sent a verification link to <strong>${email}</strong>. Click it to activate your account.`,'success');
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    const cred = await signInWithPopup(auth, provider);
+    const user = cred.user;
+    const ref = doc(db,'users',user.uid);
+    const snap = await getDoc(ref);
+
+    if(!snap.exists()){
+      await setDoc(ref,{
+        name: user.displayName || (user.email ? user.email.split('@')[0] : 'User'),
+        email: user.email || '',
+        phone: '',
+        photoURL: user.photoURL || '',
+        role: role,
+        status: role === 'employee' ? 'pending' : 'active',
+        provider: 'google',
+        createdAt: serverTimestamp(),
+        ...(role === 'employee' && {employeeId: empId, department: dept})
+      });
+    } else {
+      const data = snap.data();
+      if(selectedRole === 'staff' && data.role !== 'employee'){
+        await signOut(auth);
+        showMsg(msgId,'This Google account is registered as a customer. Select Customer or contact the owner.','error');
+        setBtnLoading(btn,false,'Continue with Google');
+        return;
+      }
+      if(selectedRole === 'staff' && data.status === 'pending'){
+        await signOut(auth);
+        showMsg(msgId,'Your staff account is pending owner approval.','info');
+        setBtnLoading(btn,false,'Continue with Google');
+        return;
+      }
+      await updateDoc(ref,{lastLoginAt:serverTimestamp(), provider:'google'});
+    }
+
+    showMsg(msgId,'✅ Signed in successfully with Google.','success');
+    setTimeout(()=>closeAuthModal(),900);
   } catch(err){
-    const m={'auth/email-already-in-use':'This email is already registered. Please log in.','auth/weak-password':'Password too weak.','auth/network-request-failed':'Network error.'};
-    showMsg('signup-msg',m[err.code]||'Signup failed: '+err.message,'error');
+    const m={
+      'auth/popup-closed-by-user':'Google sign-in was closed before finishing.',
+      'auth/cancelled-popup-request':'Google sign-in was cancelled. Try again.',
+      'auth/popup-blocked':'Your browser blocked the Google pop-up. Allow pop-ups and try again.',
+      'auth/unauthorized-domain':'This website domain is not authorized in Firebase Authentication settings.',
+      'auth/operation-not-allowed':'Google sign-in is not turned on in Firebase Authentication.'
+    };
+    showMsg(msgId,m[err.code]||('Google sign-in failed: '+err.message),'error');
   }
-  setBtnLoading(btn,false,'Create Account →');
-};
+  setBtnLoading(btn,false,'Continue with Google');
+}
+
+window._fbLogin = async function(){ return signInWithGoogleFlow('login'); };
+window._fbSignup = async function(){ return signInWithGoogleFlow('signup'); };
 
 // ── LOGOUT ──
 window._fbLogout = async function(){
